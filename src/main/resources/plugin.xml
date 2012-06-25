@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+   <extension point="com.change_vision.astah.ui.actionSets">
+      <actionSet
+            label="%csharp_reverse"
+            visible="true"
+            id="com.change_vision.astah.extension.plugin.csharpreverse.actionSet">
+         <action
+			   label="%csharp_reverse"
+               icon="icons/sample.gif"
+               class="com.change_vision.astah.extension.plugin.csharpreverse.actions.CSharpReverseAction"
+               tooltip="%csharp_reverse"
+               menubarPath="tool/c_sharp/"
+               id="com.change_vision.astah.extension.plugin.csharpreverse.actions.CSharpReverseAction">
+         </action>
+     </actionSet>
+   </extension>
+</plugin>
