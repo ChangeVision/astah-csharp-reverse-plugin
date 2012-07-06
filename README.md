@@ -22,8 +22,8 @@ How to install
 
 Reference
 ------------
-C++ Reverse Program User Guide
-http://astah.net/features/cpp-reverse-engineering
+C# Reverse Program User Guide
+http://astah.net/features/csharp-reverse-engineering
 
 
 License
