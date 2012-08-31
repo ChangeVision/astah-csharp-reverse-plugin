@@ -29,7 +29,7 @@ public class Param implements IConvertToJude {
 	
 	protected String type;
 	
-	protected Ref typeRef;
+	protected List<Ref> typeRefs = new ArrayList<Ref>();
 	
 	protected String declname;
 	
@@ -61,14 +61,18 @@ public class Param implements IConvertToJude {
 		this.type = type;
 	}
 
-	public Ref getTypeRef() {
-		return typeRef;
+	public List<Ref> getTypeRefs() {
+		return typeRefs;
 	}
 
-	public void setTypeRef(Ref typeRef) {
-		this.typeRef = typeRef;
-	}
-	
+    public void setTypeRefs(List<Ref> typeRefs) {
+        this.typeRefs = typeRefs;
+    }
+    
+    public void addTypeRef(Ref typeRef) {
+        this.typeRefs.add(typeRef);
+    }
+    
 	public String getDeclname() {
 		return declname;
 	}
@@ -95,18 +99,46 @@ public class Param implements IConvertToJude {
 	
 	public void convertToJudeModel(IElement parent, File[] files)
 		throws InvalidEditingException,	ClassNotFoundException,	ProjectNotFoundException {
-		Object[] result = filterKeyword(type);
-		String type = ((String) result[1]).trim();
-		if ("".equals(type) && typeRef != null) {
-			type = typeRef.value;
+        FilterKeyword result = filterKeyword(type);
+        String type = (result.toType).trim();
+		if ("".equals(type) && !typeRefs.isEmpty()) {
+			type = typeRefs.get(0).value;
+		} else if(null != type){
+            int begin = type.indexOf("<");
+            int refIndex = 0;
+            if (0 <= begin) {
+                while (true) {
+                    ++begin;
+                    int end = type.indexOf(",", begin);
+                    if (0 > end) {
+                        end = type.indexOf(">", begin);
+                    }
+                    if (0 > end) {
+                        end = type.length();
+                    }
+                    if (begin > end) {
+                        break;
+                    }
+                    String theTypeStr = type.substring(begin, end);
+                    if ("".equals(theTypeStr.trim())) {
+                        if (!typeRefs.isEmpty() && typeRefs.size() > refIndex) {
+                            StringBuilder sb = new StringBuilder(type);
+                            sb.insert(begin, typeRefs.get(refIndex).value);
+                            type = sb.toString();
+                            ++refIndex;
+                        }
+                    }
+                    begin = end;
+                }
+            }
 		}
 		checkBoundClass(parent, type);
 		Object name = getParamTypeName(type);
 		if (type.indexOf(".") != -1) {
 			String[] split = type.split("\\.");
-			List allPath = Arrays.asList(split);
-			name = Tool.getClass((String[]) allPath.subList(0, allPath.size() - 1).toArray(new String[] {})
-					, split[split.length - 1], null);
+			List<String> allPath = Arrays.asList(split);
+            name = Tool.getClass(allPath.subList(0, allPath.size() - 1).toArray(new String[] {}),
+                    split[split.length - 1], null);
 		}
 		String paramArray = "";
 		String paramName = null;
@@ -132,7 +164,7 @@ public class Param implements IConvertToJude {
 			BasicModelEditor basicModelEditor = ModelEditorFactory.getBasicModelEditor();
 			param = basicModelEditor.createParameter(((IOperation) parent), paramName, (IClass) name);
 		}
-		dealKeyword(param, (HashSet) result[0]);
+		dealKeyword(param, result.keywords);
 	}
 	
 	private void checkBoundClass(IElement parent, String origiName) throws ProjectNotFoundException, ClassNotFoundException, InvalidEditingException {
@@ -176,15 +208,15 @@ public class Param implements IConvertToJude {
 	 * @return void
 	 * @throws InvalidEditingException
 	 */
-	void dealKeyword(IElement param, HashSet keywords) throws InvalidEditingException, ClassNotFoundException {}
+	void dealKeyword(IElement param, Set<String> keywords) throws InvalidEditingException, ClassNotFoundException {}
 
 	/**
 	 * 
 	 * @param toType: String
 	 * @return Object[]
 	 */
-	Object[] filterKeyword(String toType) {
-		Set keywords = new HashSet();
+	FilterKeyword filterKeyword(String toType) {
+		Set<String> keywords = new HashSet<String>();
 		if (toType.indexOf(REF) != -1) {
 			toType = toType.replaceFirst(REF + " ", "");
 			keywords.add(REF);
@@ -228,10 +260,10 @@ public class Param implements IConvertToJude {
 			toType = toType.replaceFirst(" >", ">");
 			keywords.add(" >");
 		}
-		if (toType.indexOf("[") != -1) {
-			toType = toType.substring(0, toType.indexOf("["));
-		}
-		return new Object[] {keywords, toType};
+//		if (toType.indexOf("[") != -1) {
+//			toType = toType.substring(0, toType.indexOf("["));
+//		}
+        return new FilterKeyword(keywords, toType);
 	}
 	
 	/**
@@ -257,13 +289,13 @@ public class Param implements IConvertToJude {
 	 * @param names : String[]
 	 * @return List
 	 */
-	protected List convertPath(String[] names) {
-		List path = new ArrayList();
-		if (names.length > 1) {
-			for (int i = 0; i < (names.length - 1); i++) {
-				path.add(names[i]);
-			}
-		}
-		return path;
-	}
+    protected List<String> convertPath(String[] names) {
+        List<String> path = new ArrayList<String>();
+        if (names.length > 1) {
+            for (int i = 0; i < (names.length - 1); i++) {
+                path.add(names[i]);
+            }
+        }
+        return path;
+    }
 }

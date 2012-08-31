@@ -73,6 +73,9 @@ public class EnumValue implements IConvertToJude {
 			throws InvalidEditingException, ClassNotFoundException,
 			ProjectNotFoundException, IOException, SAXException {
 		IAttribute iattr = Tool.getAttribute((IClass) parent, name, "int");
+		if(null == iattr) {
+		    return;
+		}
 		if (getInitializer() != null)
 			iattr.setInitialValue(this.getInitializer());
 		iattr.addStereotype("enum constant");

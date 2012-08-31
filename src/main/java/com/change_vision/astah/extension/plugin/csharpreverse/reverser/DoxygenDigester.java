@@ -23,19 +23,7 @@ public class DoxygenDigester extends Digester {
 				} else if (lastIndexOf == -1 && indexOf != -1 && !"".equals(current)) {
 					current += sb.substring(0, indexOf).trim();
 				}
-			} 
-//			else if (this.match.equals("doxygen/compounddef/sectiondef/memberdef/type")) {
-//				String sb = new String(buffer);
-//				int lastIndexOf = sb.lastIndexOf("<type>", start);
-//				int indexOf = sb.indexOf("</type>", start + length);
-//				if (lastIndexOf != -1 && indexOf != -1) {
-//					current = sb.substring(lastIndexOf + "<type>".length(), indexOf).trim();
-//				} else if (lastIndexOf != -1 && indexOf == -1) {
-//					current += sb.substring(lastIndexOf + "<type>".length(), buffer.length - 1).trim();
-//				} else if (lastIndexOf == -1 && indexOf != -1) {
-//					current += sb.substring(0, indexOf).trim();
-//				}
-//			}
+			}
 		}
 	}
 }

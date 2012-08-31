@@ -20,7 +20,8 @@ import com.change_vision.astah.extension.plugin.csharpreverse.Messages;
 import com.change_vision.astah.extension.plugin.csharpreverse.util.ConfigUtil;
 
 public class CSharpReverseFileChooserPanel extends JPanel {
-	static final String NAME = "reverse_panel";
+    private static final long serialVersionUID = 1L;
+    private static final String NAME = "reverse_panel";
 	private XmlFileChooseText doxygenXmlFileText;
 	
 	public CSharpReverseFileChooserPanel() {
@@ -65,7 +66,8 @@ public class CSharpReverseFileChooserPanel extends JPanel {
     }
 	
 	class Empty extends JLabel {
-		static final String NAME = "empty";
+	    private static final long serialVersionUID = 1L;
+	    private static final String NAME = "empty";
 
 		public Empty() {
 			setName(NAME);
@@ -73,7 +75,8 @@ public class CSharpReverseFileChooserPanel extends JPanel {
 	}
 	
 	class XmlFileChooseMessageLabel extends JLabel {
-		static final String NAME = "reverse_panel.explain_xml_path";
+	    private static final long serialVersionUID = 1L;
+	    private static final String NAME = "reverse_panel.explain_xml_path";
 
 		public XmlFileChooseMessageLabel() {
 			setText(Messages.getMessage("reverse_dialog.xml_folder_select_message"));
@@ -82,7 +85,8 @@ public class CSharpReverseFileChooserPanel extends JPanel {
 	}
 	
 	class XmlFileChooseTextLabel extends JLabel {
-		static final String NAME = "reverse_panel.xml_path_title";
+	    private static final long serialVersionUID = 1L;
+	    private static final String NAME = "reverse_panel.xml_path_title";
 
 		public XmlFileChooseTextLabel() {
 			setName(NAME);
@@ -91,10 +95,11 @@ public class CSharpReverseFileChooserPanel extends JPanel {
 	}
 	
 	class XmlFileChooseText extends JTextField {
+	    private static final long serialVersionUID = 1L;
 
 		private static final int WIDTH = 300;
 		private static final int HEIGHT = 14;
-		static final String NAME = "reverse_panel.xml_path";
+		private static final String NAME = "reverse_panel.xml_path";
 
 		public XmlFileChooseText() {
 			setName(NAME);
@@ -105,7 +110,8 @@ public class CSharpReverseFileChooserPanel extends JPanel {
 	}
 	
 	class doxygenXmlReferenceButton extends JButton {
-		static final String NAME = "reverse_panel.reference_button";
+	    private static final long serialVersionUID = 1L;
+	    private static final String NAME = "reverse_panel.reference_button";
 
 		public doxygenXmlReferenceButton() {
 			setName(NAME);

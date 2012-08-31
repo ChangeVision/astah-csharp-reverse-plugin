@@ -5,7 +5,7 @@ import org.xml.sax.Attributes;
 
 public class ObjectCreateAfterLanguageRule extends ObjectCreateRule {
 
-	public ObjectCreateAfterLanguageRule(Class clazz) {
+	public ObjectCreateAfterLanguageRule(Class<?> clazz) {
 		super(clazz);
 	}
 	
@@ -28,11 +28,11 @@ public class ObjectCreateAfterLanguageRule extends ObjectCreateRule {
 		
         // Instantiate the new object and push it on the context stack
 		try {
-			Class clazz = digester.getClassLoader().loadClass(plugClassName);
+			Class<?> clazz = digester.getClassLoader().loadClass(plugClassName);
 			Object instance = clazz.newInstance();
 			digester.push(instance);
 		} catch (ClassNotFoundException e) {
-			Class clazz = digester.getClassLoader().loadClass(realClassName);
+			Class<?> clazz = digester.getClassLoader().loadClass(realClassName);
 			Object instance = clazz.newInstance();
 			digester.push(instance);
 		}

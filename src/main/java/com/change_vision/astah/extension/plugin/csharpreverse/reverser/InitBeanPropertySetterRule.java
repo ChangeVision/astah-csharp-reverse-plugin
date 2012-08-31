@@ -63,7 +63,8 @@ public class InitBeanPropertySetterRule extends BeanPropertySetterRule {
 							|| specEndIndex != -1)) {
 				String endString = "";
 				if (endIndex != -1) {
-					endString = currentContent.substring(endIndex + "</ref>".length(), currentContent.length());
+				    endIndex += "</ref>".length();
+					endString = currentContent.substring(endIndex, currentContent.length());
 				} else if (specEndIndex != -1) {
 					endIndex = specEndIndex;
 					endString = currentContent.substring(endIndex + "</".length(), currentContent.length());

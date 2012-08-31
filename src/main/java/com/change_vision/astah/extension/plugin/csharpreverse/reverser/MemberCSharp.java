@@ -2,12 +2,16 @@ package com.change_vision.astah.extension.plugin.csharpreverse.reverser;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.change_vision.jude.api.inf.editor.BasicModelEditor;
 import com.change_vision.jude.api.inf.exception.InvalidEditingException;
 import com.change_vision.jude.api.inf.model.IAttribute;
 import com.change_vision.jude.api.inf.model.IOperation;
 
 public class MemberCSharp extends Member {
+    private static final Logger logger = LoggerFactory.getLogger(MemberCSharp.class);
 
 	public static final String KEYWORD_CONST = "const";
 	
@@ -42,7 +46,7 @@ public class MemberCSharp extends Member {
 	public static final String KEYWORD_IMPLICIT = "implicit";
 
 	@Override
-	void dealOperationKeyword(BasicModelEditor basicModelEditor, Set keywords,
+	void dealOperationKeyword(BasicModelEditor basicModelEditor, Set<String> keywords,
 			IOperation fun) throws InvalidEditingException {
 		if (keywords.contains(KEYWORD_CONST)) {
 			basicModelEditor.createTaggedValue(fun, "jude.c_sharp.const", "true");
@@ -85,44 +89,48 @@ public class MemberCSharp extends Member {
 	}
 
 	@Override
-	void dealAttributeKeywords(BasicModelEditor basicModelEditor, Set keywords,
+	void dealAttributeKeywords(BasicModelEditor basicModelEditor, Set<String> keywords,
 			IAttribute attr) throws InvalidEditingException {
-		if (keywords.contains(KEYWORD_CONST)) {
-			basicModelEditor.createTaggedValue(attr, "jude.c_sharp.const", "true");
-		}
-		if (keywords.contains(KEYWORD_READ_ONLY)) {
-			attr.setChangeable(false);
-		}
-		if (keywords.contains(KEYWORD_OVERRIDE)) {
-			basicModelEditor.createTaggedValue(attr, "jude.c_sharp.override", "true");
-		}
-		if (!"no".equals(staticBoolean)) {
-			attr.setStatic(true);
-		}
-		if (keywords.contains(KEYWORD_DELEGATE)) {
-			attr.getOwner().addStereotype("delegate");
-		}
-		if (keywords.contains(KEYWORD_INTERNAL)) {
-			basicModelEditor.createTaggedValue(attr, "jude.c_sharp.internal", "true");
-		}
-		if (keywords.contains(KEYWORD_SEALED)) {
-			basicModelEditor.createTaggedValue(attr, "jude.c_sharp.sealed", "true");
-		}
-		if (keywords.contains(KEYWORD_VOLATILE)) {
-			basicModelEditor.createTaggedValue(attr, "jude.c_sharp.volatile", "true");
-		}
-		if (keywords.contains(AND)) {
-			attr.setTypeModifier(AND);
-		} else if (keywords.contains(STAR + STAR)) {
-			attr.setTypeModifier(STAR + STAR);
-		} else if (keywords.contains(STAR)) {
-			attr.setTypeModifier(STAR);
-		}
+		try {
+            if (keywords.contains(KEYWORD_CONST)) {
+            	basicModelEditor.createTaggedValue(attr, "jude.c_sharp.const", "true");
+            }
+            if (keywords.contains(KEYWORD_READ_ONLY)) {
+            	attr.setChangeable(false);
+            }
+            if (keywords.contains(KEYWORD_OVERRIDE)) {
+            	basicModelEditor.createTaggedValue(attr, "jude.c_sharp.override", "true");
+            }
+            if (!"no".equals(staticBoolean)) {
+            	attr.setStatic(true);
+            }
+            if (keywords.contains(KEYWORD_DELEGATE)) {
+            	attr.getOwner().addStereotype("delegate");
+            }
+            if (keywords.contains(KEYWORD_INTERNAL)) {
+            	basicModelEditor.createTaggedValue(attr, "jude.c_sharp.internal", "true");
+            }
+            if (keywords.contains(KEYWORD_SEALED)) {
+            	basicModelEditor.createTaggedValue(attr, "jude.c_sharp.sealed", "true");
+            }
+            if (keywords.contains(KEYWORD_VOLATILE)) {
+            	basicModelEditor.createTaggedValue(attr, "jude.c_sharp.volatile", "true");
+            }
+            if (keywords.contains(AND)) {
+            	attr.setTypeModifier(AND);
+            } else if (keywords.contains(STAR + STAR)) {
+            	attr.setTypeModifier(STAR + STAR);
+            } else if (keywords.contains(STAR)) {
+            	attr.setTypeModifier(STAR);
+            }
+        } catch (InvalidEditingException e) {
+            logger.debug(String.format("%s", e.getMessage()));
+        }
 	}
 
 	@Override
-	Object[] filterKeyword(String type) {
-		Set keywords = new HashSet();
+	FilterKeyword filterKeyword(String type) {
+		Set<String> keywords = new HashSet<String>();
 		if (type.indexOf(KEYWORD_CONST) != -1) {
 			if (KEYWORD_CONST.equals(type.trim())) {
 				type = "";
@@ -246,7 +254,6 @@ public class MemberCSharp extends Member {
 			}
 			keywords.add(KEYWORD_IMPLICIT);
 		}
-		
-		return new Object[] {keywords, type};
+        return new FilterKeyword(keywords, type);
 	}
 }

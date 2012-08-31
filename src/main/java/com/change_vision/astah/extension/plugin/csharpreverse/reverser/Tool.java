@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.change_vision.jude.api.inf.editor.BasicModelEditor;
 import com.change_vision.jude.api.inf.editor.ModelEditorFactory;
 import com.change_vision.jude.api.inf.exception.InvalidEditingException;
@@ -27,8 +30,9 @@ import com.change_vision.jude.api.inf.project.ProjectAccessorFactory;
 
 
 public class Tool {
+    private static final Logger logger = LoggerFactory.getLogger(Tool.class);    
 	
-	public static List GlobalList = new ArrayList();
+	public static List<IClass> GlobalList = new ArrayList<IClass>();
 	/**
 	 * get package from the path, if not exits, will create one.
 	 * @param path: the full path of the package
@@ -104,7 +108,14 @@ public class Tool {
 		if (tParams.length < actualClasses.length) {
 			IClass paraType = null;
 			for (int i = 0; i < actualClasses.length - tParams.length; i++) {
-				basicModelEditor.createTemplateParameter(templateClass, "param" + i, paraType, null);
+				try {
+                    basicModelEditor.createTemplateParameter(templateClass, "param" + i, paraType, null);
+                } catch (InvalidEditingException e) {
+                    if (InvalidEditingException.NAME_DOUBLE_ERROR_KEY.equals(e.getKey())) {
+                        // do nothing
+                        logger.debug(String.format("%s", e.getMessage()));
+                    }
+                }
 			}
 		}
 		tParams = templateClass.getTemplateParameters();
@@ -112,7 +123,17 @@ public class Tool {
 		IModel project = prjAccessor.getProject();
 		String tempName = getUniqueName(project);
 		IClass anonimousClass = basicModelEditor.createClass(project, tempName);
-		ITemplateBinding binding = basicModelEditor.createTemplateBinding(anonimousClass, templateClass);
+		ITemplateBinding binding = null;
+        try {
+            binding = basicModelEditor.createTemplateBinding(anonimousClass, templateClass);
+        } catch (InvalidEditingException e) {
+            if(InvalidEditingException.TEMPLATE_BINDING_LOOP_ERROR_KEY.equals(e.getKey())) {
+                logger.debug(e.getMessage());
+            }
+        }
+        if (null == binding) {
+            return null;
+        }
 		for (int i = 0; i < actualClasses.length; i++) {
 			IClassifierTemplateParameter param = tParams[i];
 			binding.addActualParameter(param, actualClasses[i][0]);
@@ -126,7 +147,7 @@ public class Tool {
 	
 	private static String getUniqueName(IPackage parent) {
 		String initName = "anonymousboundclass";
-		Set names = new HashSet();
+		Set<String> names = new HashSet<String>();
 		for (Object obj : parent.getOwnedElements()) {
 			if (obj instanceof INamedElement) {
 				names.add(((INamedElement) obj).getName());
@@ -141,11 +162,12 @@ public class Tool {
 	}
 
 	private static boolean matchesAllActualValues(ITemplateBinding binding, Object[] actualClasses) throws InvalidEditingException {
-		List matchedParams = new ArrayList();
-		Map actualMap = binding.getActualMap();
+		List<IClassifierTemplateParameter> matchedParams = new ArrayList<IClassifierTemplateParameter>();
+		@SuppressWarnings("unchecked")
+        Map<Object, Object> actualMap = binding.getActualMap();
 		for (int i = 0; i < actualClasses.length; i++) {
 			Object[] actual = (Object[])actualClasses[i];
-			for (Iterator it = actualMap.keySet().iterator(); it.hasNext(); ) {
+			for (Iterator<Object> it = actualMap.keySet().iterator(); it.hasNext(); ) {
 				IClassifierTemplateParameter param = (IClassifierTemplateParameter)it.next();				
 				if (actualMap.get(param).equals(actual[0])
 				      && actual[1].equals(binding.getActualParameterTypeModifier(param))
@@ -216,18 +238,17 @@ public class Tool {
 	 * @return the Class under parentPkg, which named className.
 	 */
 	static int INDEX = 0;
-	static Map BASECLS_BINDINGS = new HashMap();
-	static Map BOUND_CLASSES = new HashMap();
+	static Map<IClass, List<ITemplateBinding>> BASECLS_BINDINGS = new HashMap<IClass, List<ITemplateBinding>>();
+	static Map<IPackage, List<Object[]>> BOUND_CLASSES = new HashMap<IPackage, List<Object[]>>();
 	public static IClass getClass(IPackage parentPkg, String className, IClass owner) throws ProjectNotFoundException, ClassNotFoundException, InvalidEditingException {
 		int firstIndex;
 		if ((firstIndex = className.indexOf("<", 1)) != -1 && className.endsWith(">")) {
 			String[] params = className.substring(firstIndex + 1, className.length() - 1).split(",");
 			BasicModelEditor editor = ModelEditorFactory.getBasicModelEditor();
 			IClass baseCls = getClass(parentPkg, className.substring(0, firstIndex), owner);
-			List exitedBindings = (List) BASECLS_BINDINGS.get(baseCls);
+			List<ITemplateBinding> exitedBindings = BASECLS_BINDINGS.get(baseCls);
 			if (exitedBindings != null) {
-				for (Iterator iterator = exitedBindings.iterator(); iterator.hasNext();) {
-					ITemplateBinding binding = (ITemplateBinding) iterator.next();
+				for (ITemplateBinding binding: exitedBindings) {
 					if (binding.getTemplate() == binding 
 							&& matchesAllActualValues(binding, params)) {
 						IClass boundClass = binding.getBoundElement();
@@ -238,15 +259,14 @@ public class Tool {
 					}
 				}
 			}
-			if (BOUND_CLASSES.get(parentPkg) != null) {
-				List cls = (List) BOUND_CLASSES.get(parentPkg);
-				for (Iterator iterator = cls.iterator(); iterator.hasNext();) {
-					Object[] nameAndCls = (Object[]) iterator.next();
-					if (nameAndCls[0].equals(className)) {
-						return (IClass) nameAndCls[1];
-					}
-				}
-			}
+            if (BOUND_CLASSES.get(parentPkg) != null) {
+                List<Object[]> cls = BOUND_CLASSES.get(parentPkg);
+                for (Object[] nameAndCls : cls) {
+                    if (nameAndCls[0].equals(className)) {
+                        return (IClass) nameAndCls[1];
+                    }
+                }
+            }
 			while (baseCls.getTemplateParameters().length < params.length) {				
 				editor.createTemplateParameter(baseCls, "param" + String.valueOf(++INDEX), (IClass) null, null);
 			}
@@ -258,15 +278,15 @@ public class Tool {
 				//fix dev-bug 831: [5.5][doxygen1.5.8]needless " T1 " class will create in C_Sharp_5.5_1.5.8.jude
 				String actualName = split[0].trim();
 				if (LanguageManager.getCurrentLanguagePrimitiveType().contains(actualName)) {				
-					binding.addActualParameter(parameter, actualName);				
+					binding.addActualParameter(parameter, actualName);
 				} else {
 					IModel root = ProjectAccessorFactory.getProjectAccessor().getProject();
 					IClass actualCls = getClass(root, actualName, owner);
 					binding.addActualParameter(parameter, actualCls);
 				}
-				ArrayList bindingStore = (ArrayList) BASECLS_BINDINGS.get(baseCls);
+				List<ITemplateBinding> bindingStore = BASECLS_BINDINGS.get(baseCls);
 				if (bindingStore == null) {
-					bindingStore = new ArrayList();
+					bindingStore = new ArrayList<ITemplateBinding>();
 					BASECLS_BINDINGS.put(baseCls, bindingStore);
 					bindingStore.add(binding);
 				} else {
@@ -277,9 +297,9 @@ public class Tool {
 			}
 			anomyousCls.setName("");
 			if (BOUND_CLASSES.get(parentPkg) == null) {
-				BOUND_CLASSES.put(parentPkg, new ArrayList());
+				BOUND_CLASSES.put(parentPkg, new ArrayList<Object[]>());
 			}
-			((List) BOUND_CLASSES.get(parentPkg)).add(new Object[] {className, anomyousCls});
+			((List<Object[]>) BOUND_CLASSES.get(parentPkg)).add(new Object[] {className, anomyousCls});
 			return anomyousCls;
 		} else {
 			if (owner != null) {
@@ -338,11 +358,11 @@ public class Tool {
 			}
 			name = "Global" + "_" + index++;	
 		}
-		for(int j=0;j<GlobalList.size();j++){
-			if((IClass)namedElements[i] ==(IClass)GlobalList.get(j)){
-				((IClass)GlobalList.get(j)).setName(name);
-			}
-		}
+        for (int j = 0; j < GlobalList.size(); j++) {
+            if ((IClass) namedElements[i] == GlobalList.get(j)) {
+                GlobalList.get(j).setName(name);
+            }
+        }
 		return setLanguage(ModelEditorFactory.getBasicModelEditor().createClass(parentPkg, className));
 	}
 	
@@ -364,12 +384,13 @@ public class Tool {
 	}
 	
 	private static boolean matchesAllActualValues(ITemplateBinding binding, String[] actualClasses) throws InvalidEditingException {
-		List matchedParams = new ArrayList();
-		Map actualMap = binding.getActualMap();
+		List<IClassifierTemplateParameter> matchedParams = new ArrayList<IClassifierTemplateParameter>();
+		@SuppressWarnings("unchecked")
+        Map<Object, Object> actualMap = binding.getActualMap();
 		for (int i = 0; i < actualClasses.length; i++) {
 			String actual = actualClasses[i];
 			String[] split = splitNameAndTypeModifier(actual);
-			for (Iterator it = actualMap.keySet().iterator(); it.hasNext(); ) {
+			for (Iterator<Object> it = actualMap.keySet().iterator(); it.hasNext(); ) {
 				IClassifierTemplateParameter param = (IClassifierTemplateParameter)it.next();				
 				if (actualMap.get(param) == split[0]
 				      && split[1].equals(binding.getActualParameterTypeModifier(param))
@@ -412,6 +433,9 @@ public class Tool {
 	 */
 	public static IGeneralization getGeneralization(IClass subClass, IClass superClass) throws InvalidEditingException, ClassNotFoundException {
 		IGeneralization[] generlations = subClass.getGeneralizations();
+        if (0 >= generlations.length) {
+            return null;
+        }
 		for (int i = 0; i < generlations.length; i++) {
 			if (generlations[i].getSuperType().equals(superClass))
 				return generlations[i];
@@ -450,30 +474,19 @@ public class Tool {
 				return attrs[i];
 			}
 		}
-		return setLanguage(ModelEditorFactory.getBasicModelEditor().createAttribute(target, name, type));
+		try {
+            return setLanguage(ModelEditorFactory.getBasicModelEditor().createAttribute(target, name, type));
+        } catch (InvalidEditingException e) {
+            logger.debug(e.getMessage());
+            return null;
+        }
 	}
 	
 	public static IOperation getOperation(IClass target, String name, String type) throws InvalidEditingException, ClassNotFoundException {
-		IOperation[] attrs = target.getOperations();
-		//no need to judge
-//		for (int i = 0; i < attrs.length; i++) {
-//			if (attrs[i].getName().equals(name)
-//					&& ((type == null && type == attrs[i].getReturnTypeExpression()) || type.equals(attrs[i].getReturnTypeExpression()))) {
-//				return attrs[i];
-//			}
-//		}
 		return setLanguage(ModelEditorFactory.getBasicModelEditor().createOperation(target, name, type));
 	}
 
 	public static IOperation getOperation(IClass target, String name, IClass type) throws InvalidEditingException, ClassNotFoundException {
-		IOperation[] attrs = target.getOperations();
-		//no need to judge
-//		for (int i = 0; i < attrs.length; i++) {
-//			if (attrs[i].getName().equals(name)
-//					&& ((type == null && type == attrs[i].getReturnType()) || type.equals(attrs[i].getReturnType()))) {
-//				return attrs[i];
-//			}
-//		}
 		return setLanguage(ModelEditorFactory.getBasicModelEditor().createOperation(target, name, type));
 	}
 	

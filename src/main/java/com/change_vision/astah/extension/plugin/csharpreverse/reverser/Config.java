@@ -4,7 +4,6 @@ package com.change_vision.astah.extension.plugin.csharpreverse.reverser;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -60,7 +59,7 @@ public class Config {
     propertie.setProperty(key, value);
   }
 
-  public static List getClassNameAboutForbidCreateAssociation() throws IOException {
+  public static List<String> getClassNameAboutForbidCreateAssociation() throws IOException {
     if (LanguageManager.isCPlus()) {
       return Arrays.asList(new Config().getValue("cplus_types_for_attribute").split(","));
     } else if (LanguageManager.isCSHARP()) {
