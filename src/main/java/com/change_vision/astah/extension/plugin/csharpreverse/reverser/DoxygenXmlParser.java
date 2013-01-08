@@ -88,6 +88,7 @@ public class DoxygenXmlParser {
             lastCompoundDef = compounddef;
             compounddef.convertChildren(indexFile.getParentFile().listFiles());
         }
+        CompoundDef.compounddef.clear();
         // end transaction
         TransactionManager.endTransaction();
 
