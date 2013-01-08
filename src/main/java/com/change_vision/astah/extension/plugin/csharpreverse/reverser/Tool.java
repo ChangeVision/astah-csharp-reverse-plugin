@@ -433,9 +433,6 @@ public class Tool {
 	 */
 	public static IGeneralization getGeneralization(IClass subClass, IClass superClass) throws InvalidEditingException, ClassNotFoundException {
 		IGeneralization[] generlations = subClass.getGeneralizations();
-        if (0 >= generlations.length) {
-            return null;
-        }
 		for (int i = 0; i < generlations.length; i++) {
 			if (generlations[i].getSuperType().equals(superClass))
 				return generlations[i];
