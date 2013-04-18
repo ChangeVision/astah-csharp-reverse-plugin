@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_bbb" kind="class" prot="public">
+    <compoundname>Bbb</compoundname>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_bbb_1a3ca8f27d51d72a3bd98a7b640f92550a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Bbb.Bbb</definition>
+        <argsstring>(int a, int b)</argsstring>
+        <name>Bbb</name>
+        <param>
+          <type>int</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>説明 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="21" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="21" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Bbbクラスの説明 </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="17" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="16" bodyend="23"/>
+    <listofallmembers>
+      <member refid="class_bbb_1a3ca8f27d51d72a3bd98a7b640f92550a" prot="private" virt="non-virtual"><scope>Bbb</scope><name>Bbb</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
