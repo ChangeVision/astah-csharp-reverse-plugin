@@ -294,6 +294,25 @@ public class DoxygenXmlParserTest {
 		}
 	}
 
+	// XXX #3258 変数の宣言中に改行が含まれる場合、属性の初期値にも改行が含まれる
+	@Test
+	public void testParser_xmlファイルの変数の宣言中に改行が含まれる場合でもリバース結果の属性の初期値に改行や不要なイコールが含まれないこと()
+			throws Throwable {
+		String modelPath = parseProject("linefeed");
+		INamedElement[] elements = findElements(modelPath, "ConsoleRunnerTest");
+
+		for (INamedElement element : elements) {
+			if (element instanceof IClass) {
+				IClass a = (IClass) element;
+				IAttribute[] attributes = a.getAttributes();
+				for (IAttribute attribute : attributes) {
+					assertEquals(-1, attribute.getInitialValue().indexOf("\n"));
+					assertEquals(-1, attribute.getInitialValue().indexOf("="));
+				}
+			}
+		}
+	}
+
 	/**
 	 * モデルを開いて、探したい要素の名前と等しい名前の要素を返します。
 	 * 

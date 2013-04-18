@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_console_runner_test" kind="class" prot="public">
+    <compoundname>ConsoleRunnerTest</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_console_runner_test_1a0f4b89990e8e92772a6dfdd48bacafce" prot="private" static="yes" mutable="no">
+        <type>readonly string</type>
+        <definition>readonly string ConsoleRunnerTest.failureMsg</definition>
+        <argsstring></argsstring>
+        <name>failureMsg</name>
+        <initializer>=
+        &quot;aaa&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/aa/Aaa .cs" line="5" bodyfile="C:/Users/y-matsuda/Desktop/aa/Aaa .cs" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_runner_test_1a38f16fb138d4815f9ae25f42968650eb" prot="private" static="yes" mutable="no">
+        <type>readonly int</type>
+        <definition>readonly int ConsoleRunnerTest.expectedReturnCode</definition>
+        <argsstring></argsstring>
+        <name>expectedReturnCode</name>
+        <initializer>=
+        1 + 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/aa/Aaa .cs" line="7" bodyfile="C:/Users/y-matsuda/Desktop/aa/Aaa .cs" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/y-matsuda/Desktop/aa/Aaa .cs" line="3" bodyfile="C:/Users/y-matsuda/Desktop/aa/Aaa .cs" bodystart="2" bodyend="8"/>
+    <listofallmembers>
+      <member refid="class_console_runner_test_1a38f16fb138d4815f9ae25f42968650eb" prot="private" virt="non-virtual"><scope>ConsoleRunnerTest</scope><name>expectedReturnCode</name></member>
+      <member refid="class_console_runner_test_1a0f4b89990e8e92772a6dfdd48bacafce" prot="private" virt="non-virtual"><scope>ConsoleRunnerTest</scope><name>failureMsg</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

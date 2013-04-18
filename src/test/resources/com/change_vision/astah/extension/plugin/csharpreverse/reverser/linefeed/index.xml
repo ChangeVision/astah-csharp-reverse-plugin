@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.2">
+  <compound refid="class_console_runner_test" kind="class"><name>ConsoleRunnerTest</name>
+    <member refid="class_console_runner_test_1a0f4b89990e8e92772a6dfdd48bacafce" kind="variable"><name>failureMsg</name></member>
+    <member refid="class_console_runner_test_1a38f16fb138d4815f9ae25f42968650eb" kind="variable"><name>expectedReturnCode</name></member>
+  </compound>
+  <compound refid="_aaa_01_8cs" kind="file"><name>Aaa .cs</name>
+  </compound>
+  <compound refid="dir_e825f5241d1f2eb04947b62f2c162370" kind="dir"><name>C:/Users/y-matsuda/Desktop/aa</name>
+  </compound>
+  <compound refid="dir_e04ae2849dfa520b4ee2c9f7e9ff15de" kind="dir"><name>C:/Users/y-matsuda/Desktop</name>
+  </compound>
+</doxygenindex>
