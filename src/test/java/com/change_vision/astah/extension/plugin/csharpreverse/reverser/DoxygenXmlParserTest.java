@@ -25,6 +25,7 @@ import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
 import com.change_vision.jude.api.inf.model.IAttribute;
 import com.change_vision.jude.api.inf.model.IClass;
 import com.change_vision.jude.api.inf.model.INamedElement;
+import com.change_vision.jude.api.inf.model.IPackage;
 import com.change_vision.jude.api.inf.model.IParameter;
 import com.change_vision.jude.api.inf.project.ModelFinder;
 import com.change_vision.jude.api.inf.project.ProjectAccessor;
@@ -377,6 +378,22 @@ public class DoxygenXmlParserTest {
 			}
 		});
 		return elements;
+	}
+
+	// XXX #3340 C#リバースプラグインで、クラスや属性のコメントをモデルに反映する
+	@Test
+	public void testParser_クラスや属性の定義が設定されていること() throws Throwable {
+		String modelPath = parseProject("para");
+		INamedElement[] elements = findElements(modelPath, "Aaa");
+
+		for (INamedElement element : elements) {
+			if (element instanceof IClass) {
+				IClass a = (IClass) element;
+				assertEquals("クラスAaa", a.getDefinition());
+				assertEquals("文字列aaa", a.getAttributes()[0].getDefinition());
+				assertEquals("メソッドaaa()", a.getOperations()[0].getDefinition());
+			}
+		}
 	}
 
 	/**
