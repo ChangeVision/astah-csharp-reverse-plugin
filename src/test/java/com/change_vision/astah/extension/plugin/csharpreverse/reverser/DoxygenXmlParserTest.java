@@ -17,6 +17,16 @@ import org.xml.sax.SAXException;
 
 import com.change_vision.astah.extension.plugin.csharpreverse.exception.IndexXmlNotFoundException;
 import com.change_vision.astah.extension.plugin.csharpreverse.view.CloseDialog;
+import com.change_vision.jude.api.inf.AstahAPI;
+import com.change_vision.jude.api.inf.exception.LicenseNotFoundException;
+import com.change_vision.jude.api.inf.exception.NonCompatibleException;
+import com.change_vision.jude.api.inf.exception.ProjectLockedException;
+import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
+import com.change_vision.jude.api.inf.model.IClass;
+import com.change_vision.jude.api.inf.model.INamedElement;
+import com.change_vision.jude.api.inf.model.IParameter;
+import com.change_vision.jude.api.inf.project.ModelFinder;
+import com.change_vision.jude.api.inf.project.ProjectAccessor;
 
 public class DoxygenXmlParserTest {
 
@@ -216,6 +226,102 @@ public class DoxygenXmlParserTest {
 		}
 	}
 
+	// XXX #3259 C#リバースでオペレーションの引数に１次元配列が含まれている場合、生成されるモデルでは２次元配列で出力される
+	@Test
+	public void testParser_1次配列がリバースできていること() throws Throwable {
+		String modelPath = parseProject("array");
+		INamedElement[] elements = findElements(modelPath, "Aaa");
+		for (INamedElement element : elements) {
+			if (element instanceof IClass) {
+				IClass a = (IClass) element;
+				IParameter parameter = a.getOperations()[0].getParameters()[0];
+				assertEquals(
+						"int[]",
+						parameter.getTypeExpression()
+								+ parameter.getTypeModifier());
 
+			}
+		}
+	}
+
+	// XXX #3259 C#リバースでオペレーションの引数に１次元配列が含まれている場合、生成されるモデルでは２次元配列で出力される
+	@Test
+	public void testParser_2次配列がリバースできていること() throws Throwable {
+		String modelPath = parseProject("array");
+		INamedElement[] elements = findElements(modelPath, "Aaa");
+		for (INamedElement element : elements) {
+			if (element instanceof IClass) {
+				IClass a = (IClass) element;
+				IParameter parameter = a.getOperations()[1].getParameters()[0];
+				assertEquals("int[][]", parameter.getTypeExpression()
+						+ parameter.getTypeModifier());
+
+			}
+		}
+	}
+
+	// XXX #3259 C#リバースでオペレーションの引数に１次元配列が含まれている場合、生成されるモデルでは２次元配列で出力される
+	@Test
+	public void testParser_3次配列がリバースできていること() throws Throwable {
+		String modelPath = parseProject("array");
+		INamedElement[] elements = findElements(modelPath, "Aaa");
+		for (INamedElement element : elements) {
+			if (element instanceof IClass) {
+				IClass a = (IClass) element;
+				IParameter parameter = a.getOperations()[2].getParameters()[0];
+				assertEquals("int[][][]", parameter.getTypeExpression()
+						+ parameter.getTypeModifier());
+
+			}
+		}
+	}
+
+	/**
+	 * モデルを開いて、探したい要素の名前と等しい名前の要素を返します。
+	 * 
+	 * @param modelPath
+	 *            モデルパス
+	 * @param elementName
+	 *            探したい要素の名前
+	 * @return 探したい要素
+	 * @throws ClassNotFoundException
+	 * @throws LicenseNotFoundException
+	 * @throws ProjectNotFoundException
+	 * @throws NonCompatibleException
+	 * @throws IOException
+	 * @throws ProjectLockedException
+	 */
+	private INamedElement[] findElements(String modelPath,
+			final String elementName) throws ClassNotFoundException,
+			LicenseNotFoundException, ProjectNotFoundException,
+			NonCompatibleException, IOException, ProjectLockedException {
+		ProjectAccessor accessor = AstahAPI.getAstahAPI().getProjectAccessor();
+		accessor.open(modelPath);
+		INamedElement[] elements = accessor.findElements(new ModelFinder() {
+			@Override
+			public boolean isTarget(INamedElement element) {
+				return element.getName().equals(elementName);
+			}
+		});
+		return elements;
+	}
+
+	/**
+	 * DoxgenのXMLからastahモデルに構文解析した一次ファイルを作成し、そのパスを返します。
+	 * 
+	 * @param name
+	 *            xmlファイルを置いたフォルダの名前
+	 * @return modelPath
+	 * @throws LicenseNotFoundException
+	 * @throws ProjectLockedException
+	 * @throws IndexXmlNotFoundException
+	 * @throws Throwable
+	 */
+	private String parseProject(String name) throws LicenseNotFoundException,
+			ProjectLockedException, IndexXmlNotFoundException, Throwable {
+		String path = getClass().getResource(name).getFile();
+		CloseDialog dialog = mock(CloseDialog.class);
+		return DoxygenXmlParser.parser(path, dialog);
+	}
 
 }
