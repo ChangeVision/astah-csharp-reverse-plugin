@@ -22,7 +22,12 @@ public class DoxygenDigester extends Digester {
 							lastIndexOf + "<initializer>".length(), indexOf)
 							.trim();
 
-					//
+					// XXX #3230 定数の初期値が不正
+					// #3243 C#リバースで初期値の設定をメソッドで設定している場合、括弧の途中までしか出力されない
+					if (current.indexOf("<ref") != -1) {
+						deleteRef();
+					}
+					// ここまで ////////////////////////////////
 
 				} else if (lastIndexOf != -1 && indexOf == -1) {
 					current = sb.substring(
@@ -58,4 +63,24 @@ public class DoxygenDigester extends Digester {
 		current = current.trim();
 	}
 
+	/**
+	 * XXX #3230 定数の初期値が不正 #3243 C#リバースで初期値の設定をメソッドで設定している場合、括弧の途中までしか出力されない
+	 * <ref>タグを削除します。
+	 */
+	private void deleteRef() {
+
+		// <ref>タグの始まりのインデックス
+		int fstRefIndexOf = current.indexOf("<ref");
+
+		// <ref>タグの終わりのインデックス
+		int lstIndexOf = current.indexOf(">", fstRefIndexOf) + 1;
+
+		// 削除したい<ref>タグの抽出
+		String refString = current.substring(fstRefIndexOf, lstIndexOf);
+
+		// タグを空文字と置き換え（削除）
+		current = current.replaceFirst(refString, "");
+		current = current.replaceFirst("</ref>", "");
+
+	}
 }

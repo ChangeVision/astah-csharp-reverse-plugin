@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_aaa" kind="class" prot="public">
+    <compoundname>Aaa</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_aaa_1a618f416d10ec8860c166347c86ab4d50" prot="private" static="yes" mutable="no">
+        <type>Logger</type>
+        <definition>Logger Aaa.log</definition>
+        <argsstring></argsstring>
+        <name>log</name>
+        <initializer>= InternalTrace.GetLogger(typeof(NUnitTestAgent))</initializer>
+        <briefdescription>
+<para>説明 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="9" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Aaaクラスの説明 </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="5" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="4" bodyend="11"/>
+    <listofallmembers>
+      <member refid="class_aaa_1a618f416d10ec8860c166347c86ab4d50" prot="private" virt="non-virtual"><scope>Aaa</scope><name>log</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

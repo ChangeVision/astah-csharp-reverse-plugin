@@ -313,6 +313,42 @@ public class DoxygenXmlParserTest {
 		}
 	}
 
+	// XXX #3230 定数の初期値が不正
+	@Test
+	public void testParser_定数の初期値が不正でないこと() throws Throwable {
+		String modelPath = parseProject("two_parameters");
+		INamedElement[] elements = findElements(modelPath, "Aaa");
+
+		for (INamedElement element : elements) {
+			if (element instanceof IClass) {
+				IClass a = (IClass) element;
+				IAttribute[] attributes = a.getAttributes();
+				for (IAttribute attribute : attributes) {
+					assertEquals("new Bbb(0, 1)", attribute.getInitialValue());
+				}
+			}
+		}
+	}
+
+	// XXX #3243 C#リバースで初期値の設定をメソッドで設定している場合、括弧の途中までしか出力されない
+	@Test
+	public void testParser_メソッドで定義されていても変数の初期値が不正でないこと() throws Throwable {
+		String modelPath = parseProject("default_value1");
+		INamedElement[] elements = findElements(modelPath, "Aaa");
+
+		for (INamedElement element : elements) {
+			if (element instanceof IClass) {
+				IClass a = (IClass) element;
+				IAttribute[] attributes = a.getAttributes();
+				for (IAttribute attribute : attributes) {
+					assertEquals(
+							"InternalTrace.GetLogger(typeof(NUnitTestAgent))",
+							attribute.getInitialValue());
+				}
+			}
+		}
+	}
+
 	/**
 	 * モデルを開いて、探したい要素の名前と等しい名前の要素を返します。
 	 * 
