@@ -22,6 +22,7 @@ import com.change_vision.jude.api.inf.exception.LicenseNotFoundException;
 import com.change_vision.jude.api.inf.exception.NonCompatibleException;
 import com.change_vision.jude.api.inf.exception.ProjectLockedException;
 import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
+import com.change_vision.jude.api.inf.model.IAttribute;
 import com.change_vision.jude.api.inf.model.IClass;
 import com.change_vision.jude.api.inf.model.INamedElement;
 import com.change_vision.jude.api.inf.model.IParameter;
@@ -272,6 +273,23 @@ public class DoxygenXmlParserTest {
 				assertEquals("int[][][]", parameter.getTypeExpression()
 						+ parameter.getTypeModifier());
 
+			}
+		}
+	}
+
+	// XXX #3236 C#リバースで関連端がPrivateになってしまう
+	@Test
+	public void testParser_関連端の可視性が正しく設定できること() throws Throwable {
+		String modelPath = parseProject("visibility");
+		INamedElement[] elements = findElements(modelPath, "Aaa");
+		for (INamedElement element : elements) {
+			if (element instanceof IClass) {
+				IClass a = (IClass) element;
+				IAttribute[] attributes = a.getAttributes();
+				assertEquals(true, attributes[0].isPublicVisibility());
+				assertEquals(true, attributes[1].isPrivateVisibility());
+				assertEquals(true, attributes[2].isProtectedVisibility());
+				assertEquals(true, attributes[3].isPackageVisibility());
 			}
 		}
 	}

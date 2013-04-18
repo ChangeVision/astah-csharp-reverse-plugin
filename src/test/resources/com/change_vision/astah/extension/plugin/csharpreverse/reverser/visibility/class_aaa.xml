@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_aaa" kind="class" prot="public">
+    <compoundname>Aaa</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_aaa_1a3e440ca773ea34af3f94ffa4594c1acd" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Aaa.strPublic</definition>
+        <argsstring></argsstring>
+        <name>strPublic</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="3" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_aaa_1a3ebdee6f66e793ae794824c089a97427" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Aaa.strPrivate</definition>
+        <argsstring></argsstring>
+        <name>strPrivate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="4" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_aaa_1a811102b8b0982bf3e9a4974ab1a7aaf6" prot="protected" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Aaa.strProtected</definition>
+        <argsstring></argsstring>
+        <name>strProtected</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="5" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="class_aaa_1ad74a5de20f9b91b73e684abeaf5bdf64" prot="package" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Aaa.strInternal</definition>
+        <argsstring></argsstring>
+        <name>strInternal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="6" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="2" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="1" bodyend="7"/>
+    <listofallmembers>
+      <member refid="class_aaa_1ad74a5de20f9b91b73e684abeaf5bdf64" prot="package" virt="non-virtual"><scope>Aaa</scope><name>strInternal</name></member>
+      <member refid="class_aaa_1a3ebdee6f66e793ae794824c089a97427" prot="private" virt="non-virtual"><scope>Aaa</scope><name>strPrivate</name></member>
+      <member refid="class_aaa_1a811102b8b0982bf3e9a4974ab1a7aaf6" prot="protected" virt="non-virtual"><scope>Aaa</scope><name>strProtected</name></member>
+      <member refid="class_aaa_1a3e440ca773ea34af3f94ffa4594c1acd" prot="public" virt="non-virtual"><scope>Aaa</scope><name>strPublic</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
