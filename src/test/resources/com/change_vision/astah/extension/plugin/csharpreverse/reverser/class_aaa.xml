@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_aaa" kind="class" prot="public">
+    <compoundname>Aaa</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_aaa_1a81a07f475259c5cac97deead7c3b4b4d" prot="private" static="no" mutable="no">
+        <type>int[]</type>
+        <definition>int [] Aaa.iArray</definition>
+        <argsstring></argsstring>
+        <name>iArray</name>
+        <initializer>= { 1, 2, 3 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="3" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_aaa_1acf751cf78bc16f0839fa54446c7c4c82" prot="public" static="no" mutable="no">
+        <type>Bbb</type>
+        <definition>Bbb Aaa.b</definition>
+        <argsstring></argsstring>
+        <name>b</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="4" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_aaa_1a2df37b82e67eed2d97e47a15a23f1daa" prot="protected" static="no" mutable="no">
+        <type>Ccc</type>
+        <definition>Ccc Aaa.c</definition>
+        <argsstring></argsstring>
+        <name>c</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="5" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_aaa_1ad7a5fc42e197f72b079011d92e648322" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Aaa.abc</definition>
+        <argsstring>(int[] iArray)</argsstring>
+        <name>abc</name>
+        <param>
+          <type>int[]</type>
+          <declname>iArray</declname>
+        </param>
+        <briefdescription>
+<para>簡単なサンプルとして、リストを実装する。 片方向リストで、リストに値を加えることは出来るけど、削除は出来ない。 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="12" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="11" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="class_aaa_1a40c4c21ca8c79f2631bef99c5a5e2dde" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Aaa.abc</definition>
+        <argsstring>(int[][] iArray)</argsstring>
+        <name>abc</name>
+        <param>
+          <type>int</type>
+          <declname>iArray</declname>
+          <array>[][]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="17" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="16" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="class_aaa_1a83a3cab62dc5edaf744923b8393c9161" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Aaa.abc</definition>
+        <argsstring>(int[][][] iArray)</argsstring>
+        <name>abc</name>
+        <param>
+          <type>int</type>
+          <declname>iArray</declname>
+          <array>[][][]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="22" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="21" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/y-matsuda/Desktop/a/a.cs" line="2" bodyfile="C:/Users/y-matsuda/Desktop/a/a.cs" bodystart="1" bodyend="26"/>
+    <listofallmembers>
+      <member refid="class_aaa_1ad7a5fc42e197f72b079011d92e648322" prot="public" virt="non-virtual"><scope>Aaa</scope><name>abc</name></member>
+      <member refid="class_aaa_1a40c4c21ca8c79f2631bef99c5a5e2dde" prot="public" virt="non-virtual"><scope>Aaa</scope><name>abc</name></member>
+      <member refid="class_aaa_1a83a3cab62dc5edaf744923b8393c9161" prot="public" virt="non-virtual"><scope>Aaa</scope><name>abc</name></member>
+      <member refid="class_aaa_1acf751cf78bc16f0839fa54446c7c4c82" prot="public" virt="non-virtual"><scope>Aaa</scope><name>b</name></member>
+      <member refid="class_aaa_1a2df37b82e67eed2d97e47a15a23f1daa" prot="protected" virt="non-virtual"><scope>Aaa</scope><name>c</name></member>
+      <member refid="class_aaa_1a81a07f475259c5cac97deead7c3b4b4d" prot="private" virt="non-virtual"><scope>Aaa</scope><name>iArray</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
