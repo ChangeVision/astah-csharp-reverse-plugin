@@ -51,24 +51,24 @@ import com.change_vision.jude.api.inf.project.ProjectAccessorFactory;
  * const,override,readonly,delegate,sealed,internal,unsafe,virtual,abstract
  */
 public abstract class Member implements IConvertToJude {
-	String id;
-	String kind;
-	String prot;
+	private String id;
+	private String kind;
+	private String prot;
 	String staticBoolean;
-	String constBoolean;
-	String virt;
-	String name;
-	String type;
-	List<Ref> typeRefs = new ArrayList<Ref>();
-	String argsstring;
-	String initializer;
-	Ref initializerRef;
-	String detaileddescriptionPara;
-	String gettable;
-	String settable;
-	List<Param> memberParaList;
-	List<EnumValue> enumValues;
-	Section parent;
+	private String constBoolean;
+	private String virt;
+	private String name;
+	private String type;
+	private List<Ref> typeRefs = new ArrayList<Ref>();
+	private String argsstring;
+	private String initializer;
+	private Ref initializerRef;
+	private String detaileddescriptionPara;
+	private String gettable;
+	private String settable;
+	private List<Param> memberParaList;
+	private List<EnumValue> enumValues;
+	private Section parent;
 
 	public static final Map<String, String> TYPEDEFS = new HashMap<String, String>();
 
@@ -986,6 +986,7 @@ public abstract class Member implements IConvertToJude {
 		if (this.getDetaileddescriptionPara() != null) {
 			attribute.setDefinition(this.getDetaileddescriptionPara());
 		}
+
 		return attr;
 	}
 
@@ -1085,4 +1086,5 @@ public abstract class Member implements IConvertToJude {
 		}
 		return range;
 	}
+
 }
