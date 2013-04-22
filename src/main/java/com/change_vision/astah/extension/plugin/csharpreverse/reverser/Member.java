@@ -54,7 +54,7 @@ public abstract class Member implements IConvertToJude {
 	private String id;
 	private String kind;
 	private String prot;
-	String staticBoolean;
+	private	String staticBoolean;
 	private String constBoolean;
 	private String virt;
 	private String name;
