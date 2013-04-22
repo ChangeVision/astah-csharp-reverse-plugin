@@ -5,6 +5,11 @@
     <member refid="class_aaa_1a40c4c21ca8c79f2631bef99c5a5e2dde" kind="function"><name>abc</name></member>
     <member refid="class_aaa_1a83a3cab62dc5edaf744923b8393c9161" kind="function"><name>abc</name></member>
   </compound>
+  <compound refid="class_bbb" kind="class"><name>Bbb</name>
+    <member refid="class_bbb_1a306aeb08a4b1937e3b32ea971cb95ff8" kind="function"><name>abc</name></member>
+    <member refid="class_bbb_1ad35c70c2a7235d57f30fed900f7a5ede" kind="function"><name>abc</name></member>
+    <member refid="class_bbb_1a40a77c5926a0843965430705b0a1b1db" kind="function"><name>abc</name></member>
+  </compound>
   <compound refid="a_8cs" kind="file"><name>a.cs</name>
   </compound>
   <compound refid="dir_e7aa022f5af5ce10c80946f644f506de" kind="dir"><name>C:/Users/y-matsuda/Desktop/aaa</name>

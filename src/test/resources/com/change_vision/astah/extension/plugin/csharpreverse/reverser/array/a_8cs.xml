@@ -3,6 +3,7 @@
   <compounddef id="a_8cs" kind="file">
     <compoundname>a.cs</compoundname>
     <innerclass refid="class_aaa" prot="public">Aaa</innerclass>
+    <innerclass refid="class_bbb" prot="public">Bbb</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -31,6 +32,25 @@
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="class_bbb" refkind="compound"><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_bbb" kindref="compound" tooltip="Bbbクラスの説明 ">Bbb</ref></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_bbb_1a306aeb08a4b1937e3b32ea971cb95ff8" kindref="member" tooltip="パラメータはユーザ定義クラスの1次元配列 ">abc</ref>(<ref refid="class_aaa" kindref="compound" tooltip="Aaaクラスの説明 ">Aaa</ref>[]<sp/>iArray)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_bbb_1a306aeb08a4b1937e3b32ea971cb95ff8" kindref="member" tooltip="パラメータはユーザ定義クラスの1次元配列 ">abc</ref>(<ref refid="class_aaa" kindref="compound" tooltip="Aaaクラスの説明 ">Aaa</ref>[][]<sp/>iArray)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_bbb_1a306aeb08a4b1937e3b32ea971cb95ff8" kindref="member" tooltip="パラメータはユーザ定義クラスの1次元配列 ">abc</ref>(<ref refid="class_aaa" kindref="compound" tooltip="Aaaクラスの説明 ">Aaa</ref>[][][]<sp/>iArray)</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs"/>
   </compounddef>

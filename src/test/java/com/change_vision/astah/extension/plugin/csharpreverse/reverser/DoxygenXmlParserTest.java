@@ -206,7 +206,17 @@ public class DoxygenXmlParserTest {
 						"int[]",
 						parameter.getTypeExpression()
 								+ parameter.getTypeModifier());
-
+			}
+		}
+		elements = findElements(modelPath, "Bbb");
+		for (INamedElement element : elements) {
+			if (element instanceof IClass) {
+				IClass a = (IClass) element;
+				IParameter parameter = a.getOperations()[0].getParameters()[0];
+				assertEquals(
+						"Aaa[]",
+						parameter.getTypeExpression()
+								+ parameter.getTypeModifier());
 			}
 		}
 	}
@@ -224,6 +234,16 @@ public class DoxygenXmlParserTest {
 
 			}
 		}
+		elements = findElements(modelPath, "Bbb");
+		for (INamedElement element : elements) {
+			if (element instanceof IClass) {
+				IClass a = (IClass) element;
+				IParameter parameter = a.getOperations()[1].getParameters()[0];
+				assertEquals("Aaa[][]", parameter.getTypeExpression()
+						+ parameter.getTypeModifier());
+
+			}
+		}
 	}
 
 	@Test
@@ -235,6 +255,16 @@ public class DoxygenXmlParserTest {
 				IClass a = (IClass) element;
 				IParameter parameter = a.getOperations()[2].getParameters()[0];
 				assertEquals("int[][][]", parameter.getTypeExpression()
+						+ parameter.getTypeModifier());
+
+			}
+		}
+		 elements = findElements(modelPath, "Bbb");
+		for (INamedElement element : elements) {
+			if (element instanceof IClass) {
+				IClass a = (IClass) element;
+				IParameter parameter = a.getOperations()[2].getParameters()[0];
+				assertEquals("Aaa[][][]", parameter.getTypeExpression()
 						+ parameter.getTypeModifier());
 
 			}

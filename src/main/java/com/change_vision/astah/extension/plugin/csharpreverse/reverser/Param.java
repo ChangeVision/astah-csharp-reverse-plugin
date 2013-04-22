@@ -24,17 +24,17 @@ import com.change_vision.jude.api.inf.model.IOperation;
  */
 public class Param implements IConvertToJude {
 
-	protected String type;
+	private String type;
 
-	protected List<Ref> typeRefs = new ArrayList<Ref>();
+	private List<Ref> typeRefs = new ArrayList<Ref>();
 
-	protected String declname;
+	private String declname;
 
-	protected String defname;
+	private String defname;
 
-	protected String array;
+	private String array;
 
-	protected static int paramNum = 0;
+	private static int paramNum = 0;
 
 	public static final String REF = "ref";
 
@@ -97,6 +97,18 @@ public class Param implements IConvertToJude {
 	public void convertToJudeModel(IElement parent, File[] files)
 			throws InvalidEditingException, ClassNotFoundException,
 			ProjectNotFoundException {
+
+		if (typeRefs.isEmpty()) {
+			System.out.println("Type:" + type + " declname:" + declname
+					+ " defname:" + defname + " array:" + array);
+		} else {
+			System.out.println("Type:" + type + " kindRef:"
+					+ typeRefs.get(0).getKindref() + " refid:"
+					+ typeRefs.get(0).getRefid() + " value:"
+					+ typeRefs.get(0).getValue() + " declname:" + declname
+					+ " defname:" + defname + " array:" + array);
+		}
+
 		FilterKeyword result = filterKeyword(type);
 		String type = (result.toType).trim();
 		if ("".equals(type) && !typeRefs.isEmpty()) {
@@ -142,6 +154,15 @@ public class Param implements IConvertToJude {
 		String paramName = null;
 		if (array != null) {
 			paramArray = array;
+		} else if (this.type.endsWith("[]")) {
+			// to fix dev bug
+			// 1276:[C#][Doxygen]5.4\54_09_doxygen\C_Sharp\C_Sharp_6.3_1.7.1.astaでメソッドのパラメタがおかしい。
+			// 1次元配列のときのみ、typeに[]がはいってしまう。
+			paramArray = "[]";
+			type = this.type.substring(0, this.type.length() - 2);
+			if(type.isEmpty()){
+				type = typeRefs.get(0).getValue();
+			}
 		}
 		if (declname != null) {
 			paramName = declname;
@@ -154,8 +175,7 @@ public class Param implements IConvertToJude {
 		}
 		IElement param;
 		if (name instanceof String)
-			param = createParameter(parent, type.toString(), paramArray,
-					paramName);
+			param = createParameter(parent, type, paramArray, paramName);
 		else {
 			BasicModelEditor basicModelEditor = ModelEditorFactory
 					.getBasicModelEditor();
