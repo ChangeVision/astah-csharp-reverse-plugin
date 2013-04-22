@@ -302,7 +302,7 @@ public abstract class Member implements IConvertToJude {
 		}
 		enumClass.addStereotype("enum");
 		CompoundDef.compounddef.put(getId(), enumClass);
-		for (EnumValue enumValue : enumValues) {
+		for (EnumValue enumValue : getEnumValues()) {
 			enumValue.convertToJudeModel(enumClass, files);
 		}
 	}
@@ -357,14 +357,14 @@ public abstract class Member implements IConvertToJude {
 				// type="< , String>", typeRefs={ref(MyMap), ref(Key)}
 				if (params.length == 2) {
 					int paramIndex = (getType().indexOf("<") == 0) ? 1 : 0;
-					if (params[0].equals("") && paramIndex < typeRefs.size()) {
+					if (params[0].equals("") && paramIndex < getTypeRefs().size()) {
 						qualifierType = (IClass) CompoundDef.compounddef
-								.get(typeRefs.get(paramIndex++).getRefid());
+								.get(getTypeRefs().get(paramIndex++).getRefid());
 					} else {
 						qualifierType = getClassByName(params[0]);
 					}
 					if (params[1].equals("")) {
-						iChild = (IClass) CompoundDef.compounddef.get(typeRefs
+						iChild = (IClass) CompoundDef.compounddef.get(getTypeRefs()
 								.get(paramIndex).getRefid());
 					} else {
 						iChild = getClassByName(params[1]);
@@ -372,15 +372,15 @@ public abstract class Member implements IConvertToJude {
 				}
 			} else { // ICollection<E> etc.
 				// case:List<Child> get Child
-				if (getType().indexOf("<") == 0 && typeRefs.size() > 1) {
+				if (getType().indexOf("<") == 0 && getTypeRefs().size() > 1) {
 					// 1.7.1: MyList<MyChild>, type="< >", typeRefs={MyList,
 					// MyChild}
-					iChild = (IClass) CompoundDef.compounddef.get(typeRefs.get(
+					iChild = (IClass) CompoundDef.compounddef.get(getTypeRefs().get(
 							1).getRefid());
 				} else if (getType().indexOf("<") > 0 && !typeRefs.isEmpty()) {
 					// 1.7.0 & 1.7.1, IList<MyChild>, type="IList<>",
 					// typeRefs={MyChild}
-					iChild = (IClass) CompoundDef.compounddef.get(typeRefs.get(
+					iChild = (IClass) CompoundDef.compounddef.get(getTypeRefs().get(
 							0).getRefid());
 				} else {
 					// type="IList<String>", typeRefs={}
@@ -416,15 +416,15 @@ public abstract class Member implements IConvertToJude {
 				&& getType().indexOf("<") != 0) {
 			// all typerefs are actual parameters
 			String array = getArrayString();
-			FilterKeyword result = filterKeyword(type);
+			FilterKeyword result = filterKeyword(getType());
 			Set<String> keywords = result.keywords;
 			String type = (result.toType).trim();
 			// like : IDictionary<String, >, ref={Child}
 			// or: IDictionary<, >, ref={Key, Child}
 			for (int i = 0, index = 0; i < params.length
-					&& index < typeRefs.size(); i++) {
+					&& index < getTypeRefs().size(); i++) {
 				if (params[i].equals("")) {
-					params[i] = typeRefs.get(index++).getValue();
+					params[i] = getTypeRefs().get(index++).getValue();
 				}
 			}
 			if (templateClass != null) {
@@ -470,11 +470,11 @@ public abstract class Member implements IConvertToJude {
 							filteredType.split(" "));
 					correctIndexer(basicModelEditor, op);
 					String indexerParam = "";
-					if (argsstring.indexOf("[") != -1
-							&& argsstring.indexOf("]") != -1) {
-						indexerParam = argsstring.substring(
-								argsstring.indexOf("[") + 1,
-								argsstring.indexOf("]"));
+					if (getArgsstring().indexOf("[") != -1
+							&& getArgsstring().indexOf("]") != -1) {
+						indexerParam = getArgsstring().substring(
+								getArgsstring().indexOf("[") + 1,
+								getArgsstring().indexOf("]"));
 					}
 					String[] indexerParams = indexerParam.split(",");
 					for (String str : indexerParams) {
@@ -490,7 +490,7 @@ public abstract class Member implements IConvertToJude {
 			}
 		} else if (!getTypeRefs().isEmpty()) {
 			// the first type ref is template
-			IClass otherCls = Tool.getClass(type, getTypeRefs());
+			IClass otherCls = Tool.getClass(getType(), getTypeRefs());
 			if (otherCls != null) {
 				if (KIND_ATTRIBUTE.equals(this.getKind())) {
 					// generateAttri(parent, basicModelEditor, otherCls);
@@ -633,7 +633,7 @@ public abstract class Member implements IConvertToJude {
 				}
 			}
 		} else if (!getTypeRefs().isEmpty()) {
-			IClass iClass = (IClass) CompoundDef.compounddef.get(typeRefs
+			IClass iClass = (IClass) CompoundDef.compounddef.get(getTypeRefs()
 					.get(0).getRefid());
 			return iClass;
 		}
@@ -781,7 +781,7 @@ public abstract class Member implements IConvertToJude {
 		}
 		dealOperationKeyword(basicModelEditor, keywords, oper);
 
-		for (Param param : memberParaList) {
+		for (Param param : getMemberParaList()) {
 			param.convertToJudeModel(oper, null);
 		}
 	}
@@ -824,14 +824,14 @@ public abstract class Member implements IConvertToJude {
 		if (KIND_PROPERTY.equals(this.getKind())) {
 			if (!Arrays.asList(attr.getStereotypes()).contains("property")) {
 				attr.addStereotype("property");
-				if ("yes".equals(settable)) {
+				if ("yes".equals(getSettable())) {
 					basicModelEditor.createTaggedValue(attr,
 							"jude.c_sharp.property_set", "true");
 				} else {
 					basicModelEditor.createTaggedValue(attr,
 							"jude.c_sharp.property_set", "false");
 				}
-				if ("yes".equals(gettable)) {
+				if ("yes".equals(getGettable())) {
 					basicModelEditor.createTaggedValue(attr,
 							"jude.c_sharp.property_get", "true");
 				} else {
@@ -847,14 +847,14 @@ public abstract class Member implements IConvertToJude {
 		if (KIND_PROPERTY.equals(this.getKind())) {
 			if (!Arrays.asList(attr.getStereotypes()).contains("indexer")) {
 				attr.addStereotype("indexer");
-				if ("yes".equals(settable)) {
+				if ("yes".equals(getSettable())) {
 					basicModelEditor.createTaggedValue(attr,
 							"jude.c_sharp.indexer_set", "true");
 				} else {
 					basicModelEditor.createTaggedValue(attr,
 							"jude.c_sharp.indexer_set", "false");
 				}
-				if ("yes".equals(gettable)) {
+				if ("yes".equals(getGettable())) {
 					basicModelEditor.createTaggedValue(attr,
 							"jude.c_sharp.indexer_get", "true");
 				} else {
@@ -878,13 +878,13 @@ public abstract class Member implements IConvertToJude {
 	IOperation generateOper(IElement parent, BasicModelEditor basicModelEditor,
 			IClass type) throws InvalidEditingException,
 			ProjectNotFoundException, ClassNotFoundException {
-		IOperation oper = Tool.getOperation((IClass) parent, name, type);
+		IOperation oper = Tool.getOperation((IClass) parent, getName(), type);
 		oper.setVisibility(this.getProt());
 		oper.setStatic(!"no".equals(this.getStaticBoolean()));
 		if (this.getDetaileddescriptionPara() != null) {
 			oper.setDefinition(this.getDetaileddescriptionPara());
 		}
-		for (Param param : memberParaList) {
+		for (Param param : getMemberParaList()) {
 			param.convertToJudeModel(oper, null);
 		}
 		return oper;
@@ -900,9 +900,9 @@ public abstract class Member implements IConvertToJude {
 		}
 		IOperation oper;
 		if (LanguageManager.getCurrentLanguagePrimitiveType().contains(path[0])) {
-			oper = Tool.getOperation((IClass) parent, name, path[0]);
+			oper = Tool.getOperation((IClass) parent, getName(), path[0]);
 		} else {
-			oper = Tool.getOperation((IClass) parent, name,
+			oper = Tool.getOperation((IClass) parent, getName(),
 					path.length > 0 ? path[path.length - 1] : getType());
 		}
 		oper.setVisibility(this.getProt());
@@ -917,7 +917,7 @@ public abstract class Member implements IConvertToJude {
 	void generateAttri(IElement parent, BasicModelEditor basicModelEditor,
 			IClass type) throws InvalidEditingException,
 			ProjectNotFoundException, ClassNotFoundException {
-		IAttribute attr = Tool.getAttribute((IClass) parent, name, type);
+		IAttribute attr = Tool.getAttribute((IClass) parent, getName(), type);
 		int[][] range = getMultiRange();
 		if (range != null) {
 			attr.setMultiplicity(range);
@@ -948,9 +948,9 @@ public abstract class Member implements IConvertToJude {
 		}
 		IAttribute attr;
 		if (LanguageManager.getCurrentLanguagePrimitiveType().contains(path[0])) {
-			attr = Tool.getAttribute((IClass) parent, name, path[0]);
+			attr = Tool.getAttribute((IClass) parent, getName(), path[0]);
 		} else {
-			attr = Tool.getAttribute((IClass) parent, name,
+			attr = Tool.getAttribute((IClass) parent, getName(),
 					path.length > 0 ? path[path.length - 1] : getType());
 		}
 		if (null == attr) {
@@ -972,7 +972,7 @@ public abstract class Member implements IConvertToJude {
 			throws InvalidEditingException, ProjectNotFoundException,
 			ClassNotFoundException {
 		IAssociation attr = basicModelEditor.createAssociation(parent,
-				assocEnd, "", "", this.name);
+				assocEnd, "", "", this.getName());
 
 		// XXX #3236 C#リバースで関連端がPrivateになってしまう
 
@@ -993,9 +993,9 @@ public abstract class Member implements IConvertToJude {
 	protected String getArrayString() {
 		String arrayString = "";
 		if (type.indexOf("[") >= 0) {
-			arrayString = type;
-		} else if (this.argsstring.indexOf("[") == 0) {
-			arrayString = this.argsstring;
+			arrayString = getType();
+		} else if (this.getArgsstring().indexOf("[") == 0) {
+			arrayString = this.getArgsstring();
 		}
 		if (!"".equals(arrayString)) {
 			int start = arrayString.indexOf("[");
@@ -1009,10 +1009,10 @@ public abstract class Member implements IConvertToJude {
 		StringBuilder buffer = new StringBuilder();
 		int length = 0;
 		String arrayString;
-		if (type.indexOf("[") >= 0) {
-			arrayString = type;
-		} else if (this.argsstring.indexOf("[") >= 0) {
-			arrayString = this.argsstring;
+		if (getType().indexOf("[") >= 0) {
+			arrayString = getType();
+		} else if (this.getArgsstring().indexOf("[") >= 0) {
+			arrayString = this.getArgsstring();
 		} else {
 			return null;
 		}
@@ -1053,10 +1053,10 @@ public abstract class Member implements IConvertToJude {
 		StringBuilder buffer = new StringBuilder();
 		int length = 0;
 		String arrayString;
-		if (type.indexOf("[") >= 0) {
-			arrayString = type;
-		} else if (this.argsstring.indexOf("[") >= 0) {
-			arrayString = this.argsstring;
+		if (getType().indexOf("[") >= 0) {
+			arrayString = getType();
+		} else if (this.getArgsstring().indexOf("[") >= 0) {
+			arrayString = this.getArgsstring();
 		} else {
 			return null;
 		}
