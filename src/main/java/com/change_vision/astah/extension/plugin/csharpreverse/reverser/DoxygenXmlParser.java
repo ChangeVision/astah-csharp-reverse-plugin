@@ -228,12 +228,10 @@ public class DoxygenXmlParser {
 		List<CompoundDef> compounddefs = new ArrayList<CompoundDef>();
 		for (Compound compound : doxygenXmlParser.compounds) {
 			// parse the kindName is class or interface or struct or union
-			if ("namespace".equals(compound.getKind())
-					|| "class".equals(compound.getKind())
-					|| "interface".equals(compound.getKind())
-					|| "struct".equals(compound.getKind())
-					|| "union".equals(compound.getKind())
-					|| "file".equals(compound.getKind())) {
+			String kind = compound.getKind();
+			if ("namespace".equals(kind) || "class".equals(kind)
+					|| "interface".equals(kind) || "struct".equals(kind)
+					|| "union".equals(kind) || "file".equals(kind)) {
 				File file = findFile(indexFile.getParent(), compound.getRefid()
 						+ ".xml");
 				compounddefs.add(parserCompounddefXML(file));
@@ -265,12 +263,9 @@ public class DoxygenXmlParser {
 				"compounddefKind");
 		digester.addBeanPropertySetter("doxygen/compounddef/compoundname",
 				"compoundName");
-
-		// XXX #3340 C#リバースプラグインで、クラスや属性のコメントをモデルに反映する
 		digester.addBeanPropertySetter(
 				"doxygen/compounddef/briefdescription/para",
 				"detaileddescriptionPara");
-		// ここまで //////////
 
 		// crreate the TempleParam
 		digester.addRule("doxygen/compounddef/templateparamlist/param",
@@ -374,12 +369,9 @@ public class DoxygenXmlParser {
 				"settable", "settable");
 		digester.addSetProperties("doxygen/compounddef/sectiondef/memberdef",
 				"virt", "virt");
-
-		// XXX #3340 C#リバースプラグインで、クラスや属性のコメントをモデルに反映する
 		digester.addBeanPropertySetter(
 				"doxygen/compounddef/sectiondef/memberdef/briefdescription/para",
 				"detaileddescriptionPara");
-		// ここまで ///////////////////////
 
 		digester.addBeanPropertySetter(
 				"doxygen/compounddef/sectiondef/memberdef/type", "type");
@@ -471,23 +463,16 @@ public class DoxygenXmlParser {
 	}
 
 	/**
-	 * XXX throws している例外を throw する部分がない件
-	 * 
 	 * @param path
 	 *            : target Path
 	 * @param fileName
 	 *            : target file's name
 	 * @return the target file
-	 * @throws IOException
-	 * @throws SAXException
 	 */
-	public static File findFile(String path, String fileName)
-			throws IOException, SAXException {
-		// TODO pathのnullチェック
+	public static File findFile(String path, String fileName) {
 		File dir = new File(path);
 		if (dir.exists()) {
 			File[] files = dir.listFiles();
-			// TODO filesのnullチェック
 			for (int i = 0; i < files.length; i++) {
 				if (fileName.equals(files[i].getName())) {
 					return files[i];

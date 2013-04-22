@@ -142,15 +142,6 @@ public class Param implements IConvertToJude {
 		String paramName = null;
 		if (array != null) {
 			paramArray = array;
-
-			// XXX #3259 C#リバースでオペレーションの引数に１次元配列が含まれている場合、生成されるモデルでは２次元配列で出力される
-			// 以下4行削除で解決？
-
-			// } else if (this.type.endsWith("[]")) {
-			// //to fix dev bug
-			// 1276:[C#][Doxygen]5.4\54_09_doxygen\C_Sharp\C_Sharp_6.3_1.7.1.astaでメソッドのパラメタがおかしい。
-			// paramArray = "[]";
-
 		}
 		if (declname != null) {
 			paramName = declname;

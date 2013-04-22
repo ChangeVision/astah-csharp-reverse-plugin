@@ -25,20 +25,11 @@ import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
 import com.change_vision.jude.api.inf.model.IAttribute;
 import com.change_vision.jude.api.inf.model.IClass;
 import com.change_vision.jude.api.inf.model.INamedElement;
-import com.change_vision.jude.api.inf.model.IPackage;
 import com.change_vision.jude.api.inf.model.IParameter;
 import com.change_vision.jude.api.inf.project.ModelFinder;
 import com.change_vision.jude.api.inf.project.ProjectAccessor;
 
 public class DoxygenXmlParserTest {
-
-	// @Test
-	// public void test() throws IOException, SAXException {
-	// String path = getClass().getResource("index.xml").getFile();
-	// File file = new File(path);
-	// CompoundDef compoundDef = DoxygenXmlParser.parserCompounddefXML(file);
-	// System.out.println(compoundDef.compounddefId);
-	// }
 
 	/**
 	 * compound を追加できること
@@ -167,31 +158,6 @@ public class DoxygenXmlParserTest {
 		assertEquals(null, DoxygenXmlParser.findFile(path, "a.xml"));
 	}
 
-	// XXX NullPointerExceptionが出てたのでテストを書いたが、現在通らないのでコメントアウト
-	// @Test
-	// public void
-	// testFindFile_パスにフォルダでなくファイルを指定したときにNullPointerExceptionが出ないこと() throws
-	// IOException,
-	// SAXException {
-	// String fileName = "test.xml";
-	// String expectedFilePath = getClass().getResource(fileName).getFile();
-	// try {
-	// DoxygenXmlParser.findFile(expectedFilePath, "a.xml");
-	// } catch (NullPointerException e) {
-	// fail();
-	// }
-	// }
-
-	// TODO IOExceptionは本当に出るの？
-	// @Test
-	// public void testFindFile_IOExceptionが出ること() throws SAXException {
-	// }
-
-	// TODO SAXExceptionは本当に出るの？
-	// @Test
-	// public void testFindFile_SAXExceptionが出ること() throws IOException {
-	// }
-
 	@Test
 	public void testGetFileType_正しいlanguage_typeを得られること() {
 		assertEquals(LanguageManager.LANGUAGE_CSHARP,
@@ -228,7 +194,6 @@ public class DoxygenXmlParserTest {
 		}
 	}
 
-	// XXX #3259 C#リバースでオペレーションの引数に１次元配列が含まれている場合、生成されるモデルでは２次元配列で出力される
 	@Test
 	public void testParser_1次配列がリバースできていること() throws Throwable {
 		String modelPath = parseProject("array");
@@ -246,7 +211,6 @@ public class DoxygenXmlParserTest {
 		}
 	}
 
-	// XXX #3259 C#リバースでオペレーションの引数に１次元配列が含まれている場合、生成されるモデルでは２次元配列で出力される
 	@Test
 	public void testParser_2次配列がリバースできていること() throws Throwable {
 		String modelPath = parseProject("array");
@@ -262,7 +226,6 @@ public class DoxygenXmlParserTest {
 		}
 	}
 
-	// XXX #3259 C#リバースでオペレーションの引数に１次元配列が含まれている場合、生成されるモデルでは２次元配列で出力される
 	@Test
 	public void testParser_3次配列がリバースできていること() throws Throwable {
 		String modelPath = parseProject("array");
@@ -278,7 +241,6 @@ public class DoxygenXmlParserTest {
 		}
 	}
 
-	// XXX #3236 C#リバースで関連端がPrivateになってしまう
 	@Test
 	public void testParser_関連端の可視性が正しく設定できること() throws Throwable {
 		String modelPath = parseProject("visibility");
@@ -295,7 +257,6 @@ public class DoxygenXmlParserTest {
 		}
 	}
 
-	// XXX #3258 変数の宣言中に改行が含まれる場合、属性の初期値にも改行が含まれる
 	@Test
 	public void testParser_xmlファイルの変数の宣言中に改行が含まれる場合でもリバース結果の属性の初期値に改行や不要なイコールが含まれないこと()
 			throws Throwable {
@@ -314,7 +275,6 @@ public class DoxygenXmlParserTest {
 		}
 	}
 
-	// XXX #3230 定数の初期値が不正
 	@Test
 	public void testParser_定数の初期値が不正でないこと() throws Throwable {
 		String modelPath = parseProject("two_parameters");
@@ -331,7 +291,6 @@ public class DoxygenXmlParserTest {
 		}
 	}
 
-	// XXX #3243 C#リバースで初期値の設定をメソッドで設定している場合、括弧の途中までしか出力されない
 	@Test
 	public void testParser_メソッドで定義されていても変数の初期値が不正でないこと() throws Throwable {
 		String modelPath = parseProject("default_value1");
@@ -380,7 +339,6 @@ public class DoxygenXmlParserTest {
 		return elements;
 	}
 
-	// XXX #3340 C#リバースプラグインで、クラスや属性のコメントをモデルに反映する
 	@Test
 	public void testParser_クラスや属性の定義が設定されていること() throws Throwable {
 		String modelPath = parseProject("para");
@@ -395,6 +353,22 @@ public class DoxygenXmlParserTest {
 			}
 		}
 	}
+	
+//	@Test
+//	public void testParser_System配下のクラスを継承していること() throws Throwable {
+//		String modelPath = parseProject("extend");
+//		INamedElement[] elements = findElements(modelPath, "Aaa");
+//
+//		for (INamedElement element : elements) {
+//			if (element instanceof IClass) {
+//				IClass a = (IClass) element;
+//				IClass superClass = a.getGeneralizations()[0].getSuperType();
+//				assertEquals("System",
+//						IPackage.class.cast(superClass.getOwner()).getName());
+//			}
+//		}
+//	}
+	
 
 	/**
 	 * DoxgenのXMLからastahモデルに構文解析した一次ファイルを作成し、そのパスを返します。

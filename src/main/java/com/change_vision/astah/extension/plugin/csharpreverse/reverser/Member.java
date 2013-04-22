@@ -54,7 +54,7 @@ public abstract class Member implements IConvertToJude {
 	private String id;
 	private String kind;
 	private String prot;
-	private	String staticBoolean;
+	private String staticBoolean;
 	private String constBoolean;
 	private String virt;
 	private String name;
@@ -357,15 +357,16 @@ public abstract class Member implements IConvertToJude {
 				// type="< , String>", typeRefs={ref(MyMap), ref(Key)}
 				if (params.length == 2) {
 					int paramIndex = (getType().indexOf("<") == 0) ? 1 : 0;
-					if (params[0].equals("") && paramIndex < getTypeRefs().size()) {
+					if (params[0].equals("")
+							&& paramIndex < getTypeRefs().size()) {
 						qualifierType = (IClass) CompoundDef.compounddef
 								.get(getTypeRefs().get(paramIndex++).getRefid());
 					} else {
 						qualifierType = getClassByName(params[0]);
 					}
 					if (params[1].equals("")) {
-						iChild = (IClass) CompoundDef.compounddef.get(getTypeRefs()
-								.get(paramIndex).getRefid());
+						iChild = (IClass) CompoundDef.compounddef
+								.get(getTypeRefs().get(paramIndex).getRefid());
 					} else {
 						iChild = getClassByName(params[1]);
 					}
@@ -375,13 +376,13 @@ public abstract class Member implements IConvertToJude {
 				if (getType().indexOf("<") == 0 && getTypeRefs().size() > 1) {
 					// 1.7.1: MyList<MyChild>, type="< >", typeRefs={MyList,
 					// MyChild}
-					iChild = (IClass) CompoundDef.compounddef.get(getTypeRefs().get(
-							1).getRefid());
+					iChild = (IClass) CompoundDef.compounddef.get(getTypeRefs()
+							.get(1).getRefid());
 				} else if (getType().indexOf("<") > 0 && !typeRefs.isEmpty()) {
 					// 1.7.0 & 1.7.1, IList<MyChild>, type="IList<>",
 					// typeRefs={MyChild}
-					iChild = (IClass) CompoundDef.compounddef.get(getTypeRefs().get(
-							0).getRefid());
+					iChild = (IClass) CompoundDef.compounddef.get(getTypeRefs()
+							.get(0).getRefid());
 				} else {
 					// type="IList<String>", typeRefs={}
 					iChild = getClassByName(params[0]);
@@ -971,23 +972,17 @@ public abstract class Member implements IConvertToJude {
 			BasicModelEditor basicModelEditor, IClass assocEnd)
 			throws InvalidEditingException, ProjectNotFoundException,
 			ClassNotFoundException {
-		IAssociation attr = basicModelEditor.createAssociation(parent,
+		IAssociation association = basicModelEditor.createAssociation(parent,
 				assocEnd, "", "", this.getName());
 
-		// XXX #3236 C#リバースで関連端がPrivateになってしまう
-
-		// 関連に対して可視性を設定していた
-		// attr.setVisibility(this.getProt());
-
-		// 関連端に対して可視性を設定
-		IAttribute attribute = attr.getMemberEnds()[1];
+		IAttribute attribute = association.getMemberEnds()[1];
 		attribute.setVisibility(this.getProt());
 
 		if (this.getDetaileddescriptionPara() != null) {
 			attribute.setDefinition(this.getDetaileddescriptionPara());
 		}
 
-		return attr;
+		return association;
 	}
 
 	protected String getArrayString() {
