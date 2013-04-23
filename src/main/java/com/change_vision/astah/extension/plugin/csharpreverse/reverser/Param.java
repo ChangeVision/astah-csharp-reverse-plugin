@@ -98,16 +98,16 @@ public class Param implements IConvertToJude {
 			throws InvalidEditingException, ClassNotFoundException,
 			ProjectNotFoundException {
 
-		if (typeRefs.isEmpty()) {
-			System.out.println("Type:" + type + " declname:" + declname
-					+ " defname:" + defname + " array:" + array);
-		} else {
-			System.out.println("Type:" + type + " kindRef:"
-					+ typeRefs.get(0).getKindref() + " refid:"
-					+ typeRefs.get(0).getRefid() + " value:"
-					+ typeRefs.get(0).getValue() + " declname:" + declname
-					+ " defname:" + defname + " array:" + array);
-		}
+//		if (typeRefs.isEmpty()) {
+//			System.out.println("Type:" + type + " declname:" + declname
+//					+ " defname:" + defname + " array:" + array);
+//		} else {
+//			System.out.println("Type:" + type + " kindRef:"
+//					+ typeRefs.get(0).getKindref() + " refid:"
+//					+ typeRefs.get(0).getRefid() + " value:"
+//					+ typeRefs.get(0).getValue() + " declname:" + declname
+//					+ " defname:" + defname + " array:" + array);
+//		}
 
 		FilterKeyword result = filterKeyword(type);
 		String type = (result.toType).trim();
@@ -159,7 +159,7 @@ public class Param implements IConvertToJude {
 			// 1276:[C#][Doxygen]5.4\54_09_doxygen\C_Sharp\C_Sharp_6.3_1.7.1.astaでメソッドのパラメタがおかしい。
 			// 1次元配列のときのみ、typeに[]がはいってしまう。
 			paramArray = "[]";
-			type = this.type.substring(0, this.type.length() - 2);
+			type = this.type.substring(0, this.type.length() - "[]".length());
 			if(type.isEmpty()){
 				type = typeRefs.get(0).getValue();
 			}
