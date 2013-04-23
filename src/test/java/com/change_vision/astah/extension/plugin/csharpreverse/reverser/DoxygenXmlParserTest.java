@@ -259,7 +259,7 @@ public class DoxygenXmlParserTest {
 
 			}
 		}
-		 elements = findElements(modelPath, "Bbb");
+		elements = findElements(modelPath, "Bbb");
 		for (INamedElement element : elements) {
 			if (element instanceof IClass) {
 				IClass a = (IClass) element;
@@ -339,6 +339,23 @@ public class DoxygenXmlParserTest {
 		}
 	}
 
+	@Test
+	public void testParser_初期値にユーザー定義クラスが複数個存在しても不正にならないこと() throws Throwable {
+		String modelPath = parseProject("default_value2");
+		INamedElement[] elements = findElements(modelPath, "Aaa");
+
+		for (INamedElement element : elements) {
+			if (element instanceof IClass) {
+				IClass a = (IClass) element;
+				IAttribute[] attributes = a.getAttributes();
+				for (IAttribute attribute : attributes) {
+					assertEquals("new Bbb(new Fuga(new Hoge()))",
+							attribute.getInitialValue());
+				}
+			}
+		}
+	}
+
 	/**
 	 * モデルを開いて、探したい要素の名前と等しい名前の要素を返します。
 	 * 
@@ -383,22 +400,21 @@ public class DoxygenXmlParserTest {
 			}
 		}
 	}
-	
-//	@Test
-//	public void testParser_System配下のクラスを継承していること() throws Throwable {
-//		String modelPath = parseProject("extend");
-//		INamedElement[] elements = findElements(modelPath, "Aaa");
-//
-//		for (INamedElement element : elements) {
-//			if (element instanceof IClass) {
-//				IClass a = (IClass) element;
-//				IClass superClass = a.getGeneralizations()[0].getSuperType();
-//				assertEquals("System",
-//						IPackage.class.cast(superClass.getOwner()).getName());
-//			}
-//		}
-//	}
-	
+
+	// @Test
+	// public void testParser_System配下のクラスを継承していること() throws Throwable {
+	// String modelPath = parseProject("extend");
+	// INamedElement[] elements = findElements(modelPath, "Aaa");
+	//
+	// for (INamedElement element : elements) {
+	// if (element instanceof IClass) {
+	// IClass a = (IClass) element;
+	// IClass superClass = a.getGeneralizations()[0].getSuperType();
+	// assertEquals("System",
+	// IPackage.class.cast(superClass.getOwner()).getName());
+	// }
+	// }
+	// }
 
 	/**
 	 * DoxgenのXMLからastahモデルに構文解析した一次ファイルを作成し、そのパスを返します。
