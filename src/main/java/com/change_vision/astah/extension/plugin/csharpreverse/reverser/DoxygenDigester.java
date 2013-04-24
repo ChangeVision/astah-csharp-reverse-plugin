@@ -31,15 +31,11 @@ public class DoxygenDigester extends Digester {
 				}
 			}
 		}
-		// TODO 同じ処理他にない？
-		if (current.indexOf("<ref") != -1) {
-			deleteRef();
-		}
+
 		defragCurrent();
 	}
 
 	/**
-	 * 
 	 * currentを最適化します。
 	 */
 	private void defragCurrent() {
@@ -55,27 +51,4 @@ public class DoxygenDigester extends Digester {
 		current = current.trim();
 	}
 
-	/**
-	 * <ref>タグを削除します。
-	 */
-	private void deleteRef() {
-
-		// <ref>タグの始まりのインデックス
-		int fstRefIndexOf = current.indexOf("<ref");
-
-		// <ref>タグの終わりのインデックス
-		int lstIndexOf = current.indexOf(">", fstRefIndexOf) + 1;
-
-		// 削除したい<ref>タグの抽出
-		String refString = current.substring(fstRefIndexOf, lstIndexOf);
-
-		// タグを空文字と置き換え（削除）
-		current = current.replaceFirst(refString, "");
-		current = current.replaceFirst("</ref>", "");
-
-		if (current.indexOf("<ref") != -1) {
-			deleteRef();
-		}
-
-	}
 }
