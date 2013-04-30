@@ -9,6 +9,8 @@ import java.util.Map;
 
 import org.xml.sax.SAXException;
 
+import JP.co.esm.caddies.jomt.jview.in;
+
 import com.change_vision.jude.api.inf.exception.InvalidEditingException;
 import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
 import com.change_vision.jude.api.inf.model.IClass;
@@ -70,7 +72,7 @@ public class CompoundDef implements IConvertToJude {
 
 	private List<InnerNameSpace> innernamespace = new ArrayList<InnerNameSpace>();
 
-	public static Map<String, Object> compounddef = new HashMap<String, Object>();
+	public static Map<String, INamedElement> compounddef = new HashMap<String, INamedElement>();
 
 	public static final String KIND_CLASS = "class";
 
@@ -346,7 +348,7 @@ public class CompoundDef implements IConvertToJude {
 				Tool.getGeneralization(
 						(IClass) compounddef.get(getCompounddefId()), baseClass);
 			} else {
-				String[] names = baseCompound.getValue().split("\\.");
+				String[] names = baseCompound.getValue().split("::");
 				List<String> path = convertPath(names);
 				Tool.getGeneralization((IClass) compounddef
 						.get(getCompounddefId()), Tool.getClass(
@@ -413,13 +415,15 @@ public class CompoundDef implements IConvertToJude {
 		// to fix bug 4120, compoundName need not include template param list.
 		// doxygen1.7.0 compoundName = "List<E>", with templateparamlist
 		// doxygen1.7.1 compoundName = "List", with templateparamlist
-		if (!getTemplateParamList().isEmpty() && getCompoundName().indexOf("<") != -1
+		if (!getTemplateParamList().isEmpty()
+				&& getCompoundName().indexOf("<") != -1
 				&& getCompoundName().endsWith(">")) {
 			int startIndex = getCompoundName().indexOf("<");
 			String paramStr = getCompoundName().substring(startIndex + 1,
 					getCompoundName().length() - 1);
 			String[] params = paramStr.split(",");
-			if (params != null && params.length == getTemplateParamList().size()) {
+			if (params != null
+					&& params.length == getTemplateParamList().size()) {
 				boolean isParam = true;
 				for (int i = 0; i < params.length; i++) {
 					String templateParam = ((TemplateParamCSharp) getTemplateParamList()
@@ -437,50 +441,45 @@ public class CompoundDef implements IConvertToJude {
 		List<String> path = convertPath(names);
 
 		IClass iclass = null;
+		String className = names[names.length - 1];
 		if (parent instanceof IModel) {
 			IPackage pkg = Tool.getPackage((String[]) path
 					.toArray(new String[0]));
 			if (pkg != null) {
 				if (isInterface) {
-					iclass = Tool.getInterface(pkg, names[names.length - 1]);
+					iclass = Tool.getInterface(pkg, className);
 				} else {
-					iclass = Tool.getClass(pkg, names[names.length - 1], null);
+					iclass = Tool.getClass(pkg, className, null);
 				}
 			} else {
 				IClass nestClass = getNestClass(path);
 				if (nestClass != null) {
 					if (isInterface) {
-						iclass = Tool.getInterface(nestClass,
-								names[names.length - 1]);
+						iclass = Tool.getInterface(nestClass, className);
 					} else {
-						iclass = Tool.getClass(nestClass,
-								names[names.length - 1]);
+						iclass = Tool.getClass(nestClass, className);
 					}
 				} else {
 					if (isInterface) {
-						iclass = Tool.getInterface((IModel) parent,
-								names[names.length - 1]);
+						iclass = Tool.getInterface((IModel) parent, className);
 					} else {
-						iclass = Tool.getClass((IModel) parent,
-								names[names.length - 1], nestClass);
+						iclass = Tool.getClass((IModel) parent, className,
+								nestClass);
 					}
 				}
 			}
 		} else if (parent instanceof IPackage) {
 			if (isInterface) {
-				iclass = Tool.getInterface(((IPackage) parent),
-						names[names.length - 1]);
+				iclass = Tool.getInterface(((IPackage) parent), className);
 			} else {
 				iclass = Tool.getClass(((IPackage) parent),
-						names[names.length - 1].toString(), null);
+						className.toString(), null);
 			}
 		} else if (parent instanceof IClass) {
 			if (isInterface) {
-				iclass = Tool.getInterface(((IClass) parent),
-						names[names.length - 1]);
+				iclass = Tool.getInterface(((IClass) parent), className);
 			} else {
-				iclass = Tool.getClass(((IClass) parent),
-						names[names.length - 1].toString());
+				iclass = Tool.getClass(((IClass) parent), className.toString());
 			}
 		}
 		return iclass;
