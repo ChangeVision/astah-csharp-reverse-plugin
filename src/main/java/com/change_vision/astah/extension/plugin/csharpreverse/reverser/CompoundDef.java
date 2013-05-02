@@ -9,8 +9,6 @@ import java.util.Map;
 
 import org.xml.sax.SAXException;
 
-import JP.co.esm.caddies.jomt.jview.in;
-
 import com.change_vision.jude.api.inf.exception.InvalidEditingException;
 import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
 import com.change_vision.jude.api.inf.model.IClass;
