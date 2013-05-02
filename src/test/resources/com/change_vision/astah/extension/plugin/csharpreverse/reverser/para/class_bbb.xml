@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_bbb" kind="class" prot="public">
+    <compoundname>Bbb</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_bbb_1acedd5865c11e57cf34ab09d2e05c23de" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String Bbb.bbb</definition>
+        <argsstring></argsstring>
+        <name>bbb</name>
+        <briefdescription>
+<para>文字列bbb 複数行コメント summary </para>        </briefdescription>
+        <detaileddescription>
+<para>&lt;newpara&gt; クラスBbb 複数行コメント &lt;/newpara&gt; remarks </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="49" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_bbb_1a692fbc498244b4e4ed85785499d27c08" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Bbb.bbb</definition>
+        <argsstring>(int i)</argsstring>
+        <name>bbb</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>メソッドbbb() 複数行コメント </para>        </briefdescription>
+        <detaileddescription>
+<para>remarks 解説 </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>数値 </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="65" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="65" bodyend="65"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>&lt;newpara&gt; クラスBbb 複数行コメント &lt;/newpara&gt; summary </para>    </briefdescription>
+    <detaileddescription>
+<para>&lt;newpara&gt; クラスBbb 複数行コメント &lt;/newpara&gt; remarks </para>    </detaileddescription>
+    <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="35" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="34" bodyend="66"/>
+    <listofallmembers>
+      <member refid="class_bbb_1acedd5865c11e57cf34ab09d2e05c23de" prot="public" virt="non-virtual"><scope>Bbb</scope><name>bbb</name></member>
+      <member refid="class_bbb_1a692fbc498244b4e4ed85785499d27c08" prot="public" virt="non-virtual"><scope>Bbb</scope><name>bbb</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
