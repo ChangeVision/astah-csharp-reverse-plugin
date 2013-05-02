@@ -25,6 +25,7 @@ import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
 import com.change_vision.jude.api.inf.model.IAttribute;
 import com.change_vision.jude.api.inf.model.IClass;
 import com.change_vision.jude.api.inf.model.INamedElement;
+import com.change_vision.jude.api.inf.model.IPackage;
 import com.change_vision.jude.api.inf.model.IParameter;
 import com.change_vision.jude.api.inf.project.ModelFinder;
 import com.change_vision.jude.api.inf.project.ProjectAccessor;
@@ -401,20 +402,29 @@ public class DoxygenXmlParserTest {
 		}
 	}
 
-	// @Test
-	// public void testParser_System配下のクラスを継承していること() throws Throwable {
-	// String modelPath = parseProject("extend");
-	// INamedElement[] elements = findElements(modelPath, "Aaa");
-	//
-	// for (INamedElement element : elements) {
-	// if (element instanceof IClass) {
-	// IClass a = (IClass) element;
-	// IClass superClass = a.getGeneralizations()[0].getSuperType();
-	// assertEquals("System",
-	// IPackage.class.cast(superClass.getOwner()).getName());
-	// }
-	// }
-	// }
+	@Test
+	public void testParser_System配下のクラスを継承していること() throws Throwable {
+		String modelPath = parseProject("extend");
+
+		INamedElement[] elements = findElements(modelPath, "ChildAction");
+		IClass subClass = IClass.class.cast(elements[0]);
+		IClass superClass = subClass.getGeneralizations()[0].getSuperType();
+		assertEquals("System", IPackage.class.cast(superClass.getOwner())
+				.getName());
+
+		elements = findElements(modelPath, "ChildArrayList");
+		subClass = IClass.class.cast(elements[0]);
+		superClass = subClass.getGeneralizations()[0].getSuperType();
+		assertEquals("Collections", IPackage.class.cast(superClass.getOwner())
+				.getName());
+
+		elements = findElements(modelPath, "ChildList");
+		subClass = IClass.class.cast(elements[0]);
+		superClass = subClass.getGeneralizations()[0].getSuperType();
+		assertEquals("Generic", IPackage.class.cast(superClass.getOwner())
+				.getName());
+
+	}
 
 	/**
 	 * DoxgenのXMLからastahモデルに構文解析した一次ファイルを作成し、そのパスを返します。
