@@ -354,6 +354,9 @@ public class DoxygenXmlParser {
 				"compoundName");
 		digester.addBeanPropertySetter(
 				"doxygen/compounddef/briefdescription/para",
+				"briefdescriptionPara");
+		digester.addBeanPropertySetter(
+				"doxygen/compounddef/detaileddescription/para",
 				"detaileddescriptionPara");
 
 		// crreate the TempleParam

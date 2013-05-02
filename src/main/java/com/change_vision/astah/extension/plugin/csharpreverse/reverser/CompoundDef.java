@@ -55,6 +55,8 @@ public class CompoundDef implements IConvertToJude {
 
 	private String detaileddescriptionPara;
 
+	private String briefdescriptionPara;
+
 	private String locationFile;
 
 	// #205 #219
@@ -137,6 +139,14 @@ public class CompoundDef implements IConvertToJude {
 
 	public void setDetaileddescriptionPara(String detaileddescriptionPara) {
 		this.detaileddescriptionPara = detaileddescriptionPara;
+	}
+
+	public String getBriefdescriptionPara() {
+		return briefdescriptionPara;
+	}
+
+	public void setBriefdescriptionPara(String briefdescriptionPara) {
+		this.briefdescriptionPara = briefdescriptionPara;
 	}
 
 	public String getLocationFile() {
@@ -308,8 +318,16 @@ public class CompoundDef implements IConvertToJude {
 			ClassNotFoundException, InvalidEditingException, SAXException,
 			IOException {
 		IClass iclass = getIElement(parent, isInterface);
+		if (this.getBriefdescriptionPara() != null) {
+			iclass.setDefinition("<summary>" + this.getBriefdescriptionPara()
+					+ "</summary>");
+		}
 		if (this.getDetaileddescriptionPara() != null) {
-			iclass.setDefinition(this.getDetaileddescriptionPara());
+			if (this.getBriefdescriptionPara() != null) {
+				iclass.setDefinition(iclass.getDefinition() + "\n");
+			}
+			iclass.setDefinition(iclass.getDefinition() + "<remarks>"
+					+ this.getDetaileddescriptionPara() + "</remarks>");
 		}
 		if (this.getCompounddefVisible() != null) {
 			iclass.setVisibility(this.getCompounddefVisible());
