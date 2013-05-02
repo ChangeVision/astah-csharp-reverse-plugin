@@ -395,11 +395,32 @@ public class DoxygenXmlParserTest {
 		for (INamedElement element : elements) {
 			if (element instanceof IClass) {
 				IClass a = (IClass) element;
-				assertEquals("クラスAaa", a.getDefinition());
-				assertEquals("文字列aaa", a.getAttributes()[0].getDefinition());
-				assertEquals("メソッドaaa()", a.getOperations()[0].getDefinition());
+				assertEquals("<summary>クラスAaa</summary>", a.getDefinition());
+				assertEquals("<summary>文字列aaa</summary>",
+						a.getAttributes()[0].getDefinition());
+				assertEquals("<summary>メソッドaaa()</summary>",
+						a.getOperations()[0].getDefinition());
 			}
 		}
+
+		elements = findElements(modelPath, "ClassA");
+		for (INamedElement element : elements) {
+			if (element instanceof IClass) {
+				IClass a = (IClass) element;
+				assertEquals("<summary>クラスAです。</summary>\n"
+						+ "<remarks>クラスAの詳しい説明。</remarks>", a.getDefinition());
+				assertEquals("<summary>文字列a</summary>\n"
+						+ "<remarks>文字列aの詳しい説明</remarks>",
+						a.getAttributes()[0].getDefinition());
+				assertEquals("<summary>文字列を連結して取得します。</summary>\n"
+						+ "<remarks>パラメータで渡された文字列を連結し、返します。</remarks>\n"
+						+ "<param name=\"str1\">1つ目の文字列</param>\n"
+						+ "<param name=\"str2\">2つ目の文字列</param>\n"
+						+ "<returns>連結後の文字列</returns>",
+						a.getOperations()[0].getDefinition());
+			}
+		}
+
 	}
 
 	@Test

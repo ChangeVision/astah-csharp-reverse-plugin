@@ -1,15 +1,19 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.2">
   <compound refid="class_aaa" kind="class"><name>Aaa</name>
-    <member refid="class_aaa_1a6dd8ed920efbf21b7506813644e025db" kind="variable"><name>str1</name></member>
+    <member refid="class_aaa_1a807964e7283d890eaec582939c301ddc" kind="variable"><name>aaa</name></member>
     <member refid="class_aaa_1acde174a31da6706387d3fcb44a6b421e" kind="function"><name>aaa</name></member>
+  </compound>
+  <compound refid="class_class_a" kind="class"><name>ClassA</name>
+    <member refid="class_class_a_1a12a7ea2619f9f410c71b0ed363c16416" kind="variable"><name>a</name></member>
+    <member refid="class_class_a_1a942ff00c2f81934a03c02fe8b34cb608" kind="function"><name>getJoinString</name></member>
   </compound>
   <compound refid="namespace_system" kind="namespace"><name>System</name>
   </compound>
-  <compound refid="_aaa_8cs" kind="file"><name>Aaa.cs</name>
+  <compound refid="_class_a_8cs" kind="file"><name>ClassA.cs</name>
   </compound>
-  <compound refid="dir_e7aa022f5af5ce10c80946f644f506de" kind="dir"><name>C:/Users/y-matsuda/Desktop/aaa</name>
+  <compound refid="dir_e7aa022f5af5ce10c80946f644f506de" kind="dir"><name>C:/Users/Y-MATSUDA/Desktop/aaa</name>
   </compound>
-  <compound refid="dir_e04ae2849dfa520b4ee2c9f7e9ff15de" kind="dir"><name>C:/Users/y-matsuda/Desktop</name>
+  <compound refid="dir_e04ae2849dfa520b4ee2c9f7e9ff15de" kind="dir"><name>C:/Users/Y-MATSUDA/Desktop</name>
   </compound>
 </doxygenindex>
