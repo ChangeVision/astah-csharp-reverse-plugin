@@ -1,16 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.2">
   <compound refid="class_aaa" kind="class"><name>Aaa</name>
-    <member refid="class_aaa_1a807964e7283d890eaec582939c301ddc" kind="variable"><name>aaa</name></member>
+    <member refid="class_aaa_1a6dd8ed920efbf21b7506813644e025db" kind="variable"><name>str1</name></member>
     <member refid="class_aaa_1acde174a31da6706387d3fcb44a6b421e" kind="function"><name>aaa</name></member>
-  </compound>
-  <compound refid="class_bbb" kind="class"><name>Bbb</name>
-    <member refid="class_bbb_1acedd5865c11e57cf34ab09d2e05c23de" kind="variable"><name>bbb</name></member>
-    <member refid="class_bbb_1a692fbc498244b4e4ed85785499d27c08" kind="function"><name>bbb</name></member>
   </compound>
   <compound refid="namespace_system" kind="namespace"><name>System</name>
   </compound>
-  <compound refid="a_8cs" kind="file"><name>a.cs</name>
+  <compound refid="_aaa_8cs" kind="file"><name>Aaa.cs</name>
   </compound>
   <compound refid="dir_e7aa022f5af5ce10c80946f644f506de" kind="dir"><name>C:/Users/y-matsuda/Desktop/aaa</name>
   </compound>
