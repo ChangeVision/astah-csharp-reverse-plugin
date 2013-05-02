@@ -2,20 +2,19 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
   <compounddef id="class_aaa" kind="class" prot="public">
     <compoundname>Aaa</compoundname>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="class_aaa_1a6dd8ed920efbf21b7506813644e025db" prot="private" static="no" mutable="no">
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_aaa_1a807964e7283d890eaec582939c301ddc" prot="public" static="no" mutable="no">
         <type>String</type>
-        <definition>String Aaa.str1</definition>
+        <definition>String Aaa.aaa</definition>
         <argsstring></argsstring>
-        <name>str1</name>
-        <initializer>= &quot;aaa&quot;</initializer>
+        <name>aaa</name>
         <briefdescription>
 <para>文字列aaa </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/y-matsuda/Desktop/aaa/Aaa.cs" line="11" bodyfile="C:/Users/y-matsuda/Desktop/aaa/Aaa.cs" bodystart="11" bodyend="-1"/>
+        <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="11" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="11" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -30,17 +29,17 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/y-matsuda/Desktop/aaa/Aaa.cs" line="16" bodyfile="C:/Users/y-matsuda/Desktop/aaa/Aaa.cs" bodystart="16" bodyend="16"/>
+        <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="16" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="16" bodyend="16"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
 <para>クラスAaa </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="C:/Users/y-matsuda/Desktop/aaa/Aaa.cs" line="7" bodyfile="C:/Users/y-matsuda/Desktop/aaa/Aaa.cs" bodystart="6" bodyend="18"/>
+    <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="7" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="6" bodyend="17"/>
     <listofallmembers>
+      <member refid="class_aaa_1a807964e7283d890eaec582939c301ddc" prot="public" virt="non-virtual"><scope>Aaa</scope><name>aaa</name></member>
       <member refid="class_aaa_1acde174a31da6706387d3fcb44a6b421e" prot="public" virt="non-virtual"><scope>Aaa</scope><name>aaa</name></member>
-      <member refid="class_aaa_1a6dd8ed920efbf21b7506813644e025db" prot="private" virt="non-virtual"><scope>Aaa</scope><name>str1</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>
