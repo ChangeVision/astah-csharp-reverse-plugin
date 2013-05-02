@@ -19,22 +19,27 @@ import com.change_vision.jude.api.inf.model.IPackage;
 
 /**
  * 
- * this class is the tag of **.xml the tag is <compounddef>. the class is named
- * Compounddef the tag is <compounddef id>.it is named "compounddefId" the tag
- * is <compounddef kind>.it is named "compounddefKind" the tag kind type is
- * "class","namespace","union","struct" the tag is <compounddef port>.it is
- * named "compounddefVisible" the sub-tag is <compoundname>.it is named
- * "compoundName" the sub-tag is <location>.it is named "locationFile" the
- * sub-tag is <detaileddescription><para>.it is named "detaileddescriptionPara"
+ * this class is the tag of **.xml<br/>
+ * the tag is {@literal <compounddef>}. the class is named Compounddef<br/>
+ * the tag is {@literal <compounddef id>}.it is named "compounddefId"<br/>
+ * the tag is {@literal <compounddef kind>}.it is named "compounddefKind"<br/>
+ * the tag kind type is "class","namespace","union","struct"<br/>
+ * the tag is {@literal <compounddef port>}.it is named "compounddefVisible"<br/>
+ * the sub-tag is {@literal <compoundname>}.it is named "compoundName"<br/>
+ * the sub-tag is {@literal <location>}.it is named "locationFile"<br/>
+ * the sub-tag is {@literal <detaileddescription><para>}.it is named
+ * "detaileddescriptionPara"<br/>
  * templateParamList is list of the templateParam'class.tag is
- * <templateparamlist><param> sections is the list of section'class.tag is
- * <sectiondef>. basecompoundList is the list of basecompound'class.tag is
- * <basecompoundref>. derivedcompoundList is the list of
- * derivedcompound'class.tag is <derivedcompoundref> innerclass is the list of
- * innerclass'class.tag is <innerclass> innernamespace is the list of
- * innernamespace'class.tag is <innernamespace>
+ * {@literal <templateparamlist><param>}<br/>
+ * sections is the list of section'class.tag is {@literal <sectiondef>}.<br/>
+ * basecompoundList is the list of basecompound'class.tag is
+ * {@literal <basecompoundref>}.<br/>
+ * derivedcompoundList is the list of derivedcompound'class.tag is
+ * {@literal <derivedcompoundref>}<br/>
+ * innerclass is the list of innerclass'class.tag is {@literal <innerclass>}<br/>
+ * innernamespace is the list of innernamespace'class.tag is
+ * {@literal <innernamespace>}<br/>
  */
-
 public class CompoundDef implements IConvertToJude {
 	private String compounddefId;
 
