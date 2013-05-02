@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_aaa" kind="class" prot="public">
+    <compoundname>Aaa</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_aaa_1abd2882718f0b4c49827cdc7cf5ac159c" prot="private" static="yes" mutable="no">
+        <type><ref refid="class_bbb" kindref="compound">Bbb</ref></type>
+        <definition>Bbb Aaa.log</definition>
+        <argsstring></argsstring>
+        <name>log</name>
+        <initializer>= new <ref refid="class_bbb" kindref="compound">Bbb</ref>(new <ref refid="class_fuga" kindref="compound">Fuga</ref>(new <ref refid="class_hoge" kindref="compound">Hoge</ref>()))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="3" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="2" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="1" bodyend="4"/>
+    <listofallmembers>
+      <member refid="class_aaa_1abd2882718f0b4c49827cdc7cf5ac159c" prot="private" virt="non-virtual"><scope>Aaa</scope><name>log</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

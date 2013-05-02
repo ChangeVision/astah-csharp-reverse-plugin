@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_aaa" kind="class" prot="public">
+    <compoundname>Aaa</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_aaa_1ad7a5fc42e197f72b079011d92e648322" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Aaa.abc</definition>
+        <argsstring>(int[] iArray)</argsstring>
+        <name>abc</name>
+        <param>
+          <type>int[]</type>
+          <declname>iArray</declname>
+        </param>
+        <briefdescription>
+<para>パラメータは1次元配列 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="11" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="10" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_aaa_1a40c4c21ca8c79f2631bef99c5a5e2dde" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Aaa.abc</definition>
+        <argsstring>(int[][] iArray)</argsstring>
+        <name>abc</name>
+        <param>
+          <type>int</type>
+          <declname>iArray</declname>
+          <array>[][]</array>
+        </param>
+        <briefdescription>
+<para>パラメータは2次元配列 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="19" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="18" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="class_aaa_1a83a3cab62dc5edaf744923b8393c9161" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Aaa.abc</definition>
+        <argsstring>(int[][][] iArray)</argsstring>
+        <name>abc</name>
+        <param>
+          <type>int</type>
+          <declname>iArray</declname>
+          <array>[][][]</array>
+        </param>
+        <briefdescription>
+<para>パラメータは3次元配列 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="27" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="26" bodyend="29"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Aaaクラスの説明 </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="5" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="4" bodyend="31"/>
+    <listofallmembers>
+      <member refid="class_aaa_1ad7a5fc42e197f72b079011d92e648322" prot="public" virt="non-virtual"><scope>Aaa</scope><name>abc</name></member>
+      <member refid="class_aaa_1a40c4c21ca8c79f2631bef99c5a5e2dde" prot="public" virt="non-virtual"><scope>Aaa</scope><name>abc</name></member>
+      <member refid="class_aaa_1a83a3cab62dc5edaf744923b8393c9161" prot="public" virt="non-virtual"><scope>Aaa</scope><name>abc</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

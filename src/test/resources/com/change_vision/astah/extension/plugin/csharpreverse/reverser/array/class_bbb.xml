@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_bbb" kind="class" prot="public">
+    <compoundname>Bbb</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_bbb_1a306aeb08a4b1937e3b32ea971cb95ff8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Bbb.abc</definition>
+        <argsstring>(Aaa[] iArray)</argsstring>
+        <name>abc</name>
+        <param>
+          <type><ref refid="class_aaa" kindref="compound">Aaa</ref>[]</type>
+          <declname>iArray</declname>
+        </param>
+        <briefdescription>
+<para>パラメータはユーザ定義クラスの1次元配列 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="43" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="42" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_bbb_1ad35c70c2a7235d57f30fed900f7a5ede" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Bbb.abc</definition>
+        <argsstring>(Aaa[][] iArray)</argsstring>
+        <name>abc</name>
+        <param>
+          <type><ref refid="class_aaa" kindref="compound">Aaa</ref></type>
+          <declname>iArray</declname>
+          <array>[][]</array>
+        </param>
+        <briefdescription>
+<para>パラメータはユーザ定義クラスの2次元配列 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="51" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="50" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_bbb_1a40a77c5926a0843965430705b0a1b1db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Bbb.abc</definition>
+        <argsstring>(Aaa[][][] iArray)</argsstring>
+        <name>abc</name>
+        <param>
+          <type><ref refid="class_aaa" kindref="compound">Aaa</ref></type>
+          <declname>iArray</declname>
+          <array>[][][]</array>
+        </param>
+        <briefdescription>
+<para>パラメータはユーザ定義クラスの3次元配列 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="59" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="58" bodyend="61"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Bbbクラスの説明 </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="37" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="36" bodyend="63"/>
+    <listofallmembers>
+      <member refid="class_bbb_1a306aeb08a4b1937e3b32ea971cb95ff8" prot="public" virt="non-virtual"><scope>Bbb</scope><name>abc</name></member>
+      <member refid="class_bbb_1ad35c70c2a7235d57f30fed900f7a5ede" prot="public" virt="non-virtual"><scope>Bbb</scope><name>abc</name></member>
+      <member refid="class_bbb_1a40a77c5926a0843965430705b0a1b1db" prot="public" virt="non-virtual"><scope>Bbb</scope><name>abc</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

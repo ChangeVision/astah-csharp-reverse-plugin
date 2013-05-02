@@ -54,7 +54,7 @@ public class MemberCSharp extends Member {
 		if (keywords.contains(KEYWORD_OVERRIDE)) {
 			basicModelEditor.createTaggedValue(fun, "jude.c_sharp.override", "true");
 		}
-		if (!"no".equals(staticBoolean)) {
+		if (!"no".equals(getStaticBoolean())) {
 			fun.setStatic(true);
 		}
 		if (keywords.contains(KEYWORD_DELEGATE)) {
@@ -101,7 +101,7 @@ public class MemberCSharp extends Member {
             if (keywords.contains(KEYWORD_OVERRIDE)) {
             	basicModelEditor.createTaggedValue(attr, "jude.c_sharp.override", "true");
             }
-            if (!"no".equals(staticBoolean)) {
+            if (!"no".equals(getStaticBoolean())) {
             	attr.setStatic(true);
             }
             if (keywords.contains(KEYWORD_DELEGATE)) {
