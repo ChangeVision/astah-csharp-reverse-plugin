@@ -17,10 +17,10 @@ import com.change_vision.jude.api.inf.model.INamedElement;
  */
 public class BaseCompoundDefRef {
 
-	private String refid;
-	private String prot;
-	private String virt;
-	private String value;
+	private String refid = "";
+	private String prot = "";
+	private String virt = "";
+	private String value = "";
 
 	public String getRefid() {
 		return refid;
