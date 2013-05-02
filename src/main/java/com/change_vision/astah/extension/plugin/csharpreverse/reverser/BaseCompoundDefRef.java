@@ -7,12 +7,13 @@ import java.util.Set;
 import com.change_vision.jude.api.inf.model.INamedElement;
 
 /**
- * 
- * this class is the tag of **.xml the tag is <basecompoundref>.the class is
- * named BaseCompounddefref the tag is <basecompoundref refid>.it is named
- * "refid" the tag is <basecompoundref prot>.it is named "prot" the tag is
- * <basecompoundref virt>.it is named "virt" the tag content is
- * <basecompoundref></basecompoundref>.it is named "value"
+ * this class is the tag of {@literal **}.xml<br/>
+ * the tag is {@literal <basecompoundref>}.the class is named BaseCompounddefref<br/>
+ * the tag is {@literal <basecompoundref refid>}.it is named "refid"<br/>
+ * the tag is {@literal <basecompoundref prot>}.it is named "prot"<br/>
+ * the tag is {@literal <basecompoundref virt>}.it is named "virt"<br/>
+ * the tag content is {@literal <basecompoundref></basecompoundref>}.it is named
+ * "value"
  */
 public class BaseCompoundDefRef {
 
