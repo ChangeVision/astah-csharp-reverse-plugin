@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -22,7 +23,10 @@ import com.change_vision.jude.api.inf.exception.InvalidEditingException;
 import com.change_vision.jude.api.inf.exception.LicenseNotFoundException;
 import com.change_vision.jude.api.inf.exception.ProjectLockedException;
 import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
+import com.change_vision.jude.api.inf.model.IClass;
 import com.change_vision.jude.api.inf.model.IModel;
+import com.change_vision.jude.api.inf.model.INamedElement;
+import com.change_vision.jude.api.inf.project.ModelFinder;
 import com.change_vision.jude.api.inf.project.ProjectAccessor;
 
 /**
@@ -74,6 +78,8 @@ public class DoxygenXmlParser {
 		List<CompoundDef> compounddefes = doxygenXmlParser
 				.parserIndexXml(indexFile);
 
+		setSystems(prjAccessor, compounddefes);
+
 		for (CompoundDef compounddef : compounddefes) {
 			// first deal namespace
 			if (CompoundDef.KIND_NAMESPACE.equals(compounddef
@@ -113,6 +119,89 @@ public class DoxygenXmlParser {
 		print("Import Done.");
 
 		return astahModelPath;
+	}
+
+	/**
+	 * テンプレートの中のSystemパッケージの中に、usingされているパッケージがあれば検索対象として取り込みます。
+	 * 
+	 * @param prjAccessor
+	 *            プロジェクトアクセサ
+	 * @param compounddefes
+	 *            CompoundDefのリスト
+	 * @throws ProjectNotFoundException
+	 *             プロジェクトファイルが見つからないとき
+	 */
+	private static void setSystems(ProjectAccessor prjAccessor,
+			List<CompoundDef> compounddefes) throws ProjectNotFoundException {
+		for (final CompoundDef compoundDef : compounddefes) {
+			lastCompoundDef = compoundDef;
+
+			INamedElement[] foundElements = prjAccessor
+					.findElements(new ModelFinder() {
+						@Override
+						public boolean isTarget(INamedElement namedElement) {
+							return namedElement instanceof IClass
+									&& compoundDef.getCompoundName()
+											.equals(namedElement
+													.getFullNamespace("::"));
+						}
+					});
+
+			for (INamedElement iNamedElement : foundElements) {
+
+				if (iNamedElement instanceof IClass) {
+					IClass iClass = IClass.class.cast(iNamedElement);
+					String type = CompoundDef.KIND_CLASS;
+					if (Arrays.asList(iClass.getStereotypes()).contains(
+							"interface")) {
+						type = CompoundDef.KIND_INTERFACE;
+					}
+					CompoundDef.compounddef.put(getKey(iNamedElement, type),
+							iNamedElement);
+				}
+
+			}
+		}
+	}
+
+	/**
+	 * 要素名とタイプからキーを作成、取得します。
+	 * 
+	 * @param iNamedElement
+	 *            名前つき要素
+	 * @param type
+	 *            タイプ
+	 * @return 作成したキー
+	 */
+	private static String getKey(INamedElement iNamedElement, String type) {
+		return convertString(type + iNamedElement.getFullName("::"));
+	}
+
+	/**
+	 * 文字列に次の文字が含まれていた場合に置換し、その文字列を返します。<br/>
+	 * 
+	 * (大文字) → _(小文字)<br/>
+	 * : → _1<br/>
+	 * . → _8
+	 * 
+	 * @param str
+	 *            文字列
+	 * @return 変換した文字列
+	 */
+	private static String convertString(String str) {
+		StringBuffer sb = new StringBuffer();
+		for (Character ch : str.toCharArray()) {
+			if (ch.equals(':')) {
+				sb.append("_1");
+			} else if (ch.equals('.')) {
+				sb.append("_8");
+			} else if (Character.isUpperCase(ch)) {
+				sb.append("_" + Character.toLowerCase(ch));
+			} else {
+				sb.append(ch);
+			}
+		}
+		return sb.toString();
 	}
 
 	public String getErrorLocationFile() {
