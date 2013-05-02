@@ -260,6 +260,13 @@
       <systemPath>${astahPath}/astah-api.jar</systemPath>
     </dependency>
     <dependency>
+      <groupId>com.change_vision.astah</groupId>
+      <artifactId>astah-pro</artifactId>
+      <version>${astah.version}</version>
+      <scope>system</scope>
+      <systemPath>${astahPath}/astah-pro.jar</systemPath>
+    </dependency>
+    <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.core</artifactId>
       <version>4.2.0</version>
@@ -351,6 +358,11 @@
        <groupId>commons-lang</groupId>
        <artifactId>commons-lang</artifactId>
        <version>2.5</version>
+     </dependency>
+     <dependency>
+	   <groupId>org.mockito</groupId>
+	   <artifactId>mockito-all</artifactId>
+	   <version>1.9.5</version>
      </dependency>
   </dependencies>
   <scm>
