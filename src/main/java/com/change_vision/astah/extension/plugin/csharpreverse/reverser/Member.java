@@ -993,9 +993,10 @@ public abstract class Member implements IConvertToJude {
 
 	abstract FilterKeyword filterKeyword(String type);
 
-	IOperation generateOper(IElement parent, BasicModelEditor basicModelEditor,
-			IClass type) throws InvalidEditingException,
-			ProjectNotFoundException, ClassNotFoundException {
+	private IOperation generateOper(IElement parent,
+			BasicModelEditor basicModelEditor, IClass type)
+			throws InvalidEditingException, ProjectNotFoundException,
+			ClassNotFoundException {
 		IOperation oper = Tool.getOperation((IClass) parent, getName(), type);
 		oper.setVisibility(this.getProt());
 		oper.setStatic(!"no".equals(this.getStaticBoolean()));
@@ -1006,9 +1007,10 @@ public abstract class Member implements IConvertToJude {
 		return oper;
 	}
 
-	IOperation generateOper(IElement parent, BasicModelEditor basicModelEditor,
-			String[] path) throws InvalidEditingException,
-			ProjectNotFoundException, ClassNotFoundException {
+	private IOperation generateOper(IElement parent,
+			BasicModelEditor basicModelEditor, String[] path)
+			throws InvalidEditingException, ProjectNotFoundException,
+			ClassNotFoundException {
 		String[] namespace = new String[] {};
 		if (path.length > 1) {
 			namespace = new String[path.length - 1];
@@ -1028,9 +1030,10 @@ public abstract class Member implements IConvertToJude {
 		return oper;
 	}
 
-	void generateAttri(IElement parent, BasicModelEditor basicModelEditor,
-			IClass type) throws InvalidEditingException,
-			ProjectNotFoundException, ClassNotFoundException {
+	private void generateAttri(IElement parent,
+			BasicModelEditor basicModelEditor, IClass type)
+			throws InvalidEditingException, ProjectNotFoundException,
+			ClassNotFoundException {
 		IAttribute attr = Tool.getAttribute((IClass) parent, getName(), type);
 		int[][] range = getMultiRange();
 		if (range != null) {
@@ -1093,7 +1096,7 @@ public abstract class Member implements IConvertToJude {
 		return string;
 	}
 
-	IAttribute generateAttri(IElement parent,
+	private IAttribute generateAttri(IElement parent,
 			BasicModelEditor basicModelEditor, String[] path)
 			throws InvalidEditingException, ProjectNotFoundException,
 			ClassNotFoundException {
@@ -1121,7 +1124,7 @@ public abstract class Member implements IConvertToJude {
 		return attr;
 	}
 
-	IAssociation generateAssoication(IClass parent,
+	private IAssociation generateAssoication(IClass parent,
 			BasicModelEditor basicModelEditor, IClass assocEnd)
 			throws InvalidEditingException, ProjectNotFoundException,
 			ClassNotFoundException {
