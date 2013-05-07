@@ -412,9 +412,6 @@ public class DoxygenXmlParserTest {
 				assertEquals("<summary>文字列a</summary>\n"
 						+ "<remarks>文字列aの詳しい説明</remarks>",
 						a.getAttributes()[0].getDefinition());
-
-				System.out.println(a.getOperations()[0].getDefinition());
-
 				assertEquals("<summary>文字列を連結して取得します。</summary>\n"
 						+ "<remarks>パラメータで渡された文字列を連結し、返します。</remarks>\n"
 						+ "<param name=\"str1\">1つ目の文字列</param>\n"
@@ -423,7 +420,6 @@ public class DoxygenXmlParserTest {
 						a.getOperations()[0].getDefinition());
 			}
 		}
-
 	}
 
 	@Test
