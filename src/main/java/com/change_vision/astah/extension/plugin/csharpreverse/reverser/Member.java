@@ -379,20 +379,7 @@ public abstract class Member implements IConvertToJude {
 	}
 
 	public String getIClassFullName(IClass cls) {
-		StringBuilder fullname = new StringBuilder();
-		IElement owner = cls.getOwner();
-		while (true) {
-			if (owner instanceof IModel || owner == null) {
-				break;
-			} else {
-				fullname.insert(0, ((INamedElement) owner).getName());
-				fullname.append("::");
-				owner = owner.getOwner();
-			}
-		}
-		fullname.append("::");
-		fullname.append(cls.getName());
-		return fullname.toString();
+		return cls.getFullName("::");
 	}
 
 	public void convertToJudeModel(IElement parent, File[] files)
@@ -629,7 +616,9 @@ public abstract class Member implements IConvertToJude {
 							|| Config
 									.getClassNameAboutForbidCreateAssociation()
 									.contains(
-											getIClassFullName((IClass) parent))) {
+											INamedElement.class.cast(parent)
+													.getFullName("::"))) {
+
 						generateAttri(parent, basicModelEditor, otherCls);
 					} else {
 						// if not, create association
