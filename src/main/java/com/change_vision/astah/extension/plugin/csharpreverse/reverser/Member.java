@@ -32,22 +32,29 @@ import com.change_vision.jude.api.inf.model.ITemplateBinding;
 import com.change_vision.jude.api.inf.model.IUsage;
 
 /**
- * 
- * this class is the tag of **.xml the tag is <memberdef>. the class is named
- * Member the tag is <memberdef kind>.it is named "kind" the kind type is
- * "function","variable","property","enum" the tag is <memberdef prot>.it is
- * named "prot" the tag is <memberdef static>.it is named "staticBoolean" the
- * tag is <memberdef const>.it is named "constBoolean" the tag is <memberdef
- * virt>.it is named "virt" the sub-tag is <name>.it is named "name" the sub-tag
- * is <type>.it is named "type" the type's sub-tag is <type ref>.it is named
- * "typeRef" the sub-tag is <argsstring>.it is named "argsstring" the sub-tag is
- * <initializer>.it is named "initializer" the initializer's sub-tag is
- * <initializer ref">.it is named "initializerRef" the sub-tag is
- * <detaileddescription>.it is named "detaileddescription" the tag is <memberdef
- * gettable>.it is named "gettable" the tag is <memberdef settable>.it is named
- * "settable" memberParaList is the list of the Param.tag is <param> enumValues
- * is the list of the EnumValue.tag is <enumvalue> Parent is the Section
- * relation it's have Astah C#'field.
+ * this class is the tag of **.xml<br />
+ * the tag is {@literal <memberdef>}. the class is named Member<br />
+ * the tag is {@literal <memberdef kind>}.it is named "kind"<br />
+ * the kind type is "function","variable","property","enum"<br />
+ * the tag is {@literal <memberdef prot>}.it is named "prot"<br />
+ * the tag is {@literal <memberdef static>}.it is named "staticBoolean"<br />
+ * the tag is {@literal <memberdef const>}.it is named "constBoolean"<br />
+ * the tag is {@literal <memberdef virt>}.it is named "virt"<br />
+ * the sub-tag is {@literal <name>}.it is named "name"<br />
+ * the sub-tag is {@literal <type>}.it is named "type"<br />
+ * the type's sub-tag is {@literal <type ref>}.it is named "typeRef"<br />
+ * the sub-tag is {@literal <argsstring>}.it is named "argsstring"<br />
+ * the sub-tag is {@literal <initializer>}.it is named "initializer"<br />
+ * the initializer's sub-tag is {@literal <initializer ref">}.it is named
+ * "initializerRef"<br />
+ * the sub-tag is {@literal <detaileddescription>}.it is named
+ * "detaileddescription"<br />
+ * the tag is {@literal <memberdef gettable>}.it is named "gettable"<br />
+ * the tag is {@literal <memberdef settable>}.it is named "settable"<br />
+ * memberParaList is the list of the Param.tag is {@literal <param>}<br />
+ * enumValues is the list of the EnumValue.tag is {@literal <enumvalue>}<br />
+ * Parent is the Section relation<br />
+ * it's have Astah C#'field.<br />
  * const,override,readonly,delegate,sealed,internal,unsafe,virtual,abstract
  */
 public abstract class Member implements IConvertToJude {
