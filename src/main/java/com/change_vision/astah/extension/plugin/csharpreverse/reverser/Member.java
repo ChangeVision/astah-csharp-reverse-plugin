@@ -645,8 +645,9 @@ public abstract class Member implements IConvertToJude {
 			ownedElements = ((IPackage) namespace).getOwnedElements();
 		} else if (namespace instanceof IClass) {
 			ownedElements = ((IClass) namespace).getNestedClasses();
+		} else {
+			return results;
 		}
-		// XXX パッケージでもクラスでもなかった場合はnullのまま使用されるので落ちるのでは？
 		for (INamedElement child : ownedElements) {
 			if (child instanceof IPackage || child instanceof IClass) {
 				results.addAll(getClasses(child));
