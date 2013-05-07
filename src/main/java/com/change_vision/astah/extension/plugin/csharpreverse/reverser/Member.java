@@ -63,11 +63,32 @@ public abstract class Member implements IConvertToJude {
 	private String argsstring;
 	private String initializer;
 	private Ref initializerRef;
+
+	/**
+	 * 属性または操作の説明文。ドキュメントコメントではsummaryにあたる。
+	 */
 	private String briefdescriptionPara;
+
+	/**
+	 * 属性または操作の概要。ドキュメントコメントではremarksにあたる。
+	 */
 	private String detaileddescriptionPara;
-	private String parametername;
-	private String parameterdescriptionPara;
+
+	/**
+	 * パラメータの名前のリスト。
+	 */
+	private List<String> parameternames = new ArrayList<String>();
+
+	/**
+	 * パラメータの説明のリスト。
+	 */
+	private List<String> parameterdescriptionParas = new ArrayList<String>();
+
+	/**
+	 * 戻り値の説明。
+	 */
 	private String simplesectPara;
+
 	private String gettable;
 	private String settable;
 	private List<Param> memberParaList;
@@ -187,18 +208,40 @@ public abstract class Member implements IConvertToJude {
 		this.initializer = initializer;
 	}
 
+	/**
+	 * 属性または操作の説明文を取得します。
+	 * 
+	 * @return 属性または操作の説明文
+	 */
 	public String getBriefdescriptionPara() {
 		return briefdescriptionPara;
 	}
 
+	/**
+	 * 属性または操作の説明文を設定します。
+	 * 
+	 * @param briefdescriptionPara
+	 *            属性または操作の説明文
+	 */
 	public void setBriefdescriptionPara(String briefdescriptionPara) {
 		this.briefdescriptionPara = briefdescriptionPara;
 	}
 
+	/**
+	 * 属性または操作の説明文を取得します。
+	 * 
+	 * @return 属性または操作の説明文
+	 */
 	public String getDetaileddescriptionPara() {
 		return detaileddescriptionPara;
 	}
 
+	/**
+	 * 属性または操作の説明文を設定します。
+	 * 
+	 * @param detaileddescriptionPara
+	 *            属性または操作の説明文
+	 */
 	public void setDetaileddescriptionPara(String detaileddescriptionPara) {
 		if (this.detaileddescriptionPara != null) {
 			return;
@@ -207,26 +250,63 @@ public abstract class Member implements IConvertToJude {
 
 	}
 
-	public String getParametername() {
-		return parametername;
+	/**
+	 * パラメータの名前のリストを取得します。
+	 * 
+	 * @return パラメータの名前のリスト
+	 */
+	public List<String> getParameternames() {
+		return parameternames;
 	}
 
+	/**
+	 * パラメータの名前をリストに追加します。<br />
+	 * 本当はメソッド名をaddParameternames()という名前にしたかったのですが、 Commons Digester のために
+	 * setParametername() とします。
+	 * 
+	 * @param parametername
+	 *            パラメータの名前
+	 */
 	public void setParametername(String parametername) {
-		this.parametername = parametername;
+		this.parameternames.add(parametername);
 	}
 
-	public String getParameterdescriptionPara() {
-		return parameterdescriptionPara;
+	/**
+	 * パラメータの説明のリストを取得します。
+	 * 
+	 * @return パラメータの説明のリスト
+	 */
+	public List<String> getParameterdescriptionParas() {
+		return parameterdescriptionParas;
 	}
 
+	/**
+	 * パラメータの説明をリストに追加します。<br />
+	 * 本当はメソッド名をaddParameterdescriptionParas()という名前にしたかったのですが、 Commons Digester
+	 * のために setParameterdescriptionPara() とします。
+	 * 
+	 * @param parameterdescriptionPara
+	 *            パラメータの説明
+	 */
 	public void setParameterdescriptionPara(String parameterdescriptionPara) {
-		this.parameterdescriptionPara = parameterdescriptionPara;
+		this.parameterdescriptionParas.add(parameterdescriptionPara);
 	}
 
+	/**
+	 * 戻り値の説明を取得します。
+	 * 
+	 * @return 戻り値の説明
+	 */
 	public String getSimplesectPara() {
 		return simplesectPara;
 	}
 
+	/**
+	 * 戻り値の説明を設定します。
+	 * 
+	 * @param simplesectPara
+	 *            戻り値の説明
+	 */
 	public void setSimplesectPara(String simplesectPara) {
 		this.simplesectPara = simplesectPara;
 	}
@@ -988,11 +1068,13 @@ public abstract class Member implements IConvertToJude {
 			string = getLineBreak(string) + "<remarks>"
 					+ this.getDetaileddescriptionPara() + "</remarks>";
 		}
-		if (this.getParametername() != null) {
-			string = getLineBreak(string) + "<param name=\""
-					+ this.getParametername() + "\">"
-					+ this.getParameterdescriptionPara() + "</param>";
-
+		if (this.getParameternames() != null) {
+			for (int i = 0; i < this.getParameternames().size(); i++) {
+				string = getLineBreak(string) + "<param name=\""
+						+ this.getParameternames().get(i) + "\">"
+						+ this.getParameterdescriptionParas().get(i)
+						+ "</param>";
+			}
 		}
 		if (this.getSimplesectPara() != null) {
 			string = getLineBreak(string) + "<returns>"
