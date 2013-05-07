@@ -63,7 +63,11 @@ public abstract class Member implements IConvertToJude {
 	private String argsstring;
 	private String initializer;
 	private Ref initializerRef;
+	private String briefdescriptionPara;
 	private String detaileddescriptionPara;
+	private String parametername;
+	private String parameterdescriptionPara;
+	private String simplesectPara;
 	private String gettable;
 	private String settable;
 	private List<Param> memberParaList;
@@ -183,12 +187,48 @@ public abstract class Member implements IConvertToJude {
 		this.initializer = initializer;
 	}
 
+	public String getBriefdescriptionPara() {
+		return briefdescriptionPara;
+	}
+
+	public void setBriefdescriptionPara(String briefdescriptionPara) {
+		this.briefdescriptionPara = briefdescriptionPara;
+	}
+
 	public String getDetaileddescriptionPara() {
 		return detaileddescriptionPara;
 	}
 
 	public void setDetaileddescriptionPara(String detaileddescriptionPara) {
+		if (this.detaileddescriptionPara != null) {
+			return;
+		}
 		this.detaileddescriptionPara = detaileddescriptionPara;
+
+	}
+
+	public String getParametername() {
+		return parametername;
+	}
+
+	public void setParametername(String parametername) {
+		this.parametername = parametername;
+	}
+
+	public String getParameterdescriptionPara() {
+		return parameterdescriptionPara;
+	}
+
+	public void setParameterdescriptionPara(String parameterdescriptionPara) {
+		this.parameterdescriptionPara = parameterdescriptionPara;
+	}
+
+	public String getSimplesectPara() {
+		return simplesectPara;
+	}
+
+	public void setSimplesectPara(String simplesectPara) {
+		this.simplesectPara = simplesectPara;
 	}
 
 	public String getGettable() {
@@ -882,9 +922,7 @@ public abstract class Member implements IConvertToJude {
 		IOperation oper = Tool.getOperation((IClass) parent, getName(), type);
 		oper.setVisibility(this.getProt());
 		oper.setStatic(!"no".equals(this.getStaticBoolean()));
-		if (this.getDetaileddescriptionPara() != null) {
-			oper.setDefinition(this.getDetaileddescriptionPara());
-		}
+		oper.setDefinition(getPara());
 		for (Param param : getMemberParaList()) {
 			param.convertToJudeModel(oper, null);
 		}
@@ -908,9 +946,7 @@ public abstract class Member implements IConvertToJude {
 		}
 		oper.setVisibility(this.getProt());
 		oper.setStatic(!"no".equals(this.getStaticBoolean()));
-		if (this.getDetaileddescriptionPara() != null) {
-			oper.setDefinition(this.getDetaileddescriptionPara());
-		}
+		oper.setDefinition(getPara());
 
 		return oper;
 	}
@@ -931,11 +967,51 @@ public abstract class Member implements IConvertToJude {
 		attr.setChangeable(!"no".equals(this.getConstBoolean()));
 		attr.setVisibility(this.getProt());
 		attr.setStatic(!"no".equals(this.getStaticBoolean()));
-		if (this.getDetaileddescriptionPara() != null) {
-			attr.setDefinition(this.getDetaileddescriptionPara());
-		}
+		attr.setDefinition(getPara());
 		attr.setInitialValue(this.getInitializer());
 		correctProperty(basicModelEditor, attr);
+	}
+
+	/**
+	 * ドキュメントコメントを取得します。
+	 * 
+	 * @return ドキュメントコメント
+	 */
+	private String getPara() {
+		String string = new String();
+		if (this.getBriefdescriptionPara() != null) {
+			string = getLineBreak(string) + "<summary>"
+					+ this.getBriefdescriptionPara() + "</summary>";
+		}
+		if (this.getDetaileddescriptionPara() != null) {
+			string = getLineBreak(string) + "<remarks>"
+					+ this.getDetaileddescriptionPara() + "</remarks>";
+		}
+		if (this.getParametername() != null) {
+			string = getLineBreak(string) + "<param name=\""
+					+ this.getParametername() + "\">"
+					+ this.getParameterdescriptionPara() + "</param>";
+
+		}
+		if (this.getSimplesectPara() != null) {
+			string = getLineBreak(string) + "<returns>"
+					+ this.getSimplesectPara() + "</returns>";
+		}
+		return string;
+	}
+
+	/**
+	 * 引数が空文字列出なければ、改行コードをつけた文字列を返します。
+	 * 
+	 * @param string
+	 *            文字列
+	 * @return 末尾に改行をつけた文字列　または　文字列
+	 */
+	private String getLineBreak(String string) {
+		if (!string.isEmpty()) {
+			return string + "\n";
+		}
+		return string;
 	}
 
 	IAttribute generateAttri(IElement parent,
@@ -960,9 +1036,7 @@ public abstract class Member implements IConvertToJude {
 		attr.setChangeable(!"no".equals(this.getConstBoolean()));
 		attr.setVisibility(this.getProt());
 		attr.setStatic(!"no".equals(this.getStaticBoolean()));
-		if (this.getDetaileddescriptionPara() != null) {
-			attr.setDefinition(this.getDetaileddescriptionPara());
-		}
+		attr.setDefinition(getPara());
 		attr.setInitialValue(this.getInitializer());
 
 		return attr;
@@ -978,9 +1052,7 @@ public abstract class Member implements IConvertToJude {
 		IAttribute attribute = association.getMemberEnds()[1];
 		attribute.setVisibility(this.getProt());
 
-		if (this.getDetaileddescriptionPara() != null) {
-			attribute.setDefinition(this.getDetaileddescriptionPara());
-		}
+		attribute.setDefinition(getPara());
 
 		return association;
 	}

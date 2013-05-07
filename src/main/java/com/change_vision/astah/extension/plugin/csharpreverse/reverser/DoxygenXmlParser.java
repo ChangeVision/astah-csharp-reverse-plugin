@@ -463,7 +463,21 @@ public class DoxygenXmlParser {
 				"virt", "virt");
 		digester.addBeanPropertySetter(
 				"doxygen/compounddef/sectiondef/memberdef/briefdescription/para",
+				"briefdescriptionPara");
+		digester.addBeanPropertySetter(
+				"doxygen/compounddef/sectiondef/memberdef/detaileddescription/para",
 				"detaileddescriptionPara");
+		digester.addBeanPropertySetter(
+				"doxygen/compounddef/sectiondef/memberdef/detaileddescription/para/"
+						+ "parameterlist/parameteritem/parameternamelist/parametername",
+				"parametername");
+		digester.addBeanPropertySetter(
+				"doxygen/compounddef/sectiondef/memberdef/detaileddescription/para/"
+						+ "parameterlist/parameteritem/parameterdescription/para",
+				"parameterdescriptionPara");
+		digester.addBeanPropertySetter(
+				"doxygen/compounddef/sectiondef/memberdef/detaileddescription/para/simplesect/para",
+				"simplesectPara");
 
 		digester.addBeanPropertySetter(
 				"doxygen/compounddef/sectiondef/memberdef/type", "type");
