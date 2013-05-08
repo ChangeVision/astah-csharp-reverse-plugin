@@ -25,30 +25,32 @@ public class InitBeanPropertySetterRule extends BeanPropertySetterRule {
 			throws Exception {
 		String currentContent = DoxygenDigester.current.trim();
 		if (!text.trim().equals(currentContent) && !"".equals(currentContent)) {
+			currentContent = replaceRefClassname(currentContent);
+			currentContent = replaceInvalidEnd(currentContent);
 			currentContent = currentContent.replaceAll("&quot;", "\"");
 			currentContent = currentContent.replaceAll("&apos;", "\'");
-			currentContent = currentContent.replaceAll("&gt;", ">");
-			currentContent = replaceRefClassname(currentContent);
-			this.content = replaceInvalidEnd(currentContent);
+			this.content = currentContent.replaceAll("&gt;", ">");
+
 		}
 		super.body(namespace, name, text);
 	}
 
 	/**
-	 * </ref>タグ以外の</○○>タグを削除します。 JUnitテストのために可視性を protected にします。
+	 * </ref>タグ以外の<○○>タグを削除します。 JUnitテストのために可視性を protected にします。
 	 * 
 	 * @param currentContent
 	 *            現在のコンテンツ
-	 * @return </○○>タグ削除後の文字列
+	 * @return <○○>タグ削除後の文字列
 	 */
 	protected String replaceInvalidEnd(String currentContent) {
 
-		if (currentContent.indexOf("</") == -1) {
+		int startIndex = currentContent.indexOf("<");
+
+		if (startIndex == -1) {
 			return currentContent;
 		}
 
 		int refIndex = currentContent.indexOf("</ref>");
-		int startIndex = currentContent.indexOf("</");
 
 		if (refIndex == startIndex) {
 			int refEndIndex = refIndex + "</ref>".length();
@@ -58,11 +60,21 @@ public class InitBeanPropertySetterRule extends BeanPropertySetterRule {
 			return forwardString + replaceInvalidEnd(backString);
 		}
 
-		int endIndex = currentContent.indexOf(">", startIndex) + ">".length();
-		String refStr = currentContent.substring(startIndex, endIndex);
+		int endIndex = currentContent.indexOf(">", startIndex);
+
+		if (endIndex == -1) {
+			int i = startIndex + "<".length();
+			String forwardString = currentContent.substring(0, i);
+			String backString = currentContent.substring(i,
+					currentContent.length());
+			return forwardString + replaceInvalidEnd(backString);
+		}
+
+		String refStr = currentContent.substring(startIndex,
+				endIndex + ">".length());
 		String newStr = currentContent.replaceFirst(refStr, " ");
 
-		if (currentContent.indexOf("</") != -1) {
+		if (currentContent.indexOf("<") != -1) {
 			newStr = replaceInvalidEnd(newStr);
 		}
 
@@ -77,20 +89,31 @@ public class InitBeanPropertySetterRule extends BeanPropertySetterRule {
 	 * @return <ref>タグを除去した文字列
 	 */
 	protected String replaceRefClassname(String currentContent) {
-
-		if (currentContent.indexOf("<ref") == -1) {
-			return currentContent;
-		}
-
 		// <ref>タグの始まりのインデックス
 		int fstRefIndexOf = currentContent.indexOf("<ref");
 
+		// <ref>タグの始まりのインデックスがなかったときの処理
+		if (fstRefIndexOf == -1) {
+			return currentContent;
+		}
+
 		// <ref>タグの終わりのインデックス
-		int lstIndexOf = currentContent.indexOf(">", fstRefIndexOf)
-				+ ">".length();
+		int lstIndexOf = currentContent.indexOf(">", fstRefIndexOf);
+
+		// <ref>タグの終わりのインデックスがなかったときの処理
+		if (lstIndexOf == -1) {
+			String forwardString = currentContent.substring(0, fstRefIndexOf
+					+ "<ref".length());
+			String backString = currentContent.substring(
+					fstRefIndexOf + "<ref".length(), currentContent.length());
+			System.out.println("forwardString:" + forwardString + " backString:"
+					+ backString);
+			return forwardString + replaceRefClassname(backString);
+		}
 
 		// 削除したい<ref>タグの抽出
-		String refStr = currentContent.substring(fstRefIndexOf, lstIndexOf);
+		String refStr = currentContent.substring(fstRefIndexOf, lstIndexOf
+				+ ">".length());
 
 		// タグを空文字と置き換え（削除）
 		String newStr = currentContent.replaceFirst(refStr, "");
