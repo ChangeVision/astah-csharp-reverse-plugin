@@ -115,8 +115,6 @@ public class InitBeanPropertySetterRule extends BeanPropertySetterRule {
 					+ "<ref".length());
 			String backString = currentContent.substring(
 					fstRefIndexOf + "<ref".length(), currentContent.length());
-			System.out.println("forwardString:" + forwardString
-					+ " backString:" + backString);
 			return forwardString + replaceRefClassname(backString);
 		}
 
