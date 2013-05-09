@@ -36,7 +36,7 @@ public class InitBeanPropertySetterRule extends BeanPropertySetterRule {
 	}
 
 	/**
-	 * </ref>タグ以外の<○○>タグを削除します。 JUnitテストのために可視性を protected にします。
+	 * {@literal <ref>}タグ以外の<○○>タグを削除します。 JUnitテストのために可視性を protected にします。
 	 * 
 	 * @param currentContent
 	 *            現在のコンテンツ
@@ -45,13 +45,22 @@ public class InitBeanPropertySetterRule extends BeanPropertySetterRule {
 	protected String replaceInvalidEnd(String currentContent) {
 
 		int startIndex = currentContent.indexOf("<");
-
 		if (startIndex == -1) {
 			return currentContent;
 		}
 
-		int refIndex = currentContent.indexOf("</ref>");
+		// refタグ読み飛ばし
+		int refFstIndex = currentContent.indexOf("<ref");
+		if (refFstIndex == startIndex) {
+			int refEndIndex = refFstIndex + "<ref".length();
+			String forwardString = currentContent.substring(0, refEndIndex);
+			String backString = currentContent.substring(refEndIndex,
+					currentContent.length());
+			return forwardString + replaceInvalidEnd(backString);
+		}
 
+		// refタグ読み飛ばし
+		int refIndex = currentContent.indexOf("</ref>");
 		if (refIndex == startIndex) {
 			int refEndIndex = refIndex + "</ref>".length();
 			String forwardString = currentContent.substring(0, refEndIndex);
@@ -61,7 +70,7 @@ public class InitBeanPropertySetterRule extends BeanPropertySetterRule {
 		}
 
 		int endIndex = currentContent.indexOf(">", startIndex);
-
+		// タグの終わりがなかったらタグの始まりを読み飛ばす
 		if (endIndex == -1) {
 			int i = startIndex + "<".length();
 			String forwardString = currentContent.substring(0, i);
@@ -106,8 +115,8 @@ public class InitBeanPropertySetterRule extends BeanPropertySetterRule {
 					+ "<ref".length());
 			String backString = currentContent.substring(
 					fstRefIndexOf + "<ref".length(), currentContent.length());
-			System.out.println("forwardString:" + forwardString + " backString:"
-					+ backString);
+			System.out.println("forwardString:" + forwardString
+					+ " backString:" + backString);
 			return forwardString + replaceRefClassname(backString);
 		}
 
