@@ -14,7 +14,7 @@
 <para>文字列aの詳しい説明 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/Y-MATSUDA/Desktop/aaa/ClassA.cs" line="36" bodyfile="C:/Users/Y-MATSUDA/Desktop/aaa/ClassA.cs" bodystart="36" bodyend="-1"/>
+        <location file="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" line="36" bodyfile="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" bodystart="36" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -53,14 +53,14 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/Y-MATSUDA/Desktop/aaa/ClassA.cs" line="54" bodyfile="C:/Users/Y-MATSUDA/Desktop/aaa/ClassA.cs" bodystart="54" bodyend="56"/>
+        <location file="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" line="54" bodyfile="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" bodystart="54" bodyend="56"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
 <para>クラスAです。 </para>    </briefdescription>
     <detaileddescription>
 <para>クラスAの詳しい説明。 </para>    </detaileddescription>
-    <location file="C:/Users/Y-MATSUDA/Desktop/aaa/ClassA.cs" line="28" bodyfile="C:/Users/Y-MATSUDA/Desktop/aaa/ClassA.cs" bodystart="27" bodyend="59"/>
+    <location file="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" line="28" bodyfile="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" bodystart="27" bodyend="58"/>
     <listofallmembers>
       <member refid="class_class_a_1a12a7ea2619f9f410c71b0ed363c16416" prot="private" virt="non-virtual"><scope>ClassA</scope><name>a</name></member>
       <member refid="class_class_a_1a942ff00c2f81934a03c02fe8b34cb608" prot="public" virt="non-virtual"><scope>ClassA</scope><name>getJoinString</name></member>

@@ -420,6 +420,20 @@ public class DoxygenXmlParserTest {
 						a.getOperations()[0].getDefinition());
 			}
 		}
+
+		elements = findElements(modelPath, "ClassB");
+		for (INamedElement element : elements) {
+			if (element instanceof IClass) {
+				IClass a = (IClass) element;
+				assertEquals("<remarks></remarks>\n"
+						+ "<param name=\"str1\">1つ目の文字列</param>\n"
+						+ "<param name=\"str2\"></param>\n"
+						+ "<param name=\"str3\">3つ目の文字列</param>\n"
+						+ "<param name=\"str4\"></param>",
+						a.getOperations()[0].getDefinition());
+			}
+		}
+
 	}
 
 	@Test

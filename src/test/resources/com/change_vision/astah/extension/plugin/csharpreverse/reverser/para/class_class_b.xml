@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_class_b" kind="class" prot="public">
+    <compoundname>ClassB</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_class_b_1a6a7d61030973e31dac68ed07188f0ec6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ClassB.bbb</definition>
+        <argsstring>(String str1, String str2, String str3, String str4)</argsstring>
+        <name>bbb</name>
+        <param>
+          <type>String</type>
+          <declname>str1</declname>
+        </param>
+        <param>
+          <type>String</type>
+          <declname>str2</declname>
+        </param>
+        <param>
+          <type>String</type>
+          <declname>str3</declname>
+        </param>
+        <param>
+          <type>String</type>
+          <declname>str4</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>str1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1つ目の文字列 </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>str2</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>str3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>3つ目の文字列 </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>str4</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" line="74" bodyfile="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" bodystart="74" bodyend="75"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" line="61" bodyfile="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" bodystart="60" bodyend="78"/>
+    <listofallmembers>
+      <member refid="class_class_b_1a6a7d61030973e31dac68ed07188f0ec6" prot="public" virt="non-virtual"><scope>ClassB</scope><name>bbb</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

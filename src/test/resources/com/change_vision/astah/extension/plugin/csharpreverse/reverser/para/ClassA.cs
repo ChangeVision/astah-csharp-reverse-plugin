@@ -54,6 +54,25 @@ public class ClassA
 	public String getJoinString(String str1, String str2) {
 		return str1 + str2;
 	 }
+	 
+}
+
+public class ClassB
+{
+
+
+	/// <param name="str1">
+	///    1‚Â–Ú‚Ì•¶Žš—ñ
+	/// </param>
+	/// <param name="str2">
+	/// </param>
+	/// <param name="str3">
+	///    3‚Â–Ú‚Ì•¶Žš—ñ
+	/// </param>
+	/// <param name="str4">
+	/// </param>
+	public void bbb(String str1, String str2, String str3, String str4) {
+	 }
 	
 
 }

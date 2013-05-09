@@ -58,6 +58,8 @@ import com.change_vision.jude.api.inf.model.IUsage;
  * const,override,readonly,delegate,sealed,internal,unsafe,virtual,abstract
  */
 public abstract class Member implements IConvertToJude {
+	private static final String PARAMETER_NAME = "parametername_";
+	private static final String PARAMETER_DESCRIPTION = "parameterdescription_";
 	private String id;
 	private String kind;
 	private String prot;
@@ -82,14 +84,9 @@ public abstract class Member implements IConvertToJude {
 	private String detaileddescriptionPara;
 
 	/**
-	 * パラメータの名前のリスト。
+	 * パラメータの情報のリスト。パラメータの名前はPARAMETER_NAME、説明はPARAMETER_DESCRIPTIONが接頭辞につく。
 	 */
-	private List<String> parameternames = new ArrayList<String>();
-
-	/**
-	 * パラメータの説明のリスト。
-	 */
-	private List<String> parameterdescriptionParas = new ArrayList<String>();
+	private List<String> parameters = new ArrayList<String>();
 
 	/**
 	 * 戻り値の説明。
@@ -258,16 +255,7 @@ public abstract class Member implements IConvertToJude {
 	}
 
 	/**
-	 * パラメータの名前のリストを取得します。
-	 * 
-	 * @return パラメータの名前のリスト
-	 */
-	public List<String> getParameternames() {
-		return parameternames;
-	}
-
-	/**
-	 * パラメータの名前をリストに追加します。<br />
+	 * パラメータの名前を接頭辞PARAMETER_NAMEをつけてパラメータのリストに追加します。<br />
 	 * 本当はメソッド名をaddParameternames()という名前にしたかったのですが、 Commons Digester のために
 	 * setParametername() とします。
 	 * 
@@ -275,20 +263,11 @@ public abstract class Member implements IConvertToJude {
 	 *            パラメータの名前
 	 */
 	public void setParametername(String parametername) {
-		this.parameternames.add(parametername);
+		parameters.add(PARAMETER_NAME + parametername);
 	}
 
 	/**
-	 * パラメータの説明のリストを取得します。
-	 * 
-	 * @return パラメータの説明のリスト
-	 */
-	public List<String> getParameterdescriptionParas() {
-		return parameterdescriptionParas;
-	}
-
-	/**
-	 * パラメータの説明をリストに追加します。<br />
+	 * パラメータの説明を接頭辞PARAMETER_DESCRIPTIONをつけてパラメータのリストに追加します。<br />
 	 * 本当はメソッド名をaddParameterdescriptionParas()という名前にしたかったのですが、 Commons Digester
 	 * のために setParameterdescriptionPara() とします。
 	 * 
@@ -296,7 +275,7 @@ public abstract class Member implements IConvertToJude {
 	 *            パラメータの説明
 	 */
 	public void setParameterdescriptionPara(String parameterdescriptionPara) {
-		this.parameterdescriptionParas.add(parameterdescriptionPara);
+		parameters.add(PARAMETER_DESCRIPTION + parameterdescriptionPara);
 	}
 
 	/**
@@ -1067,13 +1046,30 @@ public abstract class Member implements IConvertToJude {
 			string = getLineBreak(string) + "<remarks>"
 					+ this.getDetaileddescriptionPara() + "</remarks>";
 		}
-		if (this.getParameternames() != null) {
-			for (int i = 0; i < this.getParameternames().size(); i++) {
-				string = getLineBreak(string) + "<param name=\""
-						+ this.getParameternames().get(i) + "\">"
-						+ this.getParameterdescriptionParas().get(i)
-						+ "</param>";
+
+		Map<String, String> map = new HashMap<String, String>();
+		List<String> keys = new ArrayList<String>();
+		for (int i = 0; i < parameters.size(); i++) {
+			String firstParameter = parameters.get(i);
+			if (!firstParameter.startsWith(PARAMETER_NAME)) {
+				continue;
 			}
+			String name = firstParameter.replaceFirst(PARAMETER_NAME, "");
+			String description = "";
+			if (i < parameters.size() - 1) {
+				String secondParameter = parameters.get(i + 1);
+				if (secondParameter.startsWith(PARAMETER_DESCRIPTION)) {
+					description = secondParameter.replaceFirst(
+							PARAMETER_DESCRIPTION, "");
+				}
+			}
+			map.put(name, description);
+			keys.add(name);
+		}
+
+		for (String key : keys) {
+			string = getLineBreak(string) + "<param name=\"" + key + "\">"
+					+ map.get(key) + "</param>";
 		}
 		if (this.getSimplesectPara() != null) {
 			string = getLineBreak(string) + "<returns>"
