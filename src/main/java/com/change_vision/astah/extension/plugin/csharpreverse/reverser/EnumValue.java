@@ -150,18 +150,6 @@ public class EnumValue implements IConvertToJude {
 		this.detaileddescription = detaileddescription;
 	}
 
-	public void convertToJudeModel(IElement parent, File[] files)
-			throws InvalidEditingException, ClassNotFoundException,
-			ProjectNotFoundException, IOException, SAXException {
-		IAttribute iattr = Tool.getAttribute((IClass) parent, name, "int");
-		if (null == iattr) {
-			return;
-		}
-		if (getInitializer() != null)
-			iattr.setInitialValue(this.getInitializer());
-		iattr.addStereotype("enum constant");
-	}
-
 	/**
 	 * 初期値を取得します。
 	 * 
@@ -179,5 +167,17 @@ public class EnumValue implements IConvertToJude {
 	 */
 	public void setInitializer(String initializer) {
 		this.initializer = initializer;
+	}
+
+	public void convertToJudeModel(IElement parent, File[] files)
+			throws InvalidEditingException, ClassNotFoundException,
+			ProjectNotFoundException, IOException, SAXException {
+		IAttribute iattr = Tool.getAttribute((IClass) parent, name, "int");
+		if (null == iattr) {
+			return;
+		}
+		if (getInitializer() != null)
+			iattr.setInitialValue(this.getInitializer());
+		iattr.addStereotype("enum constant");
 	}
 }
