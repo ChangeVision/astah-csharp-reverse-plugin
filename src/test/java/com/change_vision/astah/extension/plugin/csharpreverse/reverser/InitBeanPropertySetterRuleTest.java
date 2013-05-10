@@ -14,6 +14,14 @@ import org.junit.Test;
  */
 public class InitBeanPropertySetterRuleTest {
 
+	@Test
+	public void testUnescapeXml_xmlエスケープ文字が変換されていること() throws Exception {
+		String expecteds = "<>\"\'&<>\"\'&";
+		String actuals = new InitBeanPropertySetterRule()
+				.unescapeXml("&lt;&gt;&quot;&apos;&amp;&lt;&gt;&quot;&apos;&amp;");
+		assertEquals(expecteds, actuals);
+	}
+
 	/**
 	 * {@link com.change_vision.astah.extension.plugin.csharpreverse.reverser.InitBeanPropertySetterRule#replaceInvalidEnd(String)}
 	 * のためのテスト・メソッド。

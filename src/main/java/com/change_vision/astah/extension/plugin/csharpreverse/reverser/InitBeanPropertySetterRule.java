@@ -1,6 +1,7 @@
 package com.change_vision.astah.extension.plugin.csharpreverse.reverser;
 
 import org.apache.commons.digester.BeanPropertySetterRule;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.xml.sax.Attributes;
 
 /**
@@ -27,12 +28,21 @@ public class InitBeanPropertySetterRule extends BeanPropertySetterRule {
 		if (!text.trim().equals(currentContent) && !"".equals(currentContent)) {
 			currentContent = replaceRefClassname(currentContent);
 			currentContent = replaceInvalidEnd(currentContent);
-			currentContent = currentContent.replaceAll("&quot;", "\"");
-			currentContent = currentContent.replaceAll("&apos;", "\'");
-			this.content = currentContent.replaceAll("&gt;", ">");
+			this.content = unescapeXml(currentContent);
 
 		}
 		super.body(namespace, name, text);
+	}
+
+	/**
+	 * xmlエスケープ文字を変換します。JUnitテストのために可視性を protected にします。
+	 * 
+	 * @param string
+	 *            文字列
+	 * @return 変換後の文字列
+	 */
+	protected String unescapeXml(String string) {
+		return StringEscapeUtils.unescapeXml(string);
 	}
 
 	/**
