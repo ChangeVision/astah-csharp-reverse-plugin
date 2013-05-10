@@ -169,6 +169,7 @@ public class EnumValue implements IConvertToJude {
 		this.initializer = initializer;
 	}
 
+	@Override
 	public void convertToJudeModel(IElement parent, File[] files)
 			throws InvalidEditingException, ClassNotFoundException,
 			ProjectNotFoundException, IOException, SAXException {
