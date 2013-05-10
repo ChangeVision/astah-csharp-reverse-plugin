@@ -42,21 +42,23 @@ import com.change_vision.jude.api.inf.project.ProjectEventListener;
 import com.change_vision.jude.api.inf.ui.IMessageDialogHandler;
 import com.change_vision.jude.api.inf.view.IViewManager;
 
-public class CSharpReverseFileChooserDialog extends JDialog implements ProjectEventListener {
-    private static final long serialVersionUID = 1L;
+public class CSharpReverseFileChooserDialog extends JDialog implements
+		ProjectEventListener {
+	private static final long serialVersionUID = 1L;
 
-    private static final Logger logger = LoggerFactory.getLogger(CSharpReverseFileChooserDialog.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(CSharpReverseFileChooserDialog.class);
 	private static final String NAME = "csharp_reverse";
 	private static int WIDTH = 520;
 	private static int HEIGHT = 120;
 	private IMessageDialogHandler util = Activator.getMessageHandler();
-	
+
 	private JButton reverseButton;
 	private CSharpReverseFileChooserPanel fileChooserPanel;
-	private String resultTempModel = null; 
-	
+	private String resultTempModel = null;
+
 	public CSharpReverseFileChooserDialog(JFrame window) {
-		super(window,true);
+		super(window, true);
 		setName(NAME);
 		setTitle(Messages.getMessage("reverse_dialog.title"));
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -65,17 +67,18 @@ public class CSharpReverseFileChooserDialog extends JDialog implements ProjectEv
 		setSize(WIDTH, HEIGHT);
 		setLocationRelativeTo(window);
 	}
-	
+
 	private void createContents() {
-		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+		getContentPane().setLayout(
+				new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		createMainContent();
 		createSouthContent();
 		getRootPane().setDefaultButton(reverseButton);
-    }
+	}
 
 	private void createSouthContent() {
 		JPanel sourthContentPanel = new JPanel(new BorderLayout());
-		
+
 		JPanel helpPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		helpPanel.add(new HelpButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -93,65 +96,70 @@ public class CSharpReverseFileChooserDialog extends JDialog implements ProjectEv
 			}
 		}));
 		sourthContentPanel.add(helpPanel, BorderLayout.WEST);
-		
+
 		JPanel reversePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		reverseButton = new ReverseButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-                 parseXMLandEasyMerge();
+				parseXMLandEasyMerge();
 			}
 		});
 		reversePanel.add(reverseButton);
 		reversePanel.add(new CancelButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-			}}));
-		
+			}
+		}));
+
 		sourthContentPanel.add(reversePanel, BorderLayout.EAST);
-        		
+
 		getContentPane().add(sourthContentPanel);
 	}
-	
+
 	private void parseXMLandEasyMerge() {
 		DoxygenXmlParser dxp = new DoxygenXmlParser();
-         try {
-//        	 String doxygenXml = "C:/doxygen-test/1.5.8_xml";
-//        	 String astahModelName = "C:/doxygen-test/astah_model/test.asta";   
-        	 
-        	 String doxygenXml = fileChooserPanel.getXmlFileChooseText();
-        	 if (!("".equals(doxygenXml.trim()))) {
-                ProjectAccessor prjAccessor = ProjectAccessorFactory.getProjectAccessor();
-                String iCurrentProject = prjAccessor.getProjectPath();
-                setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                resultTempModel = DoxygenXmlParser.parser(doxygenXml, new CloseDialog() {
-                    @Override
-                    public void close() {
-                        setVisible(false);
-                    }
-                });
+		try {
+			// String doxygenXml = "C:/doxygen-test/1.5.8_xml";
+			// String astahModelName = "C:/doxygen-test/astah_model/test.asta";
 
-                ConfigUtil.saveCSharpXmlPath(doxygenXml);
-                prjAccessor.addProjectEventListener(this);
-                prjAccessor.open(iCurrentProject);
+			String doxygenXml = fileChooserPanel.getXmlFileChooseText();
+			if (!("".equals(doxygenXml.trim()))) {
+				ProjectAccessor prjAccessor = ProjectAccessorFactory
+						.getProjectAccessor();
+				String iCurrentProject = prjAccessor.getProjectPath();
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				resultTempModel = DoxygenXmlParser.parser(doxygenXml,
+						new CloseDialog() {
+							@Override
+							public void close() {
+								setVisible(false);
+							}
+						});
 
-                 // openが終わってから、projectOpened()によってeasyMergeが実行される
-                 
-                 // debug
-                 // throw new UTFDataFormatException();
-                 //
+				ConfigUtil.saveCSharpXmlPath(doxygenXml);
+				prjAccessor.addProjectEventListener(this);
+				prjAccessor.open(iCurrentProject);
 
-        	 } else {
-        		 util.showWarningMessage(getMainFrame(), Messages.getMessage("reverse_dialog.xml_folder_input_message"));
-        	 }
+				// openが終わってから、projectOpened()によってeasyMergeが実行される
+
+				// debug
+				// throw new UTFDataFormatException();
+				//
+
+			} else {
+				util.showWarningMessage(getMainFrame(), Messages
+						.getMessage("reverse_dialog.xml_folder_input_message"));
+			}
 		} catch (LicenseNotFoundException e1) {
 			logger.error(e1.getMessage(), e1);
 		} catch (ProjectLockedException e1) {
 			logger.error(e1.getMessage(), e1);
 		} catch (IndexXmlNotFoundException e1) {
-			util.showWarningMessage(getMainFrame(), Messages.getMessage("reverse_dialog.xml_folder_input_message"));
+			util.showWarningMessage(getMainFrame(), Messages
+					.getMessage("reverse_dialog.xml_folder_input_message"));
 			logger.error(e1.getMessage(), e1);
-			
+
 		} catch (UTFDataFormatException e1) {
-		    String messageStr = null;
+			String messageStr = null;
 			String errorLocationFile = dxp.getErrorLocationFile();
 			if (errorLocationFile != null) {
 				int errorLocationLine = dxp.getErrorLocationLine();
@@ -159,37 +167,63 @@ public class CSharpReverseFileChooserDialog extends JDialog implements ProjectEv
 				int errorLocationBodyStart = dxp.getErrorLocationBodyStart();
 				int errorLocationBodyEnd = dxp.getErrorLocationBodyEnd();
 				String line_separator = System.getProperty("line.separator");
-				messageStr = Messages.getMessage("doxygen_utf_exception_detail.error_message") + line_separator
-						+ "File:" + errorLocationFile + " Line:" + errorLocationLine + line_separator
-						+ "Body File:" + errorLocationBodyFile + " Start:" + errorLocationBodyStart + " End:" + errorLocationBodyEnd ;
+				messageStr = Messages
+						.getMessage("doxygen_utf_exception_detail.error_message")
+						+ line_separator
+						+ "File:"
+						+ errorLocationFile
+						+ " Line:"
+						+ errorLocationLine
+						+ line_separator
+						+ "Body File:"
+						+ errorLocationBodyFile
+						+ " Start:"
+						+ errorLocationBodyStart
+						+ " End:"
+						+ errorLocationBodyEnd;
 			} else {
-                messageStr = Messages.getMessage("doxygen_utf_exception.error_message");
+				messageStr = Messages
+						.getMessage("doxygen_utf_exception.error_message");
 			}
 			logger.error(e1.getMessage(), e1);
-            util.showWarningMessage(getMainFrame(), messageStr);
+			util.showWarningMessage(getMainFrame(), messageStr);
 
-		
 		} catch (Throwable e1) {
-            String messageStr =null;
-		    if(e1 instanceof OutOfMemoryError) {
-	            util.showWarningMessage(getMainFrame(), e1.getMessage());		        
-		    } else {
-                String errorLocationFile = dxp.getErrorLocationFile();
-    			if (errorLocationFile != null) {
-    				int errorLocationLine = dxp.getErrorLocationLine();
-    				String errorLocationBodyFile = dxp.getErrorLocationBodyFile();
-    				int errorLocationBodyStart = dxp.getErrorLocationBodyStart();
-    				int errorLocationBodyEnd = dxp.getErrorLocationBodyEnd();
-    				String line_separator = System.getProperty("line.separator");
-    				messageStr = Messages.getMessage("doxygen_parse_exception_detail.error_message") + line_separator
-    						+ "File:" + errorLocationFile + " Line:" + errorLocationLine + line_separator
-    						+ "Body File:" + errorLocationBodyFile + " Start:" + errorLocationBodyStart + " End:" + errorLocationBodyEnd ;
-    			} else {
-                    messageStr = Messages.getMessage("doxygen_parse_exception.error_message");
-    			}
-		    }
+			String messageStr = null;
+			if (e1 instanceof OutOfMemoryError) {
+				util.showWarningMessage(getMainFrame(), e1.getMessage());
+			} else {
+				String errorLocationFile = dxp.getErrorLocationFile();
+				if (errorLocationFile != null) {
+					int errorLocationLine = dxp.getErrorLocationLine();
+					String errorLocationBodyFile = dxp
+							.getErrorLocationBodyFile();
+					int errorLocationBodyStart = dxp
+							.getErrorLocationBodyStart();
+					int errorLocationBodyEnd = dxp.getErrorLocationBodyEnd();
+					String line_separator = System
+							.getProperty("line.separator");
+					messageStr = Messages
+							.getMessage("doxygen_parse_exception_detail.error_message")
+							+ line_separator
+							+ "File:"
+							+ errorLocationFile
+							+ " Line:"
+							+ errorLocationLine
+							+ line_separator
+							+ "Body File:"
+							+ errorLocationBodyFile
+							+ " Start:"
+							+ errorLocationBodyStart
+							+ " End:"
+							+ errorLocationBodyEnd;
+				} else {
+					messageStr = Messages
+							.getMessage("doxygen_parse_exception.error_message");
+				}
+			}
 			logger.error(e1.getMessage(), e1);
-            util.showWarningMessage(getMainFrame(), messageStr);
+			util.showWarningMessage(getMainFrame(), messageStr);
 		} finally {
 			if (TransactionManager.isInTransaction()) {
 				TransactionManager.abortTransaction();
@@ -197,24 +231,27 @@ public class CSharpReverseFileChooserDialog extends JDialog implements ProjectEv
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 	}
-	
+
 	// TODO AstahAPIHandlerと全く同じ内容の処理？
 	private JFrame getMainFrame() {
-        JFrame parent = null;
-        try {
-            ProjectAccessor projectAccessor = ProjectAccessorFactory.getProjectAccessor();
-            if(projectAccessor == null) return null;
-            IViewManager viewManager = projectAccessor.getViewManager();
-            if(viewManager == null) return null;
-            parent = viewManager.getMainFrame();
-        } catch (ClassNotFoundException ex) {
-            return null;
-        } catch (InvalidUsingException e) {
-        	return null;
+		JFrame parent = null;
+		try {
+			ProjectAccessor projectAccessor = ProjectAccessorFactory
+					.getProjectAccessor();
+			if (projectAccessor == null)
+				return null;
+			IViewManager viewManager = projectAccessor.getViewManager();
+			if (viewManager == null)
+				return null;
+			parent = viewManager.getMainFrame();
+		} catch (ClassNotFoundException ex) {
+			return null;
+		} catch (Exception e) {
+			return null;
 		}
-        return parent;
-    }
-	
+		return parent;
+	}
+
 	private void createMainContent() {
 		JPanel mainContentPanel = new JPanel();
 		mainContentPanel.setLayout(new GridBagLayout());
@@ -222,12 +259,12 @@ public class CSharpReverseFileChooserDialog extends JDialog implements ProjectEv
 		gbc.anchor = GridBagConstraints.WEST;
 		gbc.fill = GridBagConstraints.NONE;
 		fileChooserPanel = new CSharpReverseFileChooserPanel();
-		mainContentPanel.add(fileChooserPanel,gbc);
+		mainContentPanel.add(fileChooserPanel, gbc);
 		getContentPane().add(mainContentPanel);
 	}
-	
+
 	class HelpButton extends JButton {
-	    private static final long serialVersionUID = 1L;
+		private static final long serialVersionUID = 1L;
 		static final String NAME = "export_dialog.help";
 
 		private HelpButton(ActionListener listener) {
@@ -236,9 +273,9 @@ public class CSharpReverseFileChooserDialog extends JDialog implements ProjectEv
 			addActionListener(listener);
 		}
 	}
-	
+
 	class ReverseButton extends JButton {
-	    private static final long serialVersionUID = 1L;
+		private static final long serialVersionUID = 1L;
 		static final String NAME = "export_dialog.generate";
 
 		private ReverseButton(ActionListener listener) {
@@ -249,7 +286,7 @@ public class CSharpReverseFileChooserDialog extends JDialog implements ProjectEv
 	}
 
 	class CancelButton extends JButton {
-	    private static final long serialVersionUID = 1L;
+		private static final long serialVersionUID = 1L;
 		static final String NAME = "export_dialog.cancel";
 
 		private CancelButton(ActionListener listener) {
@@ -271,9 +308,9 @@ public class CSharpReverseFileChooserDialog extends JDialog implements ProjectEv
 	public void projectOpened(ProjectEvent arg0) {
 		ProjectAccessor prjAccessor = null;
 		try {
-		    prjAccessor = ProjectAccessorFactory.getProjectAccessor();
+			prjAccessor = ProjectAccessorFactory.getProjectAccessor();
 			if (resultTempModel != null) {
-		        prjAccessor.easyMerge(resultTempModel, true);
+				prjAccessor.easyMerge(resultTempModel, true);
 			}
 			resultTempModel = null;
 		} catch (ClassNotFoundException e) {

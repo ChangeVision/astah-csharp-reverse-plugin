@@ -11,7 +11,6 @@ import java.util.Set;
 
 import org.xml.sax.SAXException;
 
-import com.change_vision.jude.api.inf.AstahAPI;
 import com.change_vision.jude.api.inf.editor.BasicModelEditor;
 import com.change_vision.jude.api.inf.editor.ModelEditorFactory;
 import com.change_vision.jude.api.inf.exception.InvalidEditingException;
@@ -30,6 +29,7 @@ import com.change_vision.jude.api.inf.model.IPackage;
 import com.change_vision.jude.api.inf.model.ISubsystem;
 import com.change_vision.jude.api.inf.model.ITemplateBinding;
 import com.change_vision.jude.api.inf.model.IUsage;
+import com.change_vision.jude.api.inf.project.ProjectAccessorFactory;
 
 /**
  * this class is the tag of **.xml<br />
@@ -678,7 +678,7 @@ public abstract class Member implements IConvertToJude {
 
 	private IClass getClassByName(String name) throws ProjectNotFoundException,
 			ClassNotFoundException {
-		IModel project = AstahAPI.getAstahAPI().getProjectAccessor()
+		IModel project = ProjectAccessorFactory.getProjectAccessor()
 				.getProject();
 		if (project == null || name == null || name.equals("")) {
 			return null;
@@ -721,7 +721,7 @@ public abstract class Member implements IConvertToJude {
 				&& getType().indexOf("<") > 0) {
 			String templateName = getType()
 					.substring(0, getType().indexOf("<")).trim();
-			IModel project = AstahAPI.getAstahAPI().getProjectAccessor()
+			IModel project = ProjectAccessorFactory.getProjectAccessor()
 					.getProject();
 			for (IClass cls : getClasses(project)) {
 				if (cls.getName().equals(templateName)
@@ -803,7 +803,7 @@ public abstract class Member implements IConvertToJude {
 
 	private List<String> getNamespaceStrings(IClass cls)
 			throws ProjectNotFoundException, ClassNotFoundException {
-		IModel project = AstahAPI.getAstahAPI().getProjectAccessor()
+		IModel project = ProjectAccessorFactory.getProjectAccessor()
 				.getProject();
 
 		List<String> namespaces = new ArrayList<String>();

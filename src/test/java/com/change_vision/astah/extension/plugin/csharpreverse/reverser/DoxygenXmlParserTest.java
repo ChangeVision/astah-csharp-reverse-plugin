@@ -17,11 +17,8 @@ import org.xml.sax.SAXException;
 
 import com.change_vision.astah.extension.plugin.csharpreverse.exception.IndexXmlNotFoundException;
 import com.change_vision.astah.extension.plugin.csharpreverse.view.CloseDialog;
-import com.change_vision.jude.api.inf.AstahAPI;
 import com.change_vision.jude.api.inf.exception.LicenseNotFoundException;
-import com.change_vision.jude.api.inf.exception.NonCompatibleException;
 import com.change_vision.jude.api.inf.exception.ProjectLockedException;
-import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
 import com.change_vision.jude.api.inf.model.IAttribute;
 import com.change_vision.jude.api.inf.model.IClass;
 import com.change_vision.jude.api.inf.model.INamedElement;
@@ -29,6 +26,7 @@ import com.change_vision.jude.api.inf.model.IPackage;
 import com.change_vision.jude.api.inf.model.IParameter;
 import com.change_vision.jude.api.inf.project.ModelFinder;
 import com.change_vision.jude.api.inf.project.ProjectAccessor;
+import com.change_vision.jude.api.inf.project.ProjectAccessorFactory;
 
 public class DoxygenXmlParserTest {
 
@@ -449,18 +447,11 @@ public class DoxygenXmlParserTest {
 	 * @param elementName
 	 *            探したい要素の名前
 	 * @return 探したい要素
-	 * @throws ClassNotFoundException
-	 * @throws LicenseNotFoundException
-	 * @throws ProjectNotFoundException
-	 * @throws NonCompatibleException
-	 * @throws IOException
-	 * @throws ProjectLockedException
+	 * @throws Throwable
 	 */
 	private INamedElement[] findElements(String modelPath,
-			final String elementName) throws ClassNotFoundException,
-			LicenseNotFoundException, ProjectNotFoundException,
-			NonCompatibleException, IOException, ProjectLockedException {
-		ProjectAccessor accessor = AstahAPI.getAstahAPI().getProjectAccessor();
+			final String elementName) throws Throwable {
+		ProjectAccessor accessor = ProjectAccessorFactory.getProjectAccessor();
 		accessor.open(modelPath);
 		INamedElement[] elements = accessor.findElements(new ModelFinder() {
 			@Override

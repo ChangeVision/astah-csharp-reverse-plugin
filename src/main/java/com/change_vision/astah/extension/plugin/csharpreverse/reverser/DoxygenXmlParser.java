@@ -15,7 +15,6 @@ import org.xml.sax.SAXException;
 
 import com.change_vision.astah.extension.plugin.csharpreverse.exception.IndexXmlNotFoundException;
 import com.change_vision.astah.extension.plugin.csharpreverse.view.CloseDialog;
-import com.change_vision.jude.api.inf.AstahAPI;
 import com.change_vision.jude.api.inf.editor.BasicModelEditor;
 import com.change_vision.jude.api.inf.editor.ModelEditorFactory;
 import com.change_vision.jude.api.inf.editor.TransactionManager;
@@ -28,6 +27,7 @@ import com.change_vision.jude.api.inf.model.IModel;
 import com.change_vision.jude.api.inf.model.INamedElement;
 import com.change_vision.jude.api.inf.project.ModelFinder;
 import com.change_vision.jude.api.inf.project.ProjectAccessor;
+import com.change_vision.jude.api.inf.project.ProjectAccessorFactory;
 
 /**
  * Parse Doxygen's xml to generate jude model
@@ -49,7 +49,7 @@ public class DoxygenXmlParser {
 	public static String parser(String path, CloseDialog closeDialog)
 			throws LicenseNotFoundException, ProjectLockedException,
 			IndexXmlNotFoundException, Throwable {
-		ProjectAccessor prjAccessor = AstahAPI.getAstahAPI()
+		ProjectAccessor prjAccessor = ProjectAccessorFactory
 				.getProjectAccessor();
 
 		File indexFile;
@@ -66,7 +66,7 @@ public class DoxygenXmlParser {
 		logger.info("Importing... please wait..");
 
 		// get current jude project's root
-		IModel project = AstahAPI.getAstahAPI().getProjectAccessor()
+		IModel project = ProjectAccessorFactory.getProjectAccessor()
 				.getProject();
 
 		DoxygenXmlParser doxygenXmlParser = new DoxygenXmlParser();
@@ -300,7 +300,7 @@ public class DoxygenXmlParser {
 				LanguageManager.setCurrentLanguagePrimitiveType(type);
 
 				// get current jude project's root
-				IModel project = AstahAPI.getAstahAPI().getProjectAccessor()
+				IModel project = ProjectAccessorFactory.getProjectAccessor()
 						.getProject();
 
 				BasicModelEditor basicModelEditor = ModelEditorFactory

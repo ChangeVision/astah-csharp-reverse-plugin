@@ -78,7 +78,7 @@ public class CSharpReverseAction implements IPluginActionDelegate {
             parent = viewManager.getMainFrame();
         } catch (ClassNotFoundException ex) {
             return null;
-        } catch (InvalidUsingException e) {
+        } catch (Exception e) {
         	return null;
 		}
         return parent;
