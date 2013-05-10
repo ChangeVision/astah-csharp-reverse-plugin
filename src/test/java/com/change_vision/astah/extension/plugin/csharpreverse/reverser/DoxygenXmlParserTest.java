@@ -357,36 +357,6 @@ public class DoxygenXmlParserTest {
 		}
 	}
 
-	/**
-	 * モデルを開いて、探したい要素の名前と等しい名前の要素を返します。
-	 * 
-	 * @param modelPath
-	 *            モデルパス
-	 * @param elementName
-	 *            探したい要素の名前
-	 * @return 探したい要素
-	 * @throws ClassNotFoundException
-	 * @throws LicenseNotFoundException
-	 * @throws ProjectNotFoundException
-	 * @throws NonCompatibleException
-	 * @throws IOException
-	 * @throws ProjectLockedException
-	 */
-	private INamedElement[] findElements(String modelPath,
-			final String elementName) throws ClassNotFoundException,
-			LicenseNotFoundException, ProjectNotFoundException,
-			NonCompatibleException, IOException, ProjectLockedException {
-		ProjectAccessor accessor = AstahAPI.getAstahAPI().getProjectAccessor();
-		accessor.open(modelPath);
-		INamedElement[] elements = accessor.findElements(new ModelFinder() {
-			@Override
-			public boolean isTarget(INamedElement element) {
-				return element.getName().equals(elementName);
-			}
-		});
-		return elements;
-	}
-
 	@Test
 	public void testParser_クラスや属性の定義が設定されていること() throws Throwable {
 		String modelPath = parseProject("para");
@@ -469,6 +439,36 @@ public class DoxygenXmlParserTest {
 		assertEquals("2", clazz.getAttributes()[1].getInitialValue());
 		assertEquals("4", clazz.getAttributes()[2].getInitialValue());
 		assertEquals("TOP + SUB", clazz.getAttributes()[3].getInitialValue());
+	}
+
+	/**
+	 * モデルを開いて、探したい要素の名前と等しい名前の要素を返します。
+	 * 
+	 * @param modelPath
+	 *            モデルパス
+	 * @param elementName
+	 *            探したい要素の名前
+	 * @return 探したい要素
+	 * @throws ClassNotFoundException
+	 * @throws LicenseNotFoundException
+	 * @throws ProjectNotFoundException
+	 * @throws NonCompatibleException
+	 * @throws IOException
+	 * @throws ProjectLockedException
+	 */
+	private INamedElement[] findElements(String modelPath,
+			final String elementName) throws ClassNotFoundException,
+			LicenseNotFoundException, ProjectNotFoundException,
+			NonCompatibleException, IOException, ProjectLockedException {
+		ProjectAccessor accessor = AstahAPI.getAstahAPI().getProjectAccessor();
+		accessor.open(modelPath);
+		INamedElement[] elements = accessor.findElements(new ModelFinder() {
+			@Override
+			public boolean isTarget(INamedElement element) {
+				return element.getName().equals(elementName);
+			}
+		});
+		return elements;
 	}
 
 	/**
