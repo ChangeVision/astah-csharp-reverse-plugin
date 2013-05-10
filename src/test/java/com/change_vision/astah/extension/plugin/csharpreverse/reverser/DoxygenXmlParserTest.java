@@ -460,6 +460,17 @@ public class DoxygenXmlParserTest {
 
 	}
 
+	@Test
+	public void testParser_Enumクラスの属性の初期値が正しいこと() throws Throwable {
+		String modelPath = parseProject("enum_class");
+		INamedElement[] elements = findElements(modelPath, "Aaa");
+		IClass clazz = IClass.class.cast(elements[0]);
+		assertEquals("1", clazz.getAttributes()[0].getInitialValue());
+		assertEquals("2", clazz.getAttributes()[1].getInitialValue());
+		assertEquals("4", clazz.getAttributes()[2].getInitialValue());
+		assertEquals("TOP + SUB", clazz.getAttributes()[3].getInitialValue());
+	}
+
 	/**
 	 * DoxgenのXMLからastahモデルに構文解析した一次ファイルを作成し、そのパスを返します。
 	 * 

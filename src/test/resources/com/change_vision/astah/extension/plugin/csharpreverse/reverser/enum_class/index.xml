@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.2">
+  <compound refid="_aaa_8cs" kind="file"><name>Aaa.cs</name>
+    <member refid="_aaa_8cs_1a9b11f3c22f95aba56cb69d292be147b4" kind="enum"><name>Aaa</name></member>
+    <member refid="_aaa_8cs_1a9b11f3c22f95aba56cb69d292be147b4" kind="enumvalue"><name>TOP</name></member>
+    <member refid="_aaa_8cs_1a9b11f3c22f95aba56cb69d292be147b4" kind="enumvalue"><name>SUB</name></member>
+    <member refid="_aaa_8cs_1a9b11f3c22f95aba56cb69d292be147b4" kind="enumvalue"><name>EXPLICIT</name></member>
+    <member refid="_aaa_8cs_1a9b11f3c22f95aba56cb69d292be147b4" kind="enumvalue"><name>ALL</name></member>
+  </compound>
+  <compound refid="dir_e04ae2849dfa520b4ee2c9f7e9ff15de" kind="dir"><name>C:/Users/Y-MATSUDA/Desktop</name>
+  </compound>
+  <compound refid="dir_17797b75a59db2760d4c0e66c460bd59" kind="dir"><name>C:/Users/Y-MATSUDA/Desktop/enum</name>
+  </compound>
+</doxygenindex>

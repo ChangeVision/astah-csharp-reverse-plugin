@@ -166,6 +166,10 @@ public class EnumValue implements IConvertToJude {
 	 *            初期値
 	 */
 	public void setInitializer(String initializer) {
+		initializer = initializer.trim();
+		if (initializer.startsWith("=")) {
+			initializer = initializer.replaceFirst("=", "").trim();
+		}
 		this.initializer = initializer;
 	}
 
