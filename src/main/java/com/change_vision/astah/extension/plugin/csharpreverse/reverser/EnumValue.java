@@ -173,7 +173,7 @@ public class EnumValue implements IConvertToJude {
 	public void convertToJudeModel(IElement parent, File[] files)
 			throws InvalidEditingException, ClassNotFoundException,
 			ProjectNotFoundException, IOException, SAXException {
-		IAttribute iattr = Tool.getAttribute((IClass) parent, name, "int");
+		IAttribute iattr = Tool.getAttribute((IClass) parent, getName(), "int");
 		if (null == iattr) {
 			return;
 		}
