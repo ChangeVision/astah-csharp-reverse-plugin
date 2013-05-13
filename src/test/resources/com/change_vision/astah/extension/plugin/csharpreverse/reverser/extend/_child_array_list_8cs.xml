@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="_child_array_list_8cs" kind="file">
+    <compoundname>ChildArrayList.cs</compoundname>
+    <innerclass refid="class_child_array_list" prot="public">ChildArrayList</innerclass>
+    <innernamespace refid="namespace_system_1_1_collections">System::Collections</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="class_child_array_list" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_child_array_list" kindref="compound">ChildArrayList</ref><sp/>:<sp/>ArrayList</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Y-MATSUDA/Desktop/aaa/ChildArrayList.cs"/>
+  </compounddef>
+</doxygen>

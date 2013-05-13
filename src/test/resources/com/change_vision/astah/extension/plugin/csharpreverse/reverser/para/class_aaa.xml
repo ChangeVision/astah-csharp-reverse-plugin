@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_aaa" kind="class" prot="public">
+    <compoundname>Aaa</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_aaa_1a807964e7283d890eaec582939c301ddc" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String Aaa.aaa</definition>
+        <argsstring></argsstring>
+        <name>aaa</name>
+        <briefdescription>
+<para>文字列aaa </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" line="11" bodyfile="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_aaa_1acde174a31da6706387d3fcb44a6b421e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Aaa.aaa</definition>
+        <argsstring>()</argsstring>
+        <name>aaa</name>
+        <briefdescription>
+<para>メソッドaaa() </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" line="16" bodyfile="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" bodystart="16" bodyend="16"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>クラスAaa </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" line="7" bodyfile="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" bodystart="6" bodyend="17"/>
+    <listofallmembers>
+      <member refid="class_aaa_1a807964e7283d890eaec582939c301ddc" prot="public" virt="non-virtual"><scope>Aaa</scope><name>aaa</name></member>
+      <member refid="class_aaa_1acde174a31da6706387d3fcb44a6b421e" prot="public" virt="non-virtual"><scope>Aaa</scope><name>aaa</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

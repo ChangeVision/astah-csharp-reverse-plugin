@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.2">
+  <compound refid="class_child_action" kind="class"><name>ChildAction</name>
+  </compound>
+  <compound refid="class_child_array_list" kind="class"><name>ChildArrayList</name>
+  </compound>
+  <compound refid="class_child_list" kind="class"><name>ChildList</name>
+  </compound>
+  <compound refid="namespace_system" kind="namespace"><name>System</name>
+  </compound>
+  <compound refid="namespace_system_1_1_collections" kind="namespace"><name>System::Collections</name>
+  </compound>
+  <compound refid="namespace_system_1_1_collections_1_1_generic" kind="namespace"><name>System::Collections::Generic</name>
+  </compound>
+  <compound refid="_child_action_8cs" kind="file"><name>ChildAction.cs</name>
+  </compound>
+  <compound refid="_child_array_list_8cs" kind="file"><name>ChildArrayList.cs</name>
+  </compound>
+  <compound refid="_child_list_8cs" kind="file"><name>ChildList.cs</name>
+  </compound>
+  <compound refid="dir_e7aa022f5af5ce10c80946f644f506de" kind="dir"><name>C:/Users/Y-MATSUDA/Desktop/aaa</name>
+  </compound>
+  <compound refid="dir_e04ae2849dfa520b4ee2c9f7e9ff15de" kind="dir"><name>C:/Users/Y-MATSUDA/Desktop</name>
+  </compound>
+</doxygenindex>

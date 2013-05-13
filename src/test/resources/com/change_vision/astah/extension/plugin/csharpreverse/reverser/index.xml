@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.2">
+  <compound refid="class_aaa" kind="class"><name>Aaa</name>
+    <member refid="class_aaa_1a81a07f475259c5cac97deead7c3b4b4d" kind="variable"><name>iArray</name></member>
+    <member refid="class_aaa_1acf751cf78bc16f0839fa54446c7c4c82" kind="variable"><name>b</name></member>
+    <member refid="class_aaa_1a2df37b82e67eed2d97e47a15a23f1daa" kind="variable"><name>c</name></member>
+    <member refid="class_aaa_1ad7a5fc42e197f72b079011d92e648322" kind="function"><name>abc</name></member>
+    <member refid="class_aaa_1a40c4c21ca8c79f2631bef99c5a5e2dde" kind="function"><name>abc</name></member>
+    <member refid="class_aaa_1a83a3cab62dc5edaf744923b8393c9161" kind="function"><name>abc</name></member>
+  </compound>
+  <compound refid="a_8cs" kind="file"><name>a.cs</name>
+  </compound>
+  <compound refid="dir_7bd4f8f4fe18ce22af20c741ee807278" kind="dir"><name>C:/Users/y-matsuda/Desktop/a</name>
+  </compound>
+  <compound refid="dir_e04ae2849dfa520b4ee2c9f7e9ff15de" kind="dir"><name>C:/Users/y-matsuda/Desktop</name>
+  </compound>
+</doxygenindex>

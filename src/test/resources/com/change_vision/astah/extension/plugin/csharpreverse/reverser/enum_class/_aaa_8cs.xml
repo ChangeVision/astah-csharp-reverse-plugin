@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="_aaa_8cs" kind="file">
+    <compoundname>Aaa.cs</compoundname>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="_aaa_8cs_1a9b11f3c22f95aba56cb69d292be147b4" prot="public" static="no">
+        <name>Aaa</name>
+        <enumvalue id="_aaa_8cs_1a9b11f3c22f95aba56cb69d292be147b4" prot="public">
+          <name>TOP</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>summary&gt;TOPの説明</para><para>remarks&gt;TOPの概要</para><para>summary&gt;SUBの説明</para><para>remarks&gt;SUBの概要</para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_aaa_8cs_1a9b11f3c22f95aba56cb69d292be147b4" prot="public">
+          <name>SUB</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>summary&gt;EXPLICITの説明</para><para>remarks&gt;EXPLICITの概要</para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_aaa_8cs_1a9b11f3c22f95aba56cb69d292be147b4" prot="public">
+          <name>EXPLICIT</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>summary&gt;ALLの説明</para><para>remarks&gt;ALLの概要</para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_aaa_8cs_1a9b11f3c22f95aba56cb69d292be147b4" prot="public">
+          <name>ALL</name>
+          <initializer>= TOP + SUB</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Y-MATSUDA/Desktop/enum/Aaa.cs" line="2" bodyfile="C:/Users/Y-MATSUDA/Desktop/enum/Aaa.cs" bodystart="1" bodyend="19"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>Aaa</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/>TOP<sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>SUB<sp/>=<sp/>2,</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>EXPLICIT<sp/>=<sp/>4,</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>ALL<sp/>=<sp/>TOP<sp/>+<sp/>SUB</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Y-MATSUDA/Desktop/enum/Aaa.cs"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.2">
+  <compound refid="class_aaa" kind="class"><name>Aaa</name>
+    <member refid="class_aaa_1a3e440ca773ea34af3f94ffa4594c1acd" kind="variable"><name>strPublic</name></member>
+    <member refid="class_aaa_1a3ebdee6f66e793ae794824c089a97427" kind="variable"><name>strPrivate</name></member>
+    <member refid="class_aaa_1a811102b8b0982bf3e9a4974ab1a7aaf6" kind="variable"><name>strProtected</name></member>
+    <member refid="class_aaa_1ad74a5de20f9b91b73e684abeaf5bdf64" kind="variable"><name>strInternal</name></member>
+  </compound>
+  <compound refid="a_8cs" kind="file"><name>a.cs</name>
+  </compound>
+  <compound refid="dir_7bd4f8f4fe18ce22af20c741ee807278" kind="dir"><name>C:/Users/y-matsuda/Desktop/a</name>
+  </compound>
+  <compound refid="dir_e04ae2849dfa520b4ee2c9f7e9ff15de" kind="dir"><name>C:/Users/y-matsuda/Desktop</name>
+  </compound>
+</doxygenindex>

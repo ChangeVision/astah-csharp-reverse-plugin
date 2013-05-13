@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_n_unit_test_agent" kind="class" prot="public">
+    <compoundname>NUnitTestAgent</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="6" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="6" bodyend="6"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

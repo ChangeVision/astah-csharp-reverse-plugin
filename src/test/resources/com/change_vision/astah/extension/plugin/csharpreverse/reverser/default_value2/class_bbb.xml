@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_bbb" kind="class" prot="public">
+    <compoundname>Bbb</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_bbb_1ad3a13a605e3c8824425c287cf2bfad48" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Bbb.Bbb</definition>
+        <argsstring>(Fuga fuga)</argsstring>
+        <name>Bbb</name>
+        <param>
+          <type><ref refid="class_fuga" kindref="compound">Fuga</ref></type>
+          <declname>fuga</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="8" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="8" bodyend="8"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/y-matsuda/Desktop/aaa/a.cs" line="7" bodyfile="C:/Users/y-matsuda/Desktop/aaa/a.cs" bodystart="6" bodyend="9"/>
+    <listofallmembers>
+      <member refid="class_bbb_1ad3a13a605e3c8824425c287cf2bfad48" prot="public" virt="non-virtual"><scope>Bbb</scope><name>Bbb</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

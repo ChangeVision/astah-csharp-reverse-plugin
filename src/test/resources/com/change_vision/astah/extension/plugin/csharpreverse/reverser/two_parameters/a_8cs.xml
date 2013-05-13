@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="a_8cs" kind="file">
+    <compoundname>a.cs</compoundname>
+    <innerclass refid="class_aaa" prot="public">Aaa</innerclass>
+    <innerclass refid="class_bbb" prot="public">Bbb</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="2"></codeline>
+<codeline lineno="3"></codeline>
+<codeline lineno="4" refid="class_aaa" refkind="compound"><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_aaa" kindref="compound" tooltip="Aaaクラスの説明 ">Aaa</ref></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>readonly<sp/><ref refid="class_bbb" kindref="compound" tooltip="Bbbクラスの説明 ">Bbb</ref><sp/><ref refid="class_aaa_1ad3f2f1ad9bca72620d3813e6454e38ba" kindref="member" tooltip="説明 ">b</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_bbb" kindref="compound" tooltip="Bbbクラスの説明 ">Bbb</ref>(0,<sp/>1);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="class_bbb" refkind="compound"><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_bbb" kindref="compound" tooltip="Bbbクラスの説明 ">Bbb</ref></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/><ref refid="class_bbb" kindref="compound" tooltip="Bbbクラスの説明 ">Bbb</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>b)<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/y-matsuda/Desktop/a/a.cs"/>
+  </compounddef>
+</doxygen>

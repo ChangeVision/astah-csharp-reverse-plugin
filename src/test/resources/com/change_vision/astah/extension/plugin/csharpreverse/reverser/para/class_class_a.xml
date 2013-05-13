@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_class_a" kind="class" prot="public">
+    <compoundname>ClassA</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_class_a_1a12a7ea2619f9f410c71b0ed363c16416" prot="private" static="no" mutable="no">
+        <type>String</type>
+        <definition>String ClassA.a</definition>
+        <argsstring></argsstring>
+        <name>a</name>
+        <briefdescription>
+<para>文字列a </para>        </briefdescription>
+        <detaileddescription>
+<para>文字列aの詳しい説明 </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" line="36" bodyfile="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_class_a_1a942ff00c2f81934a03c02fe8b34cb608" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>String</type>
+        <definition>String ClassA.getJoinString</definition>
+        <argsstring>(String str1, String str2)</argsstring>
+        <name>getJoinString</name>
+        <param>
+          <type>String</type>
+          <declname>str1</declname>
+        </param>
+        <param>
+          <type>String</type>
+          <declname>str2</declname>
+        </param>
+        <briefdescription>
+<para>文字列を連結して取得します。 </para>        </briefdescription>
+        <detaileddescription>
+<para>パラメータで渡された文字列を連結し、返します。 </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>str1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1つ目の文字列 </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>str2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2つ目の文字列 </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>連結後の文字列 </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" line="54" bodyfile="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" bodystart="54" bodyend="56"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>クラスAです。 </para>    </briefdescription>
+    <detaileddescription>
+<para>クラスAの詳しい説明。 </para>    </detaileddescription>
+    <location file="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" line="28" bodyfile="C:/Users/Y-MATSUDA/Desktop/ClassA.cs" bodystart="27" bodyend="58"/>
+    <listofallmembers>
+      <member refid="class_class_a_1a12a7ea2619f9f410c71b0ed363c16416" prot="private" virt="non-virtual"><scope>ClassA</scope><name>a</name></member>
+      <member refid="class_class_a_1a942ff00c2f81934a03c02fe8b34cb608" prot="public" virt="non-virtual"><scope>ClassA</scope><name>getJoinString</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
