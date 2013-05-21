@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_a_8cs" kind="file">
+    <compoundname>classA.cs</compoundname>
+    <innerclass refid="class_class_a" prot="public">ClassA</innerclass>
+    <innerclass refid="class_class_b" prot="public">ClassB</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="class_class_a" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_class_a" kindref="compound">ClassA</ref><sp/>{</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_class_b" kindref="compound">ClassB</ref>[]<sp/>classes<sp/>=<sp/>{<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_class_b" kindref="compound">ClassB</ref>()<sp/>};</highlight></codeline>
+<codeline lineno="3"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="class_class_b" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_class_b" kindref="compound">ClassB</ref><sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Y-MATSUDA/Desktop/classA.cs"/>
+  </compounddef>
+</doxygen>

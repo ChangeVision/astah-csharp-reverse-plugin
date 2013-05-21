@@ -439,6 +439,16 @@ public class DoxygenXmlParserTest {
 		assertEquals("TOP + SUB", clazz.getAttributes()[3].getInitialValue());
 	}
 
+	@Test
+	public void testParser_ユーザー定義クラスが配列の場合多重度が設定されること() throws Throwable {
+		String modelPath = parseProject("multiplicity");
+		INamedElement[] elements = findElements(modelPath, "ClassA");
+		IClass clazz = IClass.class.cast(elements[0]);
+		IAttribute attribute = clazz.getAttributes()[0];
+		assertEquals("classes", attribute.getName());
+		assertEquals("*", attribute.getMultiplicity()[0].getLowerString());
+	}
+
 	/**
 	 * モデルを開いて、探したい要素の名前と等しい名前の要素を返します。
 	 * 

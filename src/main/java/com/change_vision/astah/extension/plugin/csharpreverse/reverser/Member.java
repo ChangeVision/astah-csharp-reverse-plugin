@@ -549,8 +549,13 @@ public abstract class Member implements IConvertToJude {
 						// do nothing
 					} else {
 						// convert attribute to association
-						generateAssoication((IClass) parent, basicModelEditor,
-								attrType);
+						IAssociation assoication = generateAssoication(
+								(IClass) parent, basicModelEditor, attrType);
+						if (getArrayString().indexOf("[") != -1
+								&& getArrayString().indexOf("]") != -1) {
+							assoication.getMemberEnds()[1]
+									.setMultiplicityStrings(new String[][] { { "*" } });
+						}
 						basicModelEditor.delete(attr);
 					}
 				}

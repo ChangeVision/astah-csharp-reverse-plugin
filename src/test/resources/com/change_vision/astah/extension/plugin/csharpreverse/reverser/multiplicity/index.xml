@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.2">
+  <compound refid="class_class_a" kind="class"><name>ClassA</name>
+    <member refid="class_class_a_1a2353b562b8d6a29a496e13dba38e5132" kind="variable"><name>classes</name></member>
+  </compound>
+  <compound refid="class_class_b" kind="class"><name>ClassB</name>
+  </compound>
+  <compound refid="class_a_8cs" kind="file"><name>classA.cs</name>
+  </compound>
+  <compound refid="dir_e04ae2849dfa520b4ee2c9f7e9ff15de" kind="dir"><name>C:/Users/Y-MATSUDA/Desktop</name>
+  </compound>
+</doxygenindex>
