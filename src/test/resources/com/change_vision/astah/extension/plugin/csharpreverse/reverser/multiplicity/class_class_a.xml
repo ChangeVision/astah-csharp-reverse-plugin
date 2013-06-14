@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="class_class_a" kind="class" prot="public">
+    <compoundname>ClassA</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_class_a_1a2353b562b8d6a29a496e13dba38e5132" prot="private" static="no" mutable="no">
+        <type><ref refid="class_class_b" kindref="compound">ClassB</ref>[]</type>
+        <definition>ClassB [] ClassA.classes</definition>
+        <argsstring></argsstring>
+        <name>classes</name>
+        <initializer>= { new <ref refid="class_class_b" kindref="compound">ClassB</ref>() }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Y-MATSUDA/Desktop/classA.cs" line="2" bodyfile="C:/Users/Y-MATSUDA/Desktop/classA.cs" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/Y-MATSUDA/Desktop/classA.cs" line="1" bodyfile="C:/Users/Y-MATSUDA/Desktop/classA.cs" bodystart="1" bodyend="3"/>
+    <listofallmembers>
+      <member refid="class_class_a_1a2353b562b8d6a29a496e13dba38e5132" prot="private" virt="non-virtual"><scope>ClassA</scope><name>classes</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
