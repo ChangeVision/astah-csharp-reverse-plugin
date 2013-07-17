@@ -1,6 +1,6 @@
 <configuration>
 
-    <define name="astah.edition" class="com.change_vision.astah.extension.plugin.cplusreverse.internal.AstahEditionPropertyDefiner">
+    <define name="astah.edition" class="com.change_vision.astah.extension.plugin.csharpreverse.internal.AstahEditionPropertyDefiner">
     </define>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
