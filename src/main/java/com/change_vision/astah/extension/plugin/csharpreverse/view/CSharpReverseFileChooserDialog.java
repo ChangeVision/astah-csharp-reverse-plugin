@@ -45,10 +45,10 @@ import com.change_vision.jude.api.inf.view.IViewManager;
 public class CSharpReverseFileChooserDialog extends JDialog implements
 		ProjectEventListener {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerFactory.getLogger(CSharpReverseFileChooserDialog.class);
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(CSharpReverseFileChooserDialog.class);
 	private static final String NAME = "csharp_reverse";
+	private static final String ENTER = "\n";
 	private static int WIDTH = 520;
 	private static int HEIGHT = 120;
 	private IMessageDialogHandler util = Activator.getMessageHandler();
@@ -182,8 +182,8 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
 						+ " End:"
 						+ errorLocationBodyEnd;
 			} else {
-				messageStr = Messages
-						.getMessage("doxygen_utf_exception.error_message");
+                messageStr = Messages.getMessage("doxygen_utf_exception_detail.error_message");
+                messageStr = getMessageString(messageStr, e1.getMessage());
 			}
 			logger.error(e1.getMessage(), e1);
 			util.showWarningMessage(getMainFrame(), messageStr);
@@ -218,8 +218,8 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
 							+ " End:"
 							+ errorLocationBodyEnd;
 				} else {
-					messageStr = Messages
-							.getMessage("doxygen_parse_exception.error_message");
+                    messageStr = Messages.getMessage("doxygen_parse_exception_detail.error_message");
+                    messageStr = getMessageString(messageStr, e1.getMessage());
 				}
 			}
 			logger.error(e1.getMessage(), e1);
@@ -325,4 +325,12 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
 			}
 		}
 	}
+	
+	private String getMessageString(String preposition, String postposition) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(preposition);
+        sb.append(ENTER);
+        sb.append(postposition);
+        return sb.toString();
+    }
 }
