@@ -13,7 +13,7 @@
   <artifactId>csharpreverse</artifactId>
   <version>1.0.4-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>CSharp Reverse</name>
+  <name>%bundle.name</name>
   <description>%bundle.description</description>
   <pluginRepositories>
     <pluginRepository>
