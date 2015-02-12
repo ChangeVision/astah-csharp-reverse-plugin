@@ -467,7 +467,7 @@ public class Tool {
 	public static IAttribute getAttribute(IClass target, String name, String type) throws InvalidEditingException, ClassNotFoundException {
 		IAttribute[] attrs = target.getAttributes();
 		for (int i = 0; i < attrs.length; i++) {
-			if (attrs[i].getName().equals(name)) {
+            if (attrs[i].getName().equals(name) && attrs[i].getType().equals(type)) {
 				return attrs[i];
 			}
 		}
