@@ -18,6 +18,7 @@ import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
 import com.change_vision.jude.api.inf.model.IAttribute;
 import com.change_vision.jude.api.inf.model.IClass;
 import com.change_vision.jude.api.inf.model.IClassifierTemplateParameter;
+import com.change_vision.jude.api.inf.model.IElement;
 import com.change_vision.jude.api.inf.model.IGeneralization;
 import com.change_vision.jude.api.inf.model.IModel;
 import com.change_vision.jude.api.inf.model.INamedElement;
@@ -445,13 +446,20 @@ public class Tool {
 	 * @param target: the attribute in the class
 	 * @param name: the attribute's name
 	 * @param type: the attribute's type, the type is IClass
+	 * @param isProp: Is the kind of attributes a property?
 	 * @return the attribute in the target Class, which's name and type
 	 */
-	public static IAttribute getAttribute(IClass target, String name, IClass type) throws InvalidEditingException, ClassNotFoundException {
+    public static IAttribute getAttribute(IClass target, String name, IClass type, boolean isProp)
+            throws InvalidEditingException, ClassNotFoundException {
 		IAttribute[] attrs = target.getAttributes();
-		for (int i = 0; i < attrs.length; i++) {
-			if (attrs[i].getName().equals(name)) {
-				return attrs[i];
+        for (IAttribute attr : attrs) {
+            if (attr.getName().equals(name)) {
+                if (!isProp && attr.getType().equals(type)) {
+                    return attr;
+                }
+                BasicModelEditor basicModelEditor = ModelEditorFactory.getBasicModelEditor();
+                basicModelEditor.delete(attr);
+                break;
 			}
 		}
 		return setLanguage(ModelEditorFactory.getBasicModelEditor().createAttribute(target, name, type));
@@ -462,13 +470,20 @@ public class Tool {
 	 * @param target: the attribute in the class
 	 * @param name: the attribute's name
 	 * @param type: the attribute's type, the type is the primitive type in jude
+	 * @param isProp: Is the kind of attributes a property?
 	 * @return the attribute in the target Class, which's name and type
 	 */
-	public static IAttribute getAttribute(IClass target, String name, String type) throws InvalidEditingException, ClassNotFoundException {
+    public static IAttribute getAttribute(IClass target, String name, String type, boolean isProp)
+            throws InvalidEditingException, ClassNotFoundException {
 		IAttribute[] attrs = target.getAttributes();
-		for (int i = 0; i < attrs.length; i++) {
-            if (attrs[i].getName().equals(name) && attrs[i].getType().equals(type)) {
-				return attrs[i];
+        for (IAttribute attr : attrs) {
+            if (attr.getName().equals(name)) {
+                if (!isProp && attr.getType().getName().equals(type)) {
+                    return attr;
+                }
+                BasicModelEditor basicModelEditor = ModelEditorFactory.getBasicModelEditor();
+                basicModelEditor.delete(attr);
+                break;
 			}
 		}
 		try {
