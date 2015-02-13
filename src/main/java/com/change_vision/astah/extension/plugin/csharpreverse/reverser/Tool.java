@@ -433,6 +433,9 @@ public class Tool {
 	 * @return the Generalization between subClass and superClass
 	 */
 	public static IGeneralization getGeneralization(IClass subClass, IClass superClass) throws InvalidEditingException, ClassNotFoundException {
+        if (subClass.equals(superClass)) {
+            return null;
+        }
 		IGeneralization[] generlations = subClass.getGeneralizations();
 		for (int i = 0; i < generlations.length; i++) {
 			if (generlations[i].getSuperType().equals(superClass))
