@@ -5,6 +5,7 @@ import com.change_vision.jude.api.inf.editor.ModelEditorFactory;
 import com.change_vision.jude.api.inf.exception.InvalidEditingException;
 import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
 import com.change_vision.jude.api.inf.model.IClass;
+import com.change_vision.jude.api.inf.model.IClassifierTemplateParameter;
 import com.change_vision.jude.api.inf.model.IElement;
 
 /**
@@ -26,6 +27,13 @@ public class TemplateParam extends Param {
             String paramName) throws InvalidEditingException, ProjectNotFoundException,
             ClassNotFoundException {
         BasicModelEditor basicModelEditor = ModelEditorFactory.getBasicModelEditor();
+        IClassifierTemplateParameter[] templateParameters = ((IClass) parent)
+                .getTemplateParameters();
+        for (IClassifierTemplateParameter templateParameter : templateParameters) {
+            if (templateParameter.getName().equals(name)) {
+                return templateParameter;
+            }
+        }
         return basicModelEditor.createTemplateParameter(((IClass) parent), this.getType(),
                 (IClass) null, defval);
     }

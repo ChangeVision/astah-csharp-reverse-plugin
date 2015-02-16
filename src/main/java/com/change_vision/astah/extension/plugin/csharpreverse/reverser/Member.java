@@ -1018,7 +1018,8 @@ public abstract class Member implements IConvertToJude {
 			BasicModelEditor basicModelEditor, IClass type)
 			throws InvalidEditingException, ProjectNotFoundException,
 			ClassNotFoundException {
-		IAttribute attr = Tool.getAttribute((IClass) parent, getName(), type);
+        IAttribute attr = Tool.getAttribute((IClass) parent, getName(), type,
+                KIND_PROPERTY.equals(this.getKind()));
 		int[][] range = getMultiRange();
 		if (range != null) {
 			attr.setMultiplicity(range);
@@ -1108,10 +1109,12 @@ public abstract class Member implements IConvertToJude {
 		}
 		IAttribute attr;
 		if (LanguageManager.getCurrentLanguagePrimitiveType().contains(path[0])) {
-			attr = Tool.getAttribute((IClass) parent, getName(), path[0]);
+            attr = Tool.getAttribute((IClass) parent, getName(), path[0],
+                    KIND_PROPERTY.equals(this.getKind()));
 		} else {
-			attr = Tool.getAttribute((IClass) parent, getName(),
-					path.length > 0 ? path[path.length - 1] : getType());
+            attr = Tool.getAttribute((IClass) parent, getName(),
+                    path.length > 0 ? path[path.length - 1] : getType(),
+                    KIND_PROPERTY.equals(this.getKind()));
 		}
 		if (null == attr) {
 			return null;
