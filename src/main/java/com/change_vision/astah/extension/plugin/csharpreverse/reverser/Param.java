@@ -50,12 +50,15 @@ public class Param implements IConvertToJude {
 
 	public static final String STAR = "*";
 
+    private boolean isTypeCreatedFirst = true;
+
 	public String getType() {
 		return type;
 	}
 
 	public void setType(String type) {
 		this.type = type;
+        this.isTypeCreatedFirst = typeRefs == null || typeRefs.isEmpty();
 	}
 
 	public List<Ref> getTypeRefs() {
@@ -64,10 +67,12 @@ public class Param implements IConvertToJude {
 
 	public void setTypeRefs(List<Ref> typeRefs) {
 		this.typeRefs = typeRefs;
+        this.isTypeCreatedFirst = type != null;
 	}
 
 	public void addTypeRef(Ref typeRef) {
 		this.typeRefs.add(typeRef);
+        this.isTypeCreatedFirst = type != null;
 	}
 
 	public String getDeclname() {
@@ -114,33 +119,42 @@ public class Param implements IConvertToJude {
 		if ("".equals(type) && !typeRefs.isEmpty()) {
 			type = typeRefs.get(0).value;
 		} else if (null != type) {
-			int begin = type.indexOf("<");
-			int refIndex = 0;
-			if (0 <= begin) {
-				while (true) {
-					++begin;
-					int end = type.indexOf(",", begin);
-					if (0 > end) {
-						end = type.indexOf(">", begin);
-					}
-					if (0 > end) {
-						end = type.length();
-					}
-					if (begin > end) {
-						break;
-					}
-					String theTypeStr = type.substring(begin, end);
-					if ("".equals(theTypeStr.trim())) {
-						if (!typeRefs.isEmpty() && typeRefs.size() > refIndex) {
-							StringBuilder sb = new StringBuilder(type);
-							sb.insert(begin, typeRefs.get(refIndex).value);
-							type = sb.toString();
-							++refIndex;
-						}
-					}
-					begin = end;
-				}
-			}
+            if (this.isTypeCreatedFirst) {
+                int begin = type.indexOf("<");
+                int refIndex = 0;
+                if (0 <= begin) {
+                    while (true) {
+                        ++begin;
+                        int end = type.indexOf(",", begin);
+                        if (0 > end) {
+                            end = type.indexOf(">", begin);
+                        }
+                        if (0 > end) {
+                            end = type.length();
+                        }
+                        if (begin > end) {
+                            break;
+                        }
+                        String theTypeStr = type.substring(begin, end);
+                        if ("".equals(theTypeStr.trim())) {
+                            if (!typeRefs.isEmpty() && typeRefs.size() > refIndex) {
+                                StringBuilder sb = new StringBuilder(type);
+                                sb.insert(begin, typeRefs.get(refIndex).value);
+                                type = sb.toString();
+                                ++refIndex;
+                            }
+                        }
+                        begin = end;
+                    }
+                }
+            } else {
+                StringBuilder sb = new StringBuilder();
+                for (Ref ref : typeRefs) {
+                    sb.append(ref.value);
+                }
+                sb.append(type);
+                type = sb.toString();
+            }
 		}
 		checkBoundClass(parent, type);
 		Object name = getParamTypeName(type);
