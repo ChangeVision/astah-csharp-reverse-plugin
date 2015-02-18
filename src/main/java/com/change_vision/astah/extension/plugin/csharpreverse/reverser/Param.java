@@ -143,9 +143,10 @@ public class Param implements IConvertToJude {
 			}
 		}
 		checkBoundClass(parent, type);
-		Object name = getParamTypeName(type);
-		if (type.indexOf(".") != -1) {
-			String[] split = type.split("\\.");
+        String paramTypeName = getParamTypeName(type);
+        Object name = paramTypeName;
+        if (paramTypeName.indexOf(".") != -1) {
+            String[] split = paramTypeName.split("\\.");
 			List<String> allPath = Arrays.asList(split);
 			name = Tool.getClass(allPath.subList(0, allPath.size() - 1)
 					.toArray(new String[] {}), split[split.length - 1], null);
@@ -175,7 +176,7 @@ public class Param implements IConvertToJude {
 		}
 		IElement param;
 		if (name instanceof String)
-			param = createParameter(parent, type, paramArray, paramName);
+            param = createParameter(parent, paramTypeName, paramArray, paramName);
 		else {
 			BasicModelEditor basicModelEditor = ModelEditorFactory
 					.getBasicModelEditor();
@@ -212,6 +213,9 @@ public class Param implements IConvertToJude {
 				.split(",");
 		for (int i = 0; i < contents.length; i++) {
 			templateName += getEndPath(contents[i]).trim();
+            if (i != contents.length - 1) {
+                templateName += ",";
+            }
 		}
 		templateName += ">";
 		return templateName;
