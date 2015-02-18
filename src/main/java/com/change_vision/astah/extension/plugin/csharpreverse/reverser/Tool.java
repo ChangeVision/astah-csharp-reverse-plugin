@@ -409,6 +409,14 @@ public class Tool {
 	}
 	
 	private static String[] splitNameAndTypeModifier(String type) {
+
+	    type = type.trim();
+        if (type.startsWith("in ")) {
+            type = type.replaceFirst("in ", "").trim();
+        } else if (type.startsWith("out ")) {
+            type = type.replaceFirst("out ", "").trim();
+        }
+
 		String[] split = new String[2];
 		if (type.endsWith("**")) {
 			split[0] = type.substring(0, type.indexOf("**")).trim();
