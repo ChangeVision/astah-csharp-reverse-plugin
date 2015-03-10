@@ -34,6 +34,7 @@ import com.change_vision.astah.extension.plugin.csharpreverse.util.ConfigUtil;
 import com.change_vision.jude.api.inf.editor.TransactionManager;
 import com.change_vision.jude.api.inf.exception.InvalidEditingException;
 import com.change_vision.jude.api.inf.exception.LicenseNotFoundException;
+import com.change_vision.jude.api.inf.exception.NonCompatibleException;
 import com.change_vision.jude.api.inf.exception.ProjectLockedException;
 import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
 import com.change_vision.jude.api.inf.project.ProjectAccessor;
@@ -104,6 +105,9 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
 
 	private void parseXMLandEasyMerge() {
 		DoxygenXmlParser dxp = new DoxygenXmlParser();
+        String iCurrentProject = null;
+        boolean isParseSucceeded = false;
+        
 		try {
 			// String doxygenXml = "C:/doxygen-test/1.5.8_xml";
 			// String astahModelName = "C:/doxygen-test/astah_model/test.asta";
@@ -112,7 +116,7 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
 			if (!("".equals(doxygenXml.trim()))) {
 				ProjectAccessor prjAccessor = ProjectAccessorFactory
 						.getProjectAccessor();
-				String iCurrentProject = prjAccessor.getProjectPath();
+				iCurrentProject = prjAccessor.getProjectPath();
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				resultTempModel = DoxygenXmlParser.parser(doxygenXml,
 						new CloseDialog() {
@@ -126,6 +130,7 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
 				prjAccessor.addProjectEventListener(this);
 				prjAccessor.open(iCurrentProject);
 
+				isParseSucceeded = true;
 				// openが終わってから、projectOpened()によってeasyMergeが実行される
 
 				// debug
@@ -144,7 +149,6 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
 			util.showWarningMessage(getMainFrame(), Messages
 					.getMessage("reverse_dialog.xml_folder_input_message"));
 			logger.error(e1.getMessage(), e1);
-
 		} catch (UTFDataFormatException e1) {
 			String messageStr = null;
 			String errorLocationFile = dxp.getErrorLocationFile();
@@ -213,12 +217,48 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
             JOptionPane.showOptionDialog(getMainFrame(), messageStr, "Warning", JOptionPane.WARNING_MESSAGE,
                     JOptionPane.WARNING_MESSAGE, null, getOptions(), null);
 		} finally {
-			if (TransactionManager.isInTransaction()) {
-				TransactionManager.abortTransaction();
-			}
+            if (!isParseSucceeded) {
+                if (TransactionManager.isInTransaction()) {
+                    TransactionManager.abortTransaction();
+                    resetProjectAccessor(iCurrentProject);
+                }
+            } else {
+                if (TransactionManager.isInTransaction()) {
+                    TransactionManager.endTransaction();
+                }
+            }
+
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 	}
+
+    private void resetProjectAccessor(String iCurrentProject) {
+            try {
+                ProjectAccessorFactory.getProjectAccessor().close();
+                ProjectAccessorFactory.getProjectAccessor().open(iCurrentProject);
+             } catch (LicenseNotFoundException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+             } catch (ProjectNotFoundException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+             } catch (NonCompatibleException e) {
+                   // TODO Auto-generated catch block
+                    e.printStackTrace();
+             } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+             } catch (ProjectLockedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+             } catch (ClassNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (RuntimeException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }            
+    }
 
 	// TODO AstahAPIHandlerと全く同じ内容の処理？
 	private JFrame getMainFrame() {
