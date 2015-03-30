@@ -216,14 +216,12 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
             JOptionPane.showOptionDialog(getMainFrame(), messageStr, "Warning", JOptionPane.WARNING_MESSAGE,
                     JOptionPane.WARNING_MESSAGE, null, getOptions(), null);
 		} finally {
-            if (!isParseSucceeded) {
-                if (TransactionManager.isInTransaction()) {
+            if (TransactionManager.isInTransaction()) {
+                if (isParseSucceeded) {
+                    TransactionManager.endTransaction();
+                } else {
                     TransactionManager.abortTransaction();
                     resetProjectAccessor(iCurrentProject);
-                }
-            } else {
-                if (TransactionManager.isInTransaction()) {
-                    TransactionManager.endTransaction();
                 }
             }
             setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
