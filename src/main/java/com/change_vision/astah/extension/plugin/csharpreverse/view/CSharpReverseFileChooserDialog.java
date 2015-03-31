@@ -34,6 +34,7 @@ import com.change_vision.astah.extension.plugin.csharpreverse.util.ConfigUtil;
 import com.change_vision.jude.api.inf.editor.TransactionManager;
 import com.change_vision.jude.api.inf.exception.InvalidEditingException;
 import com.change_vision.jude.api.inf.exception.LicenseNotFoundException;
+import com.change_vision.jude.api.inf.exception.NonCompatibleException;
 import com.change_vision.jude.api.inf.exception.ProjectLockedException;
 import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
 import com.change_vision.jude.api.inf.project.ProjectAccessor;
@@ -104,6 +105,8 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
 
 	private void parseXMLandEasyMerge() {
 		DoxygenXmlParser dxp = new DoxygenXmlParser();
+		String iCurrentProject = null;
+		boolean isParseSucceeded = false;
 		try {
 			// String doxygenXml = "C:/doxygen-test/1.5.8_xml";
 			// String astahModelName = "C:/doxygen-test/astah_model/test.asta";
@@ -112,7 +115,7 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
 			if (!("".equals(doxygenXml.trim()))) {
 				ProjectAccessor prjAccessor = ProjectAccessorFactory
 						.getProjectAccessor();
-				String iCurrentProject = prjAccessor.getProjectPath();
+				iCurrentProject = prjAccessor.getProjectPath();
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				resultTempModel = DoxygenXmlParser.parser(doxygenXml,
 						new CloseDialog() {
@@ -125,7 +128,7 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
 				ConfigUtil.saveCSharpXmlPath(doxygenXml);
 				prjAccessor.addProjectEventListener(this);
 				prjAccessor.open(iCurrentProject);
-
+				isParseSucceeded = true;
 				// openが終わってから、projectOpened()によってeasyMergeが実行される
 
 				// debug
@@ -213,13 +216,39 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
             JOptionPane.showOptionDialog(getMainFrame(), messageStr, "Warning", JOptionPane.WARNING_MESSAGE,
                     JOptionPane.WARNING_MESSAGE, null, getOptions(), null);
 		} finally {
-			if (TransactionManager.isInTransaction()) {
-				TransactionManager.abortTransaction();
-			}
-			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            if (TransactionManager.isInTransaction()) {
+                if (isParseSucceeded) {
+                    TransactionManager.endTransaction();
+                } else {
+                    TransactionManager.abortTransaction();
+                    resetProjectAccessor(iCurrentProject);
+                }
+            }
+            setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 	}
 
+	private void resetProjectAccessor(String iCurrentProject) {
+        try {
+            ProjectAccessorFactory.getProjectAccessor().close();
+            ProjectAccessorFactory.getProjectAccessor().open(iCurrentProject);
+         } catch (LicenseNotFoundException e) {
+             logger.error(e.getMessage(), e);
+         } catch (ProjectNotFoundException e) {
+             logger.error(e.getMessage(), e);
+         } catch (NonCompatibleException e) {
+             logger.error(e.getMessage(), e);
+         } catch (IOException e) {
+             logger.error(e.getMessage(), e);
+         } catch (ProjectLockedException e) {
+             logger.error(e.getMessage(), e);
+         } catch (ClassNotFoundException e) {
+             logger.error(e.getMessage(), e);
+        } catch (RuntimeException e) {
+             logger.error(e.getMessage(), e);
+        }            
+   }
+	
 	// TODO AstahAPIHandlerと全く同じ内容の処理？
 	private JFrame getMainFrame() {
 		JFrame parent = null;
