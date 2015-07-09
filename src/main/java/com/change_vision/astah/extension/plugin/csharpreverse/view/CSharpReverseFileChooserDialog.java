@@ -51,8 +51,6 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
 
 	private static final String NAME = "csharp_reverse";
 	private static final String ENTER = "\n";
-	private static int WIDTH = 520;
-	private static int HEIGHT = 120;
 	private IMessageDialogHandler util = Activator.getMessageHandler();
 
 	private JButton reverseButton;
@@ -66,7 +64,7 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setModal(true);
 		createContents();
-		setSize(WIDTH, HEIGHT);
+        pack();
 		setLocationRelativeTo(window);
 	}
 
