@@ -178,7 +178,14 @@ public class Param implements IConvertToJude {
 			if(type.isEmpty()){
 				type = typeRefs.get(0).getValue();
 			}
-		}
+            paramTypeName = type;
+        } else if (paramTypeName.endsWith("[]")) {
+            paramTypeName = paramTypeName.substring(0, paramTypeName.length() - "[]".length());
+            if (paramTypeName.isEmpty()) {
+                paramTypeName = typeRefs.get(0).getValue();
+            }
+        }
+
 		if (declname != null) {
 			paramName = declname;
 		}
