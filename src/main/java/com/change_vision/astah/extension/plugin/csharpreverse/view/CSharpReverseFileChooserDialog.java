@@ -3,6 +3,7 @@ package com.change_vision.astah.extension.plugin.csharpreverse.view;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Desktop;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -64,6 +65,7 @@ public class CSharpReverseFileChooserDialog extends JDialog implements
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setModal(true);
 		createContents();
+		setMinimumSize(new Dimension(600, 150));
         pack();
 		setLocationRelativeTo(window);
 	}
